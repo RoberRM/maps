@@ -21,12 +21,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
-    "@types/leaflet-routing-machine": "^3.2.6",
     "json-server": "^0.17.4",
-    "jspdf": "^2.5.1",
-    "leaflet": "^1.9.4",
-    "leaflet-control-geocoder": "^2.4.0",
-    "leaflet-routing-machine": "^3.2.12",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
