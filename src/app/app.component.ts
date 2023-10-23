@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
-import { tap } from 'rxjs';
+import Geocoder from 'leaflet-control-geocoder';
+import "leaflet-control-geocoder/dist/Control.Geocoder.js";
+import { of, tap } from 'rxjs';
 import { ILocation } from './interfaces/data.interface';
 import { SERVICES } from './consts/util.const';
 import { LocalizationsService } from './services/localizations.service';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +21,7 @@ export class AppComponent implements OnInit {
   public selectedOption = '';
   public options: string[] = Object.values(SERVICES).filter(value => typeof value === 'string');
   private map: any;
+  private waypoints: any;
   public markersToShow = L.layerGroup();
   public markersToHide = L.layerGroup();
   public poiMarker!: any;
@@ -29,16 +34,19 @@ export class AppComponent implements OnInit {
   
   ngOnInit(): void {
     this._getLocalizations();
-    // 5b3ce3597851110001cf6248cf13756d65b8450dac5db87f0e28bdef
   }
 
   public setOption(selectedOption: string) {
     this.markersToShow.clearLayers();
     if (selectedOption === SERVICES.ALL) {
       this._setMarkers(this._safeLocations);
+      this._setWaypoints(this._safeLocations);
+      this._setPath();
     } else {
       const filteredLocations = this._locations.filter(location => location.type === selectedOption);
       this._setMarkers(filteredLocations);
+      this._setWaypoints(filteredLocations);
+      this._setPath();
     }
   }
 
@@ -50,36 +58,74 @@ export class AppComponent implements OnInit {
     }
   }
 
+  private _setWaypoints(locations: ILocation[]) {
+    this.waypoints = locations.map(location => L.latLng(location.coords));
+    console.log('waypoints: ', this.waypoints)
+  }
+
   private _getLocalizations() {
     this._localizationsService.getLocalizations().pipe(
       tap(response => {
         this._locations = response;
         this._safeLocations = response;
         this._initMap();
+        this._setWaypoints(this._locations);
+        this._setPath();
         })
     ).subscribe();
   }
 
   private _initMap() {
     this.map = L.map('map').setView([40.237, -6.046], 12);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://c2o.es/">C2O Comunicación</a>'
-    }).addTo(this.map);
+    });
+    tiles.addTo(this.map);
+
+    (L.Control as any).geocoder().addTo(this.map);
+
     this.selectedOption = this.options[0];
     this._setMarkers(this._locations);
     this.markersToShow.addTo(this.map);
-
-    /* L.Routing.control({
-      waypoints: [
-        L.latLng(40.26841, -6.10631),
-        L.latLng(40.27745, -6.09372)
-      ],
-      routeWhileDragging: true,
-      geocoder: L.Control.Geocoder.nominatim(),
-      router: L.Routing.osrmv1({
-        serviceUrl: 'https://api.openrouteservice.org/directions',
-        apiKey: '5b3ce3597851110001cf6248cf13756d65b8450dac5db87f0e28bdef'
-      })
-    }).addTo(this.map); */
   }
+
+  private _setPath() {
+    const control = L.Routing.control({
+      waypoints: this.waypoints,
+      routeWhileDragging: true,
+      geocoder: (L.Control as any).Geocoder.nominatim(),
+      router: L.Routing.osrmv1({
+        serviceUrl: 'https://router.project-osrm.org/route/v1',
+      }),
+    }).addTo(this.map);
+  }
+
+  /* exportToPDF() {
+    const jsPDF = require('jspdf');
+    require('jspdf-autotable');
+
+    const doc = new jsPDF();
+    const table = this._createPDFTable(); // Función para crear la tabla con las indicaciones
+  
+    // Agregar la tabla al documento PDF
+    doc.autoTable({
+      head: [['Indicaciones']],
+      body: table,
+    });
+  
+    // Guardar el PDF
+    doc.save('indicaciones_ruta.pdf');
+  } */
+  
+  /* private _createPDFTable() {
+    const tableData = this._getDirectionsAsArray(); // Función para obtener las indicaciones como un arreglo
+  
+    return tableData!! ? tableData.map(item => [item]) : of(null);
+  } */
+  
+  /* private _getDirectionsAsArray() {
+    L.Routing.Control
+    // Aquí obtienes las indicaciones como un arreglo de texto
+    // Por ejemplo, puedes obtenerlas del objeto de ruta devuelto por leaflet-routing-machine
+  } */
 }
