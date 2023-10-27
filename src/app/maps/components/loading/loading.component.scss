@@ -1,0 +1,15 @@
+.loading-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    height: 100vh;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    width: 100vw;
+    .text-center {
+        text-align: center;
+    }
+}
