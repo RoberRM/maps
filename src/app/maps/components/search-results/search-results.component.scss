@@ -1,0 +1,28 @@
+.container {
+    margin-top: 5px;
+    text-align: center;
+    background-color: lightblue;
+    padding: 10px;
+    h6 {
+        margin: unset;
+        ::marker {
+            display: none;
+        }
+    }
+    .list-group {
+        .list-group-item {
+            
+        }
+        .list-group-item-action {
+
+        }
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+p {
+    font-size: 12px;
+}

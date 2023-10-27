@@ -1,20 +1,36 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, OnInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { Map, Popup, Marker, LngLatLike } from 'mapbox-gl';
 import { PlacesService } from '../../services/places.service';
+import { MapService } from '../../../services/map.service';
+import { LocalizationsService } from 'src/app/services';
+import { tap, switchMap, of } from 'rxjs';
+
 
 @Component({
   selector: 'app-map-view',
   templateUrl: './map-view.component.html',
   styleUrls: ['./map-view.component.scss']
 })
-export class MapViewComponent implements AfterViewInit {
+export class MapViewComponent implements OnInit, AfterViewInit {
   title = 'My first AGM project';
   lat = 51.678418;
   lng = 7.809007;
 
   @ViewChild('mapDiv', {static: true}) mapDivElement!: ElementRef;
 
-  constructor( private placesService: PlacesService ) {}
+  constructor( private placesService: PlacesService, private mapService: MapService, private localizationsService: LocalizationsService ) {}
+
+  ngOnInit(): void {
+    this.localizationsService.getLocalizations().pipe(
+      switchMap(resp => {
+        this.mapService.createMarkersFromPlaces(resp as any[], this.placesService.userLocation!)
+        return of(resp)
+      }),
+      tap(() => {
+        // Aquí se ejecutará después de que se creen los marcadores
+      })
+    ).subscribe();
+  }
 
   ngAfterViewInit(): void {
     if (!this.placesService.userLocation) throw Error('No hay placesService.userLocation');
@@ -36,6 +52,8 @@ export class MapViewComponent implements AfterViewInit {
       .setLngLat( this.placesService.userLocation as LngLatLike)
       .setPopup(popup)
       .addTo(map)
+
+    this.mapService.setMap(map);
 
   }
 

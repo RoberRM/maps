@@ -1,22 +1,22 @@
 {
   "localizations": [
     { 
-      "coords": [40.26841, -6.10631], 
+      "coords": [-6.106214620126413, 40.26820818285279], 
       "name": "Granadilla", 
       "type": "Ruta" 
     },
     {
-       "coords": [40.27745, -6.09372], 
+       "coords": [-6.094017988643641, 40.27749770577271], 
        "name": "Cementerio de Granadilla", 
        "type": "Recurso turístico" 
     },
     { 
-      "coords": [40.23749, -6.04760], 
+      "coords": [-6.044712109060828, 40.289608863710576], 
       "name": "Versátil", 
       "type": "Servicio turístico"
     },
     { 
-      "coords": [40.22856, -6.05726], 
+      "coords": [-6.056819447386354, 40.22848017808754], 
       "name": "Apartamento Rural Tierras de Granadilla", 
       "type": "Servicio turístico"
     }
