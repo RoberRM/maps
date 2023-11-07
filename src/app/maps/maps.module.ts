@@ -7,19 +7,29 @@ import { BtnMyLocationComponent } from './components/btn-my-location/btn-my-loca
 import { AngularLogoComponent } from './components/angular-logo/angular-logo.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { FilterComponent } from './components/filter/filter.component';
+import { UserConfigComponent } from './user-config/user-config.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     MapScreenComponent,
+    UserConfigComponent,
     MapViewComponent,
     LoadingComponent,
     BtnMyLocationComponent,
     AngularLogoComponent,
     SearchBarComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    FilterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     MapScreenComponent

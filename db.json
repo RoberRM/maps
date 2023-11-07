@@ -2,23 +2,31 @@
   "localizations": [
     { 
       "coords": [-6.106214620126413, 40.26820818285279], 
+      "location": "Granadilla",
       "name": "Granadilla", 
-      "type": "Ruta" 
+      "id": "granadilla",
+      "type": ["culture-resource"] 
     },
     {
        "coords": [-6.094017988643641, 40.27749770577271], 
+       "location": "Granadilla",
        "name": "Cementerio de Granadilla", 
-       "type": "Recurso turístico" 
+       "id": "cementerio-de-granadilla",
+       "type": ["culture-resource"] 
     },
     { 
-      "coords": [-6.044712109060828, 40.289608863710576], 
+      "coords": [-6.047535959970279, 40.23741198390668], 
+      "location": "Zarza de Granadilla",
       "name": "Versátil", 
-      "type": "Servicio turístico"
+      "id": "versatil",
+      "type": ["where-to-eat","experiences"]
     },
     { 
       "coords": [-6.056819447386354, 40.22848017808754], 
+      "location": "Zarza de Granadilla",
       "name": "Apartamento Rural Tierras de Granadilla", 
-      "type": "Servicio turístico"
+      "id": "apartament-rural",
+      "type": ["where-to-sleep"]
     }
   ]
 }

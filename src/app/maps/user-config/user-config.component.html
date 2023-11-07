@@ -1,0 +1,23 @@
+<div class="user-config">
+    <div class="date-selector">
+        <div class="selector">
+            <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="startDate" (dateChange)="getDiferenciaDias()">
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+        </div>
+        <div class="selector">
+            <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="endDate" (dateChange)="getDiferenciaDias()">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+        </div>
+    </div>
+
+    <div *ngIf="startDate && endDate && endDate >= startDate" class="user-info">
+        <div *ngFor="let date of dates">
+            <span>{{ date.diaSemana | titlecase }} - {{ date.fecha | date: 'shortDate'}}</span>
+        </div>
+    </div>
+    <div *ngIf="startDate && endDate && endDate < startDate" class="user-info">
+        Ambas fechas deben estar seleccionadas
+    </div>
+</div>

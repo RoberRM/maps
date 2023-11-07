@@ -3,7 +3,7 @@ import { Map, Popup, Marker, LngLatLike } from 'mapbox-gl';
 import { PlacesService } from '../../services/places.service';
 import { MapService } from '../../../services/map.service';
 import { LocalizationsService } from 'src/app/services';
-import { tap, switchMap, of } from 'rxjs';
+import { tap, switchMap, of, debounceTime } from 'rxjs';
 
 
 @Component({
@@ -21,15 +21,7 @@ export class MapViewComponent implements OnInit, AfterViewInit {
   constructor( private placesService: PlacesService, private mapService: MapService, private localizationsService: LocalizationsService ) {}
 
   ngOnInit(): void {
-    this.localizationsService.getLocalizations().pipe(
-      switchMap(resp => {
-        this.mapService.createMarkersFromPlaces(resp as any[], this.placesService.userLocation!)
-        return of(resp)
-      }),
-      tap(() => {
-        // Aquí se ejecutará después de que se creen los marcadores
-      })
-    ).subscribe();
+    this._getLocalizations();
   }
 
   ngAfterViewInit(): void {
@@ -37,7 +29,7 @@ export class MapViewComponent implements OnInit, AfterViewInit {
 
     const map = new Map({
       container: this.mapDivElement.nativeElement,
-      style: 'mapbox://styles/mapbox/light-v10',
+      style: 'mapbox://styles/mapbox/satellite-streets-v12',
       center: this.placesService.userLocation,
       zoom: 14
     });
@@ -54,7 +46,15 @@ export class MapViewComponent implements OnInit, AfterViewInit {
       .addTo(map)
 
     this.mapService.setMap(map);
+  }
 
+  private _getLocalizations() {
+    this.localizationsService.getLocalizations().pipe(
+      switchMap(resp => {
+        this.mapService.createMarkersFromPlaces(resp as any[], this.placesService.userLocation!)
+        return of(resp)
+      })
+    ).subscribe();
   }
 
 }

@@ -1,0 +1,29 @@
+.user-config {
+    display: flex;
+    flex-direction: column;
+}
+.date-selector {
+    display: flex;
+    background-color: white;
+    padding: 0px 10px;
+    margin: 5px;
+    position: fixed;
+    right: 5px;
+}
+.selector {
+    display: flex;
+    align-items: center;
+}
+h4 {
+    margin: unset !important;
+}
+
+.user-info {
+    width: 450px;
+    background-color: white;
+    padding: 5px 10px;
+    margin: 5px;
+    position: fixed;
+    right: 5px;
+    top: 50px;
+}

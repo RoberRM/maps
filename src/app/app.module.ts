@@ -16,7 +16,7 @@ import { MapsModule } from './maps/maps.module';
     MapsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
