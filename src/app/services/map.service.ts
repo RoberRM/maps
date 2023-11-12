@@ -1,34 +1,54 @@
-import { AfterViewInit, Injectable, OnChanges, SimpleChanges } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AnySourceData, LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
+import { IDayData } from '../interfaces/day.interface';
 import { DirectionsResponse, Route } from '../interfaces/directions.interface';
 import { DirectionsApiClient } from '../maps/api';
+import { PlacesService } from '../maps/services/places.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MapService implements OnChanges, AfterViewInit {
+export class MapService {
 
   private map: Map | undefined;
   private markers: Marker[] = [];
   private addedRouteIds = new Set<string>();
+  private _selectedDay!: IDayData;
+  private _dates: any[] = [];
+  private _places!: any[];
+  private _userLocation!: [number, number];
   private wishlist: [number, number][] = [];
 
   get isMapReady() {
     return !!this.map;
   }
 
-  constructor( private directionsApiClient: DirectionsApiClient ) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes: ', changes)
+  public set selectedDay(day: IDayData) {
+    this._selectedDay = day;
+    if (this.addedRouteIds.size !== 0) {
+      this.clearRouteIds();
+    }
+    document.querySelector('.mapboxgl-popup')?.remove()
+    const currentDate = this._dates.find(d => d === this._selectedDay);
+    if (currentDate && currentDate.wishlist.length > 1) {
+      this._checkDirections();
+    } else {
+      this._centerMap();
+    }
   }
-  
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      console.log('after view init: ')
 
-    }, 1500)
+  public get dates() {
+    return this._dates;
   }
+
+  public set dates(dates: any[]) {
+    this._dates = dates;
+  }
+
+  constructor( private directionsApiClient: DirectionsApiClient, private _placesService: PlacesService, private snackBar: MatSnackBar ) {}
+
+  // TODO actualizar this._dates para que lo muestren también los componentes que lo usan
 
   setMap(map: Map) {
     this.map = map;
@@ -51,26 +71,18 @@ export class MapService implements OnChanges, AfterViewInit {
     if (!this.map) throw Error('Mapa no inicializado');
     this.markers.forEach(marker => marker.remove());
     const newMarkers = [];
-    
+    this._places = places;
+    this._userLocation = userLocation;
 
     //TODO calcular la ruta entre puntos en vez de hacer tantas rutas como puntos hay empezando
     //TODO por el primer añadido a wishlist
-    const addToTestRoute = (coords: [number, number][]) => {
-      this.wishlist.push(...coords);
-
-      if (this.addedRouteIds.size !== 0) {
-          this.addedRouteIds.forEach(id => {
-              if (this.map?.getLayer(id)) {
-                  this.map.removeLayer(id);
-                  this.map.removeSource(id);
-              }
-          });
-
-          this.addedRouteIds.clear();
+    const addToRoute = (coords: [number, number][], placeName: string, placeType: string) => {
+      if (!this._selectedDay) {
+        this._showNotification('Añade al menos dos puntos a la lista de deseos para calcular la ruta.');
+        return
       }
-
-      this._calculateRouteRecursively(this.wishlist);
-  };
+      this._checkDirections(coords);
+    };
 
     for (const place of places) {
       const [lng, lat] = [place.coords[0], place.coords[1]];
@@ -94,7 +106,8 @@ export class MapService implements OnChanges, AfterViewInit {
               const add = document.querySelector("#add-to-wishlist");
               if (add instanceof HTMLButtonElement) {
                 add.onclick = function() {
-                  addToTestRoute([[lng, lat]]);
+                  addToRoute([[lng, lat]], place.name, place.type);
+                  document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
             }, 50)
@@ -104,15 +117,51 @@ export class MapService implements OnChanges, AfterViewInit {
     this.markers = newMarkers;
     if (places.length === 0) return;
     // * Ajustar mapa a los marcadores mostrados
-    const bounds = new LngLatBounds();
-    newMarkers.forEach( marker => bounds.extend(marker.getLngLat()));
-    bounds.extend(userLocation);
+    this._centerMap();
+    if (this.wishlist.length === 0) return;
+  }
 
-    this.map.fitBounds(bounds, {
+  private _centerMap() {
+    const bounds = new LngLatBounds();
+    this.markers.forEach( marker => bounds.extend(marker.getLngLat()));
+    bounds.extend(this._userLocation);
+
+    this.map?.fitBounds(bounds, {
       padding: 100
     });
+  }
 
-    if (this.wishlist.length === 0) return;
+  private _showNotification(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 4000, 
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
+  }
+
+  private _checkDirections(coords?: [number, number][]) {
+    const currentDate = this._dates.find(d => d === this._selectedDay);
+    if (currentDate) {
+      if (!!coords) {
+        currentDate.wishlist.push(...coords);
+      }
+      if (currentDate.wishlist.length > 1) {
+        if (this.addedRouteIds.size !== 0) {
+          this.clearRouteIds();
+        }
+        this._calculateRouteRecursively(currentDate.wishlist);
+      }
+    }
+  }
+
+  public clearRouteIds() {
+    this.addedRouteIds.forEach(id => {
+      if (this.map?.getLayer(id)) {
+          this.map.removeLayer(id);
+          this.map.removeSource(id);
+      }
+    });
+    this.addedRouteIds.clear();
   }
 
   private _calculateRouteRecursively(routeList: [number, number][]) {

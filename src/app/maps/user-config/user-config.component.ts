@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { IDayData } from 'src/app/interfaces/day.interface';
+import { MapService } from 'src/app/services';
 
 @Component({
   selector: 'app-user-config',
@@ -8,7 +10,9 @@ import { Component } from '@angular/core';
 export class UserConfigComponent {
   public startDate!: Date;
   public endDate!: Date;
-  public dates: any[] = [];
+  public dates: IDayData[] = [];
+
+  constructor(private mapService: MapService) {}
 
   public getDiferenciaDias(): number | string {
     if (this.startDate && this.endDate && this.endDate >= this.startDate) {
@@ -21,14 +25,21 @@ export class UserConfigComponent {
         for (let i = 0; i <= diferenciaDias; i++) {
           const fecha = new Date(currentDate);
           const diaSemana = currentDate.toLocaleString('es-ES', { weekday: 'long' });
-          this.dates.push({fecha, diaSemana });
+          this.dates.push({date: fecha, weekDay: diaSemana, isSelected: false, wishlist: [] });
           currentDate.setDate(currentDate.getDate() + 1);
         }
-
+      this.mapService.dates = this.dates;
       return `La diferencia de días es: ${diferenciaDias}`;
     } else {
       this.dates = [];
       return 'Ambas fechas deben estar seleccionadas.';
+    }
+  }
+
+  public updateSelectedValue(date: IDayData) {
+    this.dates.forEach(date => date.isSelected = false);
+    if (this.dates && this.dates.find(d => d === date)) {
+      this.dates.find(d => d === date)!.isSelected = !date.isSelected;
     }
   }
 }

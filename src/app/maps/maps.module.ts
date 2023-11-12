@@ -11,7 +11,9 @@ import { FilterComponent } from './components/filter/filter.component';
 import { UserConfigComponent } from './user-config/user-config.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+import { DayComponent } from './components/day/day.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,15 @@ import { FormsModule } from '@angular/forms';
     AngularLogoComponent,
     SearchBarComponent,
     SearchResultsComponent,
-    FilterComponent
+    FilterComponent,
+    DayComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSnackBarModule
   ],
   exports: [
     MapScreenComponent

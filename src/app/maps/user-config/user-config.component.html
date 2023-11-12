@@ -14,7 +14,7 @@
 
     <div *ngIf="startDate && endDate && endDate >= startDate" class="user-info">
         <div *ngFor="let date of dates">
-            <span>{{ date.diaSemana | titlecase }} - {{ date.fecha | date: 'shortDate'}}</span>
+            <app-day [date]="date" (click)="updateSelectedValue(date)"></app-day>
         </div>
     </div>
     <div *ngIf="startDate && endDate && endDate < startDate" class="user-info">

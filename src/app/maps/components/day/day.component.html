@@ -1,0 +1,4 @@
+<span (click)="setSelectedDay()" [class.selected]="date.isSelected">
+    {{ date.weekDay| titlecase }} - {{ date.date| date: 'shortDate'}}
+    <span *ngIf="date.wishlist">{{ date.wishlist }}</span>
+</span>
