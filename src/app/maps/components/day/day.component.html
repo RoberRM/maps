@@ -1,4 +1,4 @@
-<span (click)="setSelectedDay()" [class.selected]="date.isSelected">
-    {{ date.weekDay| titlecase }} - {{ date.date| date: 'shortDate'}}
-    <span *ngIf="date.wishlist">{{ date.wishlist }}</span>
+<span (click)="setSelectedDay()" [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'" [class.selected]="date.isSelected">
+    {{ selectedColorIndex + 1 }} {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}
+    <span *ngFor="let wish of date.wishlist"><p [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'">{{wish.name}}</p></span>
 </span>

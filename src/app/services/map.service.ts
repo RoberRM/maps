@@ -5,6 +5,7 @@ import { DirectionsResponse, Route } from '../interfaces/directions.interface';
 import { DirectionsApiClient } from '../maps/api';
 import { PlacesService } from '../maps/services/places.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CURRENTCOLORS } from '../consts/util.const';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class MapService {
   private _places!: any[];
   private _userLocation!: [number, number];
   private wishlist: [number, number][] = [];
+  private _colorIndex = 0;
 
   get isMapReady() {
     return !!this.map;
@@ -81,7 +83,7 @@ export class MapService {
         this._showNotification('Añade al menos dos puntos a la lista de deseos para calcular la ruta.');
         return
       }
-      this._checkDirections(coords);
+      this._checkDirections(coords, placeName);
     };
 
     for (const place of places) {
@@ -139,17 +141,20 @@ export class MapService {
     });
   }
 
-  private _checkDirections(coords?: [number, number][]) {
-    const currentDate = this._dates.find(d => d === this._selectedDay);
+  private _checkDirections(coords?: [number, number][], placeName?: string) {
+    const currentIndex = this._dates.findIndex(d => d === this._selectedDay);
+    const currentDate = this._dates[currentIndex];
+    const colorIndex = (currentIndex % 6 + 6) % 6;
+    
     if (currentDate) {
-      if (!!coords) {
-        currentDate.wishlist.push(...coords);
+      if (!!coords && !!placeName) {
+        currentDate.wishlist.push({coords: coords, name: placeName});
       }
       if (currentDate.wishlist.length > 1) {
         if (this.addedRouteIds.size !== 0) {
           this.clearRouteIds();
         }
-        this._calculateRouteRecursively(currentDate.wishlist);
+        this._calculateRouteRecursively(currentDate.wishlist.map((item: any) => item.coords), colorIndex);
       }
     }
   }
@@ -164,25 +169,15 @@ export class MapService {
     this.addedRouteIds.clear();
   }
 
-  private _calculateRouteRecursively(routeList: [number, number][]) {
+  private _calculateRouteRecursively(routeList: [number, number][], colorIndex: number) {
     if (routeList.length < 2) return;
 
     const start = routeList[0];
     const end = routeList[1];
     const id = `RouteString_${start.join(',')}_${end.join(',')}`;
-    const color = this._getRandomColor(); 
 
-    this.getRouteBetweenPoints(start, end, id, color);
-    this._calculateRouteRecursively(routeList.slice(1));
-  }
-
-  private _getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+    this.getRouteBetweenPoints(start, end, id, CURRENTCOLORS[colorIndex]);
+    this._calculateRouteRecursively(routeList.slice(1), colorIndex);
   }
 
   public getRouteBetweenPoints( start: [number, number], end: [number, number], id: string, color: string) {
@@ -193,7 +188,7 @@ export class MapService {
   private drawPolyline( route: Route, id: string, color: string ) {
     if( !this.map ) throw Error('Mapa no inicializado');
 
-    console.log({kms: route.distance/1000, duration: route.duration/60});
+    // console.log({kms: route.distance/1000, duration: route.duration/60});
 
     this.addedRouteIds.add(id);
     const coords = route.geometry.coordinates;

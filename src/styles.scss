@@ -2,3 +2,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$blue: #07a8b7;
+$coral: #DB795E;
+$lightblue: #75c5c3;
+$green: #91c792;
+$yellow: #f0bd67;
+$black: #000000;
+
+@font-face {
+    font-family: 'Karla';
+    src: url('./assets/fonts/Karla.ttf');
+}
+
+div, button {
+    font-family: 'Karla' !important;
+}

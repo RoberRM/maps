@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CURRENTCOLORS } from 'src/app/consts/util.const';
 import { IDayData } from 'src/app/interfaces/day.interface';
 import { MapService } from 'src/app/services';
 
@@ -11,6 +12,7 @@ export class UserConfigComponent {
   public startDate!: Date;
   public endDate!: Date;
   public dates: IDayData[] = [];
+  public colors = CURRENTCOLORS;
 
   constructor(private mapService: MapService) {}
 
@@ -21,13 +23,12 @@ export class UserConfigComponent {
 
       this.dates = [];
       let currentDate = new Date(this.startDate);
-
-        for (let i = 0; i <= diferenciaDias; i++) {
-          const fecha = new Date(currentDate);
-          const diaSemana = currentDate.toLocaleString('es-ES', { weekday: 'long' });
-          this.dates.push({date: fecha, weekDay: diaSemana, isSelected: false, wishlist: [] });
-          currentDate.setDate(currentDate.getDate() + 1);
-        }
+      for (let i = 0; i <= diferenciaDias; i++) {
+        const fecha = new Date(currentDate);
+        const diaSemana = currentDate.toLocaleString('es-ES', { weekday: 'long' });
+        this.dates.push({date: fecha, weekDay: diaSemana, isSelected: false, wishlist: [] });
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
       this.mapService.dates = this.dates;
       return `La diferencia de días es: ${diferenciaDias}`;
     } else {
@@ -36,7 +37,7 @@ export class UserConfigComponent {
     }
   }
 
-  public updateSelectedValue(date: IDayData) {
+  public updateSelectedDate(date: IDayData) {
     this.dates.forEach(date => date.isSelected = false);
     if (this.dates && this.dates.find(d => d === date)) {
       this.dates.find(d => d === date)!.isSelected = !date.isSelected;

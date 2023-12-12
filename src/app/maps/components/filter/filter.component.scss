@@ -1,23 +1,33 @@
 .filter-container {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 0px;
+    // left: 10px;
+    right: 5px;
     background-color: white;
     padding: 5px;
-    width: 270px;
+    width: 200px;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border-radius: 0px 0px 8px 8px;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    p {
+        font-weight: bold;
+        text-align: center;
+        margin: auto;
+        cursor: pointer;
+    }
     #elemento {
         background-color: #f1f1f1;
-        padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
-        display: none;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.3s ease, max-height 0.3s ease;
     }
     
     #elemento.mostrar {
-        display: block;
+        opacity: 1;
+        max-height: 1000px;
     }
     
     .buttons {

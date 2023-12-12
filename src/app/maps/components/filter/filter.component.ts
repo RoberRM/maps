@@ -16,23 +16,30 @@ export class FilterComponent implements OnInit {
     'Dónde comer': 'where-to-eat',
     'Museos, Centros de Interpretación y oficinas de turismo': 'culture-resource',
     'Experiencias': 'experiences',
-    'Lista de deseos': 'wishlist',
+    /* 'Lista de deseos': 'wishlist', */
   };
   public options = Object.keys(this.optionsMapping);
 
   constructor(private placesService: PlacesService, private mapService: MapService, private localizationsService: LocalizationsService) {}
 
   ngOnInit(): void {
-    const contenedor = document.getElementById('contenedor');
-    const elemento = document.getElementById('elemento');
+    const contenedor: any = document.getElementById('contenedor');
+    const elemento: any = document.getElementById('elemento');
 
-    contenedor?.addEventListener('mouseover', () => {
-      elemento?.classList.add('mostrar');
-    });
+    contenedor?.addEventListener('click', () => {
+      if (elemento?.classList.contains('mostrar')) {
+        elemento?.classList.remove('mostrar');
+      } else {
+        elemento?.classList.add('mostrar');
+      }
+    })
 
-    contenedor?.addEventListener('mouseout', () => {
-      elemento?.classList.remove('mostrar');
-    });
+    document.addEventListener('click', (event) => {
+      if (contenedor && event.target !== contenedor && !contenedor.contains(event.target) && elemento?.classList.contains('mostrar')) {
+        elemento?.classList.remove('mostrar');
+      }
+    })
+
   }
 
   public setFilter(option: string) {

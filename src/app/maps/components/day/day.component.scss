@@ -1,11 +1,8 @@
-.selected {
-    background-color: magenta; 
-  }
-  
+span {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
   span {
-    cursor: pointer;
+    margin-left: 10px;
   }
-  
-  span:hover {
-    background-color: #b9b9b9;
-  }
+}
