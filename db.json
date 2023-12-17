@@ -27,6 +27,13 @@
       "name": "Apartamento Rural Tierras de Granadilla", 
       "id": "apartament-rural",
       "type": ["where-to-sleep"]
+    },
+    { 
+      "coords": [-5.99265, 40.26176], 
+      "location": "Un sitio",
+      "name": "Un sitio", 
+      "id": "un-sitio",
+      "type": ["where-to-eat"] 
     }
   ]
 }

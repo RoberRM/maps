@@ -1,9 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 import { AngularLogoComponent } from './components/angular-logo/angular-logo.component';
 import { BtnMyLocationComponent } from './components/btn-my-location/btn-my-location.component';
 import { DayComponent } from './components/day/day.component';
@@ -33,7 +37,10 @@ import { UserConfigComponent } from './user-config/user-config.component';
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AngularFirestoreModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    provideFirestore(() => getFirestore()),
   ],
   exports: [
     MapScreenComponent
