@@ -1,9 +1,9 @@
-import { AfterViewInit, OnInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { Map, Popup, Marker, LngLatLike } from 'mapbox-gl';
-import { PlacesService } from '../../services/places.service';
-import { MapService } from '../../../services/map.service';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
+import { of, switchMap } from 'rxjs';
 import { LocalizationsService } from 'src/app/services';
-import { tap, switchMap, of, debounceTime } from 'rxjs';
+import { MapService } from '../../../services/map.service';
+import { PlacesService } from '../../services/places.service';
 
 
 @Component({
