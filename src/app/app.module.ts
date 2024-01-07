@@ -6,10 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapsModule } from './maps/maps.module';
+import { RootAccessComponent } from './maps/components/root-access/root-access.component';
+import { AddLocationsComponent } from './maps/components/add-locations/add-locations.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RootAccessComponent,
+    AddLocationsComponent
   ],
   imports: [
     BrowserModule,

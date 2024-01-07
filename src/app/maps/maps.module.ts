@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +19,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { MapScreenComponent } from './map-screen/map-screen.component';
 import { UserConfigComponent } from './user-config/user-config.component';
+import { MapsRoutingModule } from './maps-routing.module';
 
 @NgModule({
   declarations: [
@@ -33,12 +35,14 @@ import { UserConfigComponent } from './user-config/user-config.component';
     DayComponent
   ],
   imports: [
+    MapsRoutingModule,
     CommonModule,
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
     AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
   ],
