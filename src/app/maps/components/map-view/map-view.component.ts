@@ -34,7 +34,7 @@ export class MapViewComponent implements OnInit, AfterViewInit {
       zoom: 14
     });
 
-    const popup = new Popup()
+    /* const popup = new Popup()
       .setHTML(`
         <h6>Aqui estoy</h6>
         <span>Estoy en este sitio</span>
@@ -43,7 +43,7 @@ export class MapViewComponent implements OnInit, AfterViewInit {
     new Marker({color: 'red'})
       .setLngLat( this.placesService.userLocation as LngLatLike)
       .setPopup(popup)
-      .addTo(map)
+      .addTo(map) */
 
     this.mapService.setMap(map);
   }

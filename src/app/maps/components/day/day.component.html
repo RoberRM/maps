@@ -1,4 +1,20 @@
-<span (click)="setSelectedDay()" [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'" [class.selected]="date.isSelected">
-    {{ selectedColorIndex + 1 }} {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}
-    <span *ngFor="let wish of date.wishlist"><p [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'">{{wish.name}}</p></span>
+<span [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'" [class.selected]="date.isSelected">
+    <div>
+        <span class="text" (click)="setSelectedDay()">
+            {{ selectedColorIndex + 1 }} {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}
+        </span>
+        <mat-icon (click)="exportToPdf()">save_as</mat-icon>
+    </div>
+    <span *ngFor="let wish of date.wishlist; let i = index" class="localizations">
+        <p [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'">
+            <span class="locate">{{wish.name}}</span>
+            <span class="arrow" (click)="moveLocation(i, 'upward')">
+                <button *ngIf="arrowsLength > 0 && i > 0" style="flex: 0.6;"><mat-icon>arrow_upward</mat-icon></button>
+            </span>
+            <span class="arrow" (click)="moveLocation(i, 'downward')">
+                <button *ngIf="arrowsLength > 0 && i !== arrowsLength - 1" style="flex: 0.6;"><mat-icon>arrow_downward</mat-icon></button>
+            </span>
+            <span class="arrow remove" (click)="remove(i)"><mat-icon>delete</mat-icon></span>
+        </p>
+    </span>
 </span>

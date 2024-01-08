@@ -2,7 +2,36 @@ span {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  span {
-    margin-left: 10px;
+  padding: 6px;
+  div {
+    display: flex;
+    .text {
+      flex: 1;
+    }
   }
+  .localizations {
+    margin-left: 10px;
+    p {
+      display: flex;
+      .locate {
+        flex: 0.9;
+      }
+      .arrow {
+        min-width: 36px;
+        padding: unset;
+      }
+      .remove {
+        align-items: center;
+      }
+      button {
+        border: unset;
+        background-color: unset;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+mat-icon {
+  color: white;
 }

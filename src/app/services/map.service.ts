@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AnySourceData, LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
+import { CURRENTCOLORS } from '../consts/util.const';
 import { IDayData } from '../interfaces/day.interface';
 import { DirectionsResponse, Route } from '../interfaces/directions.interface';
 import { DirectionsApiClient } from '../maps/api';
 import { PlacesService } from '../maps/services/places.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { CURRENTCOLORS } from '../consts/util.const';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,9 @@ export class MapService {
   private _places!: any[];
   private _userLocation!: [number, number];
   private wishlist: [number, number][] = [];
-  private _colorIndex = 0;
+  private _route: Route[] = [];
+
+  public showArrows = new EventEmitter<number>();
 
   get isMapReady() {
     return !!this.map;
@@ -91,11 +93,17 @@ export class MapService {
       let el = document.createElement('div');
       el.id  = place.id;
 
-      let popup = new Popup().setHTML(`
+      /* let popupContent = `
         <h6>${place.name}</h6>
         <span>${place.type}</span>
-        <button id="add-to-wishlist">Añadir a Lista de deseos</button>
-      `)
+        <button id="add-to-wishlist">Añadir a día seleccionado</button>
+      `; */
+      let popupContent = `
+        <h6>${place.name}</h6>
+        <button id="add-to-wishlist">Añadir a día seleccionado</button>
+      `;
+
+      let popup = new Popup().setHTML(`<div class="custom-popup">${popupContent}</div>`)
 
       const newMarker = new Marker()
         .setLngLat([lng, lat])
@@ -142,14 +150,15 @@ export class MapService {
   }
 
   private _checkDirections(coords?: [number, number][], placeName?: string) {
-    const currentIndex = this._dates.findIndex(d => d === this._selectedDay);
-    const currentDate = this._dates[currentIndex];
-    const colorIndex = (currentIndex % 6 + 6) % 6;
+    const currentDayIndex = this._dates.findIndex(d => d === this._selectedDay);
+    const currentDate = this._dates[currentDayIndex];
+    const colorIndex = (currentDayIndex % 6 + 6) % 6;
     
     if (currentDate) {
       if (!!coords && !!placeName) {
         currentDate.wishlist.push({coords: coords, name: placeName});
       }
+      this.showArrows.emit(currentDate.wishlist.length);
       if (currentDate.wishlist.length > 1) {
         if (this.addedRouteIds.size !== 0) {
           this.clearRouteIds();
@@ -159,7 +168,12 @@ export class MapService {
     }
   }
 
+  public recalculateDirections() {
+    this._checkDirections();
+  }
+
   public clearRouteIds() {
+    this._route = [];
     this.addedRouteIds.forEach(id => {
       if (this.map?.getLayer(id)) {
           this.map.removeLayer(id);
@@ -188,7 +202,7 @@ export class MapService {
   private drawPolyline( route: Route, id: string, color: string ) {
     if( !this.map ) throw Error('Mapa no inicializado');
 
-    // console.log({kms: route.distance/1000, duration: route.duration/60});
+    this._route.push(route);
 
     this.addedRouteIds.add(id);
     const coords = route.geometry.coordinates;
@@ -234,6 +248,13 @@ export class MapService {
         'line-color': color,
         'line-width': 3
       }
+    })
+  }
+
+  public generateReport() {
+    console.log('ROUTES: ', this._route);
+    this._route.forEach(route => {
+      console.log({kms: route.distance/1000, duration: route.duration/60});
     })
   }
 }

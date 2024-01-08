@@ -20,6 +20,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { MapScreenComponent } from './map-screen/map-screen.component';
 import { UserConfigComponent } from './user-config/user-config.component';
 import { MapsRoutingModule } from './maps-routing.module';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MapsRoutingModule } from './maps-routing.module';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSnackBarModule,
+    MatIconModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
