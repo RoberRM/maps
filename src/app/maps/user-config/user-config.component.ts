@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Marker } from 'mapbox-gl';
 import { CURRENTCOLORS } from 'src/app/consts/util.const';
 import { IDayData } from 'src/app/interfaces/day.interface';
 import { MapService } from 'src/app/services';
@@ -26,7 +27,7 @@ export class UserConfigComponent {
       for (let i = 0; i <= diferenciaDias; i++) {
         const fecha = new Date(currentDate);
         const diaSemana = currentDate.toLocaleString('es-ES', { weekday: 'long' });
-        this.dates.push({date: fecha, weekDay: diaSemana, isSelected: false, wishlist: [] });
+        this.dates.push({date: fecha, weekDay: diaSemana, isSelected: false, wishlist: [], markers: [] as Marker[] });
         currentDate.setDate(currentDate.getDate() + 1);
       }
       this.mapService.dates = this.dates;

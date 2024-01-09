@@ -1,6 +1,6 @@
-<span [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'" [class.selected]="date.isSelected">
+<span (click)="setSelectedDay()" [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'" [class.selected]="date.isSelected">
     <div>
-        <span class="text" (click)="setSelectedDay()">
+        <span class="text">
             {{ selectedColorIndex + 1 }} {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}
         </span>
         <mat-icon (click)="exportToPdf()">save_as</mat-icon>
