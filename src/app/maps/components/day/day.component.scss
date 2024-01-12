@@ -35,3 +35,19 @@ span {
 mat-icon {
   color: white;
 }
+
+.container {
+  display: none;
+  padding: 50px;
+  max-height: 400px;
+  overflow-y: auto;
+  h2 {
+    display: block;
+    text-align: center;
+    padding: 5%;
+  }
+  .title {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}

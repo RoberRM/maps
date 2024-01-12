@@ -20,7 +20,11 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { MapScreenComponent } from './map-screen/map-screen.component';
 import { UserConfigComponent } from './user-config/user-config.component';
 import { MapsRoutingModule } from './maps-routing.module';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { NgxPrintModule } from 'ngx-print';
+import { registerLocaleData } from '@angular/common';
+import localeES from "@angular/common/locales/es";
+registerLocaleData(localeES, "es");
 
 @NgModule({
   declarations: [
@@ -43,6 +47,7 @@ import { MatIconModule } from '@angular/material/icon'
     MatNativeDateModule,
     MatSnackBarModule,
     MatIconModule,
+    NgxPrintModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

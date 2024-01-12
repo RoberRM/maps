@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { tap } from 'rxjs';
 import { CURRENTCOLORS, ORDER } from 'src/app/consts/util.const';
 import { IDayData } from 'src/app/interfaces/day.interface';
@@ -10,14 +12,24 @@ import { MapService } from 'src/app/services';
   styleUrls: ['./day.component.scss']
 })
 
-export class DayComponent {
+export class DayComponent implements OnInit {
+  
   @Input('date') public date!: IDayData;
+  @Input() public index: number = 0;
   @Input('isSelected') public isSelected!: boolean;
   @Input() public selectedColorIndex: number = 0;
+  @ViewChild("print") print!: ElementRef;
+  
   public selectedColor = '';
   public arrowsLength = 0;
+  public report: any = null;
+  public printSectionId = '';
 
-  constructor(private mapService: MapService) {}
+  constructor(private mapService: MapService, private printService: NgxPrintService) {}
+  
+  public ngOnInit(): void {
+    this.printSectionId = 'printSection' + this.index;
+  }
   
   public setSelectedDay() {
     this.mapService.showArrows.pipe(
@@ -44,8 +56,39 @@ export class DayComponent {
   }
 
   public exportToPdf() {
-    console.log('Exportar a PDF el día seleccionado')
-    this.mapService.generateReport();
+    const resultado = this._groupRoute(this.mapService.generateReport());
+    this.report = Object.values(resultado);
+    const customPrintOptions: PrintOptions = new PrintOptions({
+      printSectionId: this.printSectionId,
+      printTitle: `ruta_${this._formatDate(this.date.date)}`,
+      openNewTab: false,
+    });
+    setTimeout(() => {
+      this.printService.print(customPrintOptions)
+    }, 10);
   }
 
+  private _formatDate(date: Date) {
+    const format = 'dd_MM_yyyy';
+    const locale = 'es-ES';
+
+    return formatDate(date, format, locale);
+  }
+
+  private _groupRoute(report: any) {
+    return report.reduce((agrupado: any, elemento: any) => {
+      const { route, instructions, totalDistance, totalDuration } = elemento;
+      if (!agrupado[route]) {
+        agrupado[route] = {
+          route,
+          instructions: [],
+          totalDistance,
+          totalDuration
+        };
+      }
+      agrupado[route].instructions.push(instructions);
+    
+      return agrupado;
+    }, {});
+  }
 }

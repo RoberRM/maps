@@ -18,13 +18,13 @@ export class BtnMyLocationComponent {
     this.mapService.flyTo(this.placesService.userLocation!) */
     
     this.localizationService.postFirestoreLocalization().pipe(
-      tap(response => console.log('HECHOOOOO -> ', response))
+      tap(response => console.log('HECHO -> ', response))
     ).subscribe();
 
 
 
     /* this.localizationService.getFirestoreLocalizations().pipe(
-      tap(response => console.log('HECHOOOOO -> ', response))
+      tap(response => console.log('HECHO -> ', response))
     ).subscribe(); */
   }
 }

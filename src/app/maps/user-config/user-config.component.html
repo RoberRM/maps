@@ -14,7 +14,7 @@
 
     <div *ngIf="startDate && endDate && endDate >= startDate" class="user-info">
         <div *ngFor="let date of dates; let i = index">
-            <app-day [date]="date" [selectedColorIndex]="i" (click)="updateSelectedDate(date)"></app-day>
+            <app-day [date]="date" [index]="i" [selectedColorIndex]="i" (click)="updateSelectedDate(date)"></app-day>
         </div>
     </div>
     <div *ngIf="startDate && endDate && endDate < startDate" class="user-info">
