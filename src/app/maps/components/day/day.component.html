@@ -1,4 +1,42 @@
 <span (click)="setSelectedDay()" [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'" [class.selected]="date.isSelected">
-    {{ selectedColorIndex + 1 }} {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}
-    <span *ngFor="let wish of date.wishlist"><p [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'">{{wish.name}}</p></span>
+    <div>
+        <span class="text">
+            {{ selectedColorIndex + 1 }} {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}
+        </span>
+        <mat-icon (click)="exportToPdf()">save_as</mat-icon>
+    </div>
+    <span *ngFor="let wish of date.wishlist; let i = index" class="localizations">
+        <p [style.background-color]="date.isSelected ? selectedColor : '#FFFFFF'">
+            <span class="locate">{{wish.name}}</span>
+            <span class="arrow" (click)="moveLocation(i, 'upward')">
+                <button *ngIf="arrowsLength > 0 && i > 0" style="flex: 0.6;"><mat-icon>arrow_upward</mat-icon></button>
+            </span>
+            <span class="arrow" (click)="moveLocation(i, 'downward')">
+                <button *ngIf="arrowsLength > 0 && i !== arrowsLength - 1" style="flex: 0.6;"><mat-icon>arrow_downward</mat-icon></button>
+            </span>
+            <span class="arrow remove" (click)="remove(i)"><mat-icon>delete</mat-icon></span>
+        </p>
+    </span>
 </span>
+
+<div class="container">
+    <div class="row">
+        <div [id]="printSectionId">
+            <h2>RUTA: {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}</h2>
+            <h3>Total de ubicaciones: {{date.wishlist.length}}</h3>
+            <div *ngFor="let item of report">
+                <div class="title">ORIGEN:  {{ date.wishlist[item.route].name }}</div>
+                <div class="title">DESTINO:  {{ date.wishlist[item.route+1].name }}</div>
+                <div class="estimatedDuration">Distancia {{ item.totalDistance | number:'1.0-1' }} km - Duración {{ item.totalDuration | number:'1.0-2' }} horas</div>
+                <br>
+                <div *ngFor="let instruction of item.instructions">
+                    <li>{{instruction.maneuver}}</li>
+                    <span *ngIf="instruction.distance > 0 && instruction.duration > 0">
+                        Durante {{ instruction.distance | number:'1.0-1' }} km : (Duración aproximada {{ instruction.duration | number:'1.0-2' }} horas)
+                    </span>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

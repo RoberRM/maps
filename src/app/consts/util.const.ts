@@ -15,6 +15,11 @@ export enum COLORS {
     BLACK = '#000000'
 }
 
+export enum ORDER {
+    UPWARD = 'upward',
+    DOWNWARD = 'downward'
+}
+
 export const CURRENTCOLORS = [
     COLORS.BLUE, COLORS.CORAL, COLORS.LIGHTBLUE, COLORS.GREEN, COLORS.YELLOW, COLORS.LIGHTGREY
 ]

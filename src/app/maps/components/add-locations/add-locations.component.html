@@ -1,0 +1,7 @@
+<div>
+    <p>Al pulsar el siguiente botón se van a añadir las localizaciones contenidas en el archivo where-to-sleep.json</p>
+    <input type="checkbox" (change)="onCheckboxChange()">
+    <label>Al marcar el siguiente check se confirma que la integridad de los datos a añadir ha sido revisada por el autor de la actualización
+        de los datos</label>
+    <button [disabled]="!acceptTerms" (click)="goToMyLocation()"> Añadir localizaciones </button>
+</div>

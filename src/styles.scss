@@ -18,3 +18,27 @@ $black: #000000;
 div, button {
     font-family: 'Karla' !important;
 }
+
+.custom-popup {
+    background-color: #ffffff;
+    padding: 10px;
+  }
+  
+  .custom-popup h6 {
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  .custom-popup button {
+    margin: 0px;
+    width: 100%;
+    padding: 10px;
+    font-size: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
