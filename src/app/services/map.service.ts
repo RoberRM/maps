@@ -62,20 +62,25 @@ export class MapService {
   public set dates(dates: any[]) {
     this._dates = dates;
   }
-
+  
   constructor( private directionsApiClient: DirectionsApiClient, private snackBar: MatSnackBar ) {}
-
+  
   setMap(map: Map) {
     this._map = map;
   }
-
+  
   flyTo(coords: LngLatLike) {
     if(!this.isMapReady) throw Error('El mapa no está inicializado');
-
+    
     this._map?.flyTo({
       zoom: 14,
       center: coords
     })
+  }
+
+  public wishlistFromSelectedDay(wishlist: any[]) {
+    const currentDate = this._dates.find(d => d === this._selectedDay);
+    currentDate.wishlist = wishlist;
   }
 
   public resetMarkersFromPlaces() {
@@ -172,16 +177,16 @@ export class MapService {
           const found = this._routeMarkers.find(marker => marker === item.marker)
           if (!found) this._routeMarkers.push(item.marker)
         });
-        this._calculateRouteRecursively(currentDate.wishlist.map((item: any) => item.coords), colorIndex, currentDate.wishlist.map((item: any) => item.markers));
+        this._calculateRouteRecursively(currentDate.wishlist.map((item: any) => item.coords), colorIndex);
         setTimeout(() => {
           this.generateReport();
-        }, 600);
+        }, 800);
       }
     }
   }
 
   public recalculateDirections() {
-    this._checkDirections();
+     this._checkDirections(); 
   }
 
   public clearRouteIds() {
@@ -196,7 +201,7 @@ export class MapService {
     this._addedRouteIds.clear();
   }
 
-  private _calculateRouteRecursively(routeList: [number, number][], colorIndex: number, markers: Marker[]) {
+  private _calculateRouteRecursively(routeList: [number, number][], colorIndex: number) {
     if (routeList.length < 2) return;
 
     const start = routeList[0];
@@ -204,7 +209,7 @@ export class MapService {
     const id = `RouteString_${start.join(',')}_${end.join(',')}`;
 
     this.getRouteBetweenPoints(start, end, id, CURRENTCOLORS[colorIndex]);
-    this._calculateRouteRecursively(routeList.slice(1), colorIndex, markers);
+    this._calculateRouteRecursively(routeList.slice(1), colorIndex);
   }
 
   public getRouteBetweenPoints( start: [number, number], end: [number, number], id: string, color: string) {
@@ -269,6 +274,7 @@ export class MapService {
 
   public generateReport() {
     const explainedRoute: { route: number, instructions?: {duration: number, distance: number, maneuver: string}, totalDistance: number, totalDuration: number, destination?: string }[] = [];
+    this._route = this.removeDuplicatedByProperty(this._route);
     this._route.forEach((route, index) => {
       route.legs.forEach(element => {
         element.steps.forEach(step => {
@@ -278,5 +284,15 @@ export class MapService {
       });
     })
     return explainedRoute
+  }
+
+  public removeDuplicatedByProperty(arrayOfObjects: any[]) {
+    const uniqueArray = arrayOfObjects.filter((obj, index, self) => {
+      return index === self.findIndex((innerObj) => {
+        return JSON.stringify(innerObj) === JSON.stringify(obj);
+      });
+    });
+  
+    return uniqueArray;
   }
 }

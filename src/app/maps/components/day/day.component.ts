@@ -45,27 +45,35 @@ export class DayComponent implements OnInit {
     const elementToMove = this.date.wishlist.splice(index, 1)[0];
     const newIndex = position === ORDER.UPWARD ? index - 1 : index + 1;
     this.date.wishlist.splice(newIndex, 0, elementToMove);
-    this.mapService.recalculateDirections();
+    this._notifyService();
   }
-
+  
   public remove(index: number) {
     if (index >= 0 && index < this.date.wishlist.length) {
       this.date.wishlist.splice(index, 1);
-      this.mapService.recalculateDirections();
+      this._notifyService();
     }
+  }
+
+  private _notifyService() {
+    this.mapService.wishlistFromSelectedDay(this.date.wishlist);
+    this.mapService.recalculateDirections();
   }
 
   public exportToPdf() {
     const resultado = this._groupRoute(this.mapService.generateReport());
     this.report = Object.values(resultado);
+
     const customPrintOptions: PrintOptions = new PrintOptions({
       printSectionId: this.printSectionId,
       printTitle: `ruta_${this._formatDate(this.date.date)}`,
       openNewTab: false,
     });
+    this.mapService.wishlistFromSelectedDay(this.date.wishlist);
     setTimeout(() => {
       this.printService.print(customPrintOptions)
-    }, 10);
+    }, 800);
+
   }
 
   private _formatDate(date: Date) {
