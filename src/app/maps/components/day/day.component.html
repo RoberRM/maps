@@ -21,12 +21,12 @@
 
 <div class="container">
     <div class="row">
-        <div [id]="printSectionId">
+        <div [id]="printSectionId" *ngIf="report">
             <h2>RUTA: {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}</h2>
             <h3>Total de ubicaciones: {{date.wishlist.length}}</h3>
             <div *ngFor="let item of report">
-                <div class="title">ORIGEN:  {{ date.wishlist[item.route].name }}</div>
-                <div class="title">DESTINO:  {{ date.wishlist[item.route+1].name }}</div>
+                <div class="title">ORIGEN:  {{ date.wishlist[item.route]?.name }}</div>
+                <div class="title">DESTINO:  {{ date.wishlist[item.route+1]?.name }}</div>
                 <div class="estimatedDuration">Distancia {{ item.totalDistance | number:'1.0-1' }} km - Duración {{ item.totalDuration | number:'1.0-2' }} horas</div>
                 <br>
                 <div *ngFor="let instruction of item.instructions">
