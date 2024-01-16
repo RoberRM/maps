@@ -5,19 +5,29 @@ span {
   padding: 6px;
   div {
     display: flex;
+    align-items: center;
+
     .text {
       flex: 1;
+      display: flex;
+      flex-direction: row;
+    }
+    .selected {
+      background-color: white;
+      border-radius: 8px 8px 0px 0px;
+      font-weight: 900;
     }
   }
   .localizations {
-    margin-left: 10px;
+    background-color: white;
     p {
       display: flex;
       .locate {
-        flex: 0.9;
+        flex: 1;
+        width: 300px;
       }
       .arrow {
-        min-width: 36px;
+        width: 36px;
         padding: unset;
       }
       .remove {
@@ -30,10 +40,27 @@ span {
       }
     }
   }
+
+  .first-item {
+    border-radius: 0px 8px 0 0;
+  }
+  
+  .middle-item {
+    border-radius: 0px;
+  }
+  
+  .last-item {
+    border-radius: 0px 0px 8px 8px;
+  }
+
+  .unique-item {
+    border-radius: 0px 8px 8px 8px;
+  }
 }
 
 mat-icon {
   color: white;
+  padding: 6px;
 }
 
 .container {
