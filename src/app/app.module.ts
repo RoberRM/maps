@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { MapsModule } from './maps/maps.module';
 import { RootAccessComponent } from './maps/components/root-access/root-access.component';
 import { AddLocationsComponent } from './maps/components/add-locations/add-locations.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddLocationsComponent } from './maps/components/add-locations/add-locat
     MapsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

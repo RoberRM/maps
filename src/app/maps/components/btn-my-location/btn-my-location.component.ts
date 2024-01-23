@@ -12,19 +12,20 @@ export class BtnMyLocationComponent {
 
   constructor( private placesService: PlacesService, private mapService: MapService, private localizationService: LocalizationsService ) {}
 
-  public goToMyLocation() {
-    /* if (!this.placesService.isUserLocationReady) throw Error('No hay ubicación de usuario');
+  public postNewLocation(location? : any) {
+
+    if (!this.placesService.isUserLocationReady) throw Error('No hay ubicación de usuario');
     if (!this.mapService.isMapReady) throw Error('No hay mapa disponible');
-    this.mapService.flyTo(this.placesService.userLocation!) */
-    
-    this.localizationService.postFirestoreLocalization().pipe(
+
+    this.mapService.flyTo(this.placesService.userLocation!)
+
+    if (!location) {
+      console.log('No hay location para añadir')
+      return
+    }
+
+    this.localizationService.postFirestoreLocalization(location).pipe(
       tap(response => console.log('HECHO -> ', response))
     ).subscribe();
-
-
-
-    /* this.localizationService.getFirestoreLocalizations().pipe(
-      tap(response => console.log('HECHO -> ', response))
-    ).subscribe(); */
   }
 }

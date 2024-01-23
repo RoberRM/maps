@@ -7,18 +7,25 @@ import { addDoc, collection } from 'firebase/firestore';
 import { BehaviorSubject, Observable, catchError, from, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { JsonService } from './json.service';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 }) 
 export class LocalizationsService {
   private localizationsSubject = new BehaviorSubject<any>(null);
+  private currentLocation: any;
   localizations$ = this.localizationsSubject.asObservable();
 
   private app = initializeApp(environment.firebaseConfig);
   private db = getFirestore(this.app);
 
-  constructor(private afAuth: AngularFireAuth, private firestore: Firestore, private jsonService: JsonService) { }
+  constructor(
+    private afAuth: AngularFireAuth, 
+    private firestore: Firestore, 
+    private jsonService: JsonService,
+    private localStorageService: LocalStorageService
+  ) { }
 
   /**
    * Get localizations
@@ -27,7 +34,10 @@ export class LocalizationsService {
     const placesRef = collection(this.db, 'localizations');
     const data = collectionData(placesRef, {idField: 'id'})
     return data.pipe(
-      tap(response => this.localizationsSubject.next(response)),
+      tap(response => {
+        this.localStorageService.set('localizations', JSON.stringify(response))
+        this.localizationsSubject.next(response)
+      }),
       switchMap(() => this.localizationsSubject.asObservable())
     )
   }
@@ -35,12 +45,14 @@ export class LocalizationsService {
   /**
    * Get localizations from Firestore
    */
-  public postFirestoreLocalization(): Observable<any> {
+  public postFirestoreLocalization(location: any): Observable<any> {
     return this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this.handleAuthenticatedUser();
+          if (this.currentLocation) this.currentLocation = null;
+          return this.handleAuthenticatedUser(location);
         } else {
+          this.currentLocation = location;
           return this.signInAndRetry();
         }
       }),
@@ -51,7 +63,9 @@ export class LocalizationsService {
     );
   }
 
-  private handleAuthenticatedUser(): Observable<any> {
+  private handleAuthenticatedUser(location: any): Observable<any> {
+    // TODO en lugar de getJsonData se tendrá que subir lo que haya en el textarea del formulario
+    // TODO se debe recibir como parámetro en esta función
     return this.jsonService.getJsonData().pipe(
       tap(response => {
         const locTest = response;
@@ -76,7 +90,7 @@ export class LocalizationsService {
   private signInAndRetry(): Observable<any> {
     return from(this.afAuth.signInWithPopup(new GoogleAuthProvider())).pipe(
       switchMap(() => {
-        return this.postFirestoreLocalization();
+        return this.postFirestoreLocalization(this.currentLocation);
       }),
       catchError(() => {
         return of(null);

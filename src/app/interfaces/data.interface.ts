@@ -1,5 +1,9 @@
+import { LatLngExpression } from "leaflet";
+
 export interface ILocation {
-    coords: L.LatLngExpression,
+    coords: LatLngExpression,
+    location: string,
     name: string,
+    id: string,
     type: string,
 }

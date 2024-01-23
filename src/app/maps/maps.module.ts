@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -22,7 +22,6 @@ import { UserConfigComponent } from './user-config/user-config.component';
 import { MapsRoutingModule } from './maps-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { NgxPrintModule } from 'ngx-print';
-import { registerLocaleData } from '@angular/common';
 import localeES from "@angular/common/locales/es";
 registerLocaleData(localeES, "es");
 
