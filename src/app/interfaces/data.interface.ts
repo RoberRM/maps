@@ -1,5 +1,7 @@
 export interface ILocation {
-    coords: L.LatLngExpression,
+    coords: [number, number],
+    location: string,
     name: string,
+    id: string,
     type: string,
 }

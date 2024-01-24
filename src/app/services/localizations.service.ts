@@ -3,31 +3,42 @@ import { initializeApp } from '@angular/fire/app';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Firestore, collectionData, getFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { addDoc, collection } from 'firebase/firestore';
 import { BehaviorSubject, Observable, catchError, from, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { JsonService } from './json.service';
+import { ILocation } from '../interfaces/data.interface';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 }) 
 export class LocalizationsService {
   private localizationsSubject = new BehaviorSubject<any>(null);
+  private currentLocation!: ILocation | null;
   localizations$ = this.localizationsSubject.asObservable();
 
   private app = initializeApp(environment.firebaseConfig);
   private db = getFirestore(this.app);
 
-  constructor(private afAuth: AngularFireAuth, private firestore: Firestore, private jsonService: JsonService) { }
+  constructor(
+    private afAuth: AngularFireAuth, 
+    private firestore: Firestore, 
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) { }
 
   /**
    * Get localizations
    */
-  public getLocalizations(): Observable<any> {
+  public getLocalizations(): Observable<ILocation> {
     const placesRef = collection(this.db, 'localizations');
     const data = collectionData(placesRef, {idField: 'id'})
     return data.pipe(
-      tap(response => this.localizationsSubject.next(response)),
+      tap(response => {
+        this.localStorageService.set('localizations', JSON.stringify(response))
+        this.localizationsSubject.next(response)
+      }),
       switchMap(() => this.localizationsSubject.asObservable())
     )
   }
@@ -35,39 +46,48 @@ export class LocalizationsService {
   /**
    * Get localizations from Firestore
    */
-  public postFirestoreLocalization(): Observable<any> {
+  public postFirestoreLocalization(location: ILocation): Observable<any> {
     return this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          return this.handleAuthenticatedUser();
+          if (this.currentLocation) this.currentLocation = null;
+          return this.handleAuthenticatedUser(location);
         } else {
+          this.currentLocation = location;
           return this.signInAndRetry();
         }
       }),
       catchError(error => {
-        console.error('Error en la autenticación o subida de datos: ', error);
+        console.error('Error en la autenticación: ', error);
         return of(null);
       })
     );
   }
 
-  private handleAuthenticatedUser(): Observable<any> {
-    return this.jsonService.getJsonData().pipe(
-      tap(response => {
-        const locTest = response;
-            
-        const fixedLocations: any = [];
-        locTest.forEach((item: any) => {
-          const coordenadas = item.coords.split(', ').map(parseFloat);
-          item.coords = [coordenadas[1], coordenadas[0]] as any;
-          fixedLocations.push(item)
-        })
-        const localizationRef = collection(this.firestore, 'localizations');
-        fixedLocations.forEach((item: any) => {
-          addDoc(localizationRef, item)
-        }) 
-      }),
-      catchError(() => {
+  public firestoreLogout() {
+    this.afAuth.signOut().then(() => {
+      this.router.navigate(['/']);
+    })
+    .catch(e => {
+      console.error('No se pudo completar el logout -> ', e)
+    })
+  }
+
+  private handleAuthenticatedUser(location: any): Observable<any> {
+    const fixedLocations: any = [];
+    const coordenadas = location.coords.split(', ').map(parseFloat);
+    location.coords = [coordenadas[1], coordenadas[0]] as any;
+    fixedLocations.push(location);
+
+    const localizationRef = collection(this.firestore, 'localizations');
+
+    return from(
+      Promise.all(
+        fixedLocations.map((item: ILocation) => addDoc(localizationRef, item))
+      )
+    ).pipe(
+      catchError(e => {
+        console.error(location.name, ' no se ha añadido -> ', e);
         return of(null);
       })
     );
@@ -76,7 +96,7 @@ export class LocalizationsService {
   private signInAndRetry(): Observable<any> {
     return from(this.afAuth.signInWithPopup(new GoogleAuthProvider())).pipe(
       switchMap(() => {
-        return this.postFirestoreLocalization();
+        return this.postFirestoreLocalization(this.currentLocation!);
       }),
       catchError(() => {
         return of(null);

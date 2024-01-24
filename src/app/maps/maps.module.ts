@@ -1,13 +1,16 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeES from "@angular/common/locales/es";
 import { NgModule } from '@angular/core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NgxPrintModule } from 'ngx-print';
 import { environment } from 'src/environments/environment';
 import { AngularLogoComponent } from './components/angular-logo/angular-logo.component';
 import { BtnMyLocationComponent } from './components/btn-my-location/btn-my-location.component';
@@ -18,12 +21,8 @@ import { MapViewComponent } from './components/map-view/map-view.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { MapScreenComponent } from './map-screen/map-screen.component';
-import { UserConfigComponent } from './user-config/user-config.component';
 import { MapsRoutingModule } from './maps-routing.module';
-import { MatIconModule } from '@angular/material/icon';
-import { NgxPrintModule } from 'ngx-print';
-import { registerLocaleData } from '@angular/common';
-import localeES from "@angular/common/locales/es";
+import { UserConfigComponent } from './user-config/user-config.component';
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -55,6 +54,9 @@ registerLocaleData(localeES, "es");
   ],
   exports: [
     MapScreenComponent
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
   ]
 })
 export class MapsModule { }

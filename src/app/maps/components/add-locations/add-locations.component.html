@@ -1,7 +1,35 @@
 <div>
-    <p>Al pulsar el siguiente botón se van a añadir las localizaciones contenidas en el archivo where-to-sleep.json</p>
-    <input type="checkbox" (change)="onCheckboxChange()">
-    <label>Al marcar el siguiente check se confirma que la integridad de los datos a añadir ha sido revisada por el autor de la actualización
-        de los datos</label>
-    <button [disabled]="!acceptTerms" (click)="goToMyLocation()"> Añadir localizaciones </button>
+    <button (click)="firestoreLogout()" class="logout"> Cerrar sesión y volver al mapa </button>
+    <br>
+    <p>Al pulsar ENVIAR se van a añadir las localizaciones contenidas en el archivo where-to-sleep.json</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="inputs">
+            <div class="selector">
+                <label  [ngClass]="{ enabled: !form.value.useText }">Archivo JSON </label>
+                <div class="toggle" (click)="toggleCheckbox()">
+                    <input type="checkbox" formControlName="useText" [checked]="form.get('useText')?.value">
+                    <label></label>
+                </div>
+                <label [ngClass]="{ enabled: form.value.useText }">Texto </label>
+            </div>
+            <div class="form-input" *ngIf="form.value.useText">
+                <textarea id="text" type="text" formControlName="textData"></textarea>
+            </div>
+            <div class="form-input" *ngIf="!form.value.useText">
+                <input id="fileInput" type="file" formControlName="jsonData">
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" (change)="onCheckboxChange()">
+            <label>Al marcar el siguiente check se confirma que la integridad de los datos a añadir ha sido revisada por el autor de la actualización
+                de los datos</label>
+        </div>
+        <span class="footer">
+            <span *ngIf="!acceptTerms">Debe marcar la casilla de conformidad</span>
+            <span *ngIf="showError">Hay un error en el texto introducido: {{ errorMessage }}</span>
+            <span *ngIf="showSuccess" class="showSuccess">¡Localizaciones actualizadas correctamente!</span>
+            <button [disabled]="!acceptTerms" type="submit">Enviar</button>
+        </span>
+        </form>
 </div>

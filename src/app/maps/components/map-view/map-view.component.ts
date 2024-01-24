@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
+import { Map } from 'mapbox-gl';
 import { of, switchMap } from 'rxjs';
 import { LocalizationsService } from 'src/app/services';
 import { MapService } from '../../../services/map.service';
@@ -12,7 +12,7 @@ import { PlacesService } from '../../services/places.service';
   styleUrls: ['./map-view.component.scss']
 })
 export class MapViewComponent implements OnInit, AfterViewInit {
-  title = 'My first AGM project';
+  title = 'C2O Maps';
   lat = 51.678418;
   lng = 7.809007;
 
@@ -51,7 +51,7 @@ export class MapViewComponent implements OnInit, AfterViewInit {
   private _getLocalizations() {
     this.localizationsService.getLocalizations().pipe(
       switchMap(resp => {
-        this.mapService.createMarkersFromPlaces(resp as any[], this.placesService.userLocation!)
+        this.mapService.createMarkersFromPlaces(resp as unknown as any[], this.placesService.userLocation!)
         return of(resp)
       })
     ).subscribe();

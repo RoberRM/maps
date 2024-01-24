@@ -1,1 +1,7 @@
-<p>login works!</p>
+<div *ngIf="!login">
+    <button (click)="userLogin()"> Clic aquí para iniciar sesión </button>
+</div>
+<div *ngIf="login">
+    <div class="text">Esperando login...</div>
+    <div class="loader"></div>
+</div>
