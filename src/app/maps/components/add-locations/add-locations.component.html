@@ -1,4 +1,6 @@
 <div>
+    <button (click)="firestoreLogout()" class="logout"> Cerrar sesión y volver al mapa </button>
+    <br>
     <p>Al pulsar ENVIAR se van a añadir las localizaciones contenidas en el archivo where-to-sleep.json</p>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="inputs">
@@ -30,5 +32,4 @@
             <button [disabled]="!acceptTerms" type="submit">Enviar</button>
         </span>
         </form>
-    <!-- <button [disabled]="!acceptTerms" (click)="goToMyLocation()"> Añadir localizaciones </button> -->
 </div>

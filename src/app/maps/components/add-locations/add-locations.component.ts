@@ -44,6 +44,10 @@ export class AddLocationsComponent {
     this.acceptTerms = !this.acceptTerms;
   }
 
+  public firestoreLogout() {
+    this.localizationService.firestoreLogout();
+  }
+
   public onSubmit() {
     if (!this.acceptTerms) return
 
@@ -70,7 +74,7 @@ export class AddLocationsComponent {
         } catch (error) {
           this.showError = true;
           this.showSuccess = false;
-          this.errorMessage = 'Error al analizar el JSON';
+          this.errorMessage = 'Error en el formato JSON';
         }
       }
       if (!this.form.value.useText && this.formData.jsonData) {
@@ -81,8 +85,8 @@ export class AddLocationsComponent {
           const reader = new FileReader();
           reader.onload = (e) => {
             this._fileContent = JSON.parse(reader.result as string);
-            this._fileContent.forEach( (location: any) => {
-              this._handleLocation(location);
+            this._fileContent.forEach((location: ILocation) => {
+              this._manageObject(location);
             })
           };
           reader.readAsText(file);
@@ -109,8 +113,7 @@ export class AddLocationsComponent {
     if (this.showError) this.errorMessage = 'Esta localización ya existe';
 
     if (!this.showError) {
-      // TODO descomentar código para poder subir localizaciones
-      // this.postLocation(parsedItem)
+      this.postLocation(input);
       this.showError = false;
       this.errorMessage = '';
       this.showSuccess = true;

@@ -1,8 +1,14 @@
+@import './../../../../styles.scss';
+
 div {
     padding: 50px;
     button {
         display: flex;
         margin: auto;
+    }
+    .logout {
+        margin: unset;
+        margin-bottom: 35px;
     }
     form {
         .inputs {
@@ -53,7 +59,7 @@ div {
             position: relative;
             width: 50px;
             height: 0px;
-            background-color: #ccc;
+            background-color: $blueButton;
             border-radius: 25px;
             cursor: pointer;
             padding: unset;

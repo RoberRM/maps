@@ -9,16 +9,19 @@ import { GoogleAuthProvider } from 'firebase/auth';
   styleUrls: ['./root-access.component.scss']
 })
 export class RootAccessComponent {
+  public login = false;
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
-
-  ngOnInit(): void {
+  
+  public userLogin() {
+    this.login = true;
     this.afAuth.signInWithPopup(new GoogleAuthProvider())
       .then(() => {
         this.router.navigate(['/add-locations']);
       })
       .catch(() => {
+        this.login = false;
         this.router.navigate(['/']);
-      });
+    });
   }
 
 }
