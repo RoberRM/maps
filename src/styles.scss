@@ -22,6 +22,17 @@ div, button {
     font-family: 'Karla' !important;
 }
 
+.where-to-sleep-marker {
+  width: 27px;
+  height: 41px;
+  background-image: url('assets/markers/POI/marker-editor.svg');
+}
+.where-to-eat-marker {
+  width: 27px;
+  height: 41px;
+  background-image: url('assets/markers/restaurants/marker.svg');
+}
+
 button {
   padding: 10px;
   font-size: 16px;
@@ -33,8 +44,11 @@ button {
   transition: background-color 0.3s;
   cursor: pointer;
 }
-button:hover {
+button:not(.date-selector):hover {
   background-color: $blueButtonHover;
+}
+.date-selector button:hover {
+  background-color: transparent !important;
 }
 button:disabled {
   cursor: not-allowed;
@@ -44,6 +58,12 @@ button:disabled {
 .custom-popup {
     background-color: #ffffff;
     padding: 10px;
+  }
+
+  #add-to-wishlist {
+    button:hover {
+      background-color: $blueButtonHover !important;
+    }
   }
   
   .custom-popup h6 {
@@ -64,3 +84,12 @@ button:disabled {
     transition: background-color 0.3s;
     cursor: pointer;
   }
+
+.mapboxgl-popup-close-button {
+  color: darkgray;
+  padding: unset;
+  margin-right: 5px;
+}
+.mapboxgl-popup-close-button:hover {
+  background-color: transparent !important;
+}

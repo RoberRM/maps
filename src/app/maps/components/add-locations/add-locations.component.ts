@@ -83,12 +83,26 @@ export class AddLocationsComponent {
         
         if (file) {
           const reader = new FileReader();
-          reader.onload = (e) => {
-            this._fileContent = JSON.parse(reader.result as string);
-            this._fileContent.forEach((location: ILocation) => {
-              this._manageObject(location);
-            })
-          };
+          try {
+            reader.onload = (e) => {
+              this._fileContent = JSON.parse(reader.result as string);
+              if (Array.isArray(this._fileContent)) {
+                this._fileContent.forEach((location: ILocation) => {
+                  this._manageObject(location);
+                })
+              } else {
+                this._manageObject(location);
+              }
+            };
+          } catch (error) {
+            this.showError = true;
+            this.showSuccess = false;
+            this.errorMessage = 'Error al analizar el archivo JSON';
+          }
+
+          reader.onerror = (e) => {
+            console.error('Filereader error: ', reader.error)
+          }
           reader.readAsText(file);
         }
       }
@@ -101,7 +115,7 @@ export class AddLocationsComponent {
     } else {
       this.showError = true;
       this.showSuccess = false;
-      this.errorMessage = 'JSON mal formado';
+      this.errorMessage = 'Error en el formato JSON';
     }
   }
 
