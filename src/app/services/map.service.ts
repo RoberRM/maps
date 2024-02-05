@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer } from '@angular/platform-browser';
 import { AnySourceData, LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
 import { tap } from 'rxjs';
 import { CURRENTCOLORS } from '../consts/util.const';
@@ -63,7 +64,7 @@ export class MapService {
     this._dates = dates;
   }
   
-  constructor( private directionsApiClient: DirectionsApiClient, private snackBar: MatSnackBar ) {}
+  constructor( private directionsApiClient: DirectionsApiClient, private snackBar: MatSnackBar, private sanitizer: DomSanitizer ) {}
   
   setMap(map: Map) {
     this._map = map;
@@ -103,9 +104,12 @@ export class MapService {
     };
 
     for (const place of places) {
+
       const [lng, lat] = [place.coords[0], place.coords[1]];
       let el = document.createElement('div');
       el.id  = place.id;
+      const placeType = place.type;
+      el.className = `marker ${placeType}-marker`;
 
       let popupContent = `
         <h6>${place.name}</h6>
@@ -114,7 +118,8 @@ export class MapService {
 
       let popup = new Popup().setHTML(`<div class="custom-popup">${popupContent}</div>`)
 
-      const newMarker = new Marker()
+      // TODO ver como se comporta el marcador de Mapbox al hacer zoom para que los custom funcionen igual
+      const newMarker = new Marker(this._createCustomMarker(place.type))
         .setLngLat([lng, lat])
         .setPopup(popup)
         .addTo(this._map);
@@ -183,6 +188,12 @@ export class MapService {
         }, 800);
       }
     }
+  }
+
+  private _createCustomMarker(placeType: string) {
+    const marker = document.createElement('div');
+    marker.className = `${placeType}-marker`;
+    return marker as HTMLElement;
   }
 
   public recalculateDirections() {

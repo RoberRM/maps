@@ -23,3 +23,36 @@ export enum ORDER {
 export const CURRENTCOLORS = [
     COLORS.BLUE, COLORS.CORAL, COLORS.LIGHTBLUE, COLORS.GREEN, COLORS.YELLOW, COLORS.LIGHTGREY
 ]
+
+// * Only for development purpose
+export const sitios = [
+    {
+      "type": "where-to-sleep",
+      "coords": [
+          -5.948773764843039,
+          40.22383019046418
+      ],
+      "location": "Segura de Toro",
+      "id": "uMd3Arlbi6UttgPuNc80",
+      "name": "Casa Rural La Tasca"
+  },
+  {
+    "type": "where-to-sleep",
+    "location": "Segura de Toro",
+    "name": "Casa Rural Los Vettones",
+    "id": "zylYSHy4beiqWuQKV7GP",
+    "coords": [
+        -5.9484,
+        40.2236
+    ]
+  },
+  {
+    "location": "Hervás",
+    "type": "where-to-eat",
+    "coords": [
+        -5.85902839178069,
+        40.274635698912405
+    ],
+    "name": "Mesón El 60",
+    "id": "ugr4RQpTUUnsd5IlUn9m"
+  }]

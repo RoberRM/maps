@@ -31,13 +31,35 @@ export class LocalizationsService {
   /**
    * Get localizations
    */
-  public getLocalizations(): Observable<ILocation> {
+  public getLocalizations(): Observable<any> {
+    const cacheDuration = 30 * 60 * 1000; // 30 minutos en milisegundos
+    if (localStorage.getItem('lastUpdateTimestamp')) {
+
+      const lastUpdateTimestamp = this.localStorageService.get('lastUpdateTimestamp');
+      const isCacheExpired = Date.now() - lastUpdateTimestamp > cacheDuration;      
+      if (localStorage.getItem('localizations') && this.localStorageService.get('localizations') && !isCacheExpired) {
+        const localizations = this.localStorageService.get('localizations');
+        return of(localizations).pipe(
+          tap(response => {
+            this.localizationsSubject.next(response)
+          }),
+          switchMap(() => this.localizationsSubject.asObservable())
+        )
+      }
+    }
+      
     const placesRef = collection(this.db, 'localizations');
     const data = collectionData(placesRef, {idField: 'id'})
     return data.pipe(
       tap(response => {
-        this.localStorageService.set('localizations', JSON.stringify(response))
+        this.localStorageService.set('localizations', JSON.stringify(response));
+        this.localStorageService.set('lastUpdateTimestamp', JSON.stringify(Date.now()));
         this.localizationsSubject.next(response)
+      }),
+      catchError(() => {
+        const fromLS = this.localStorageService.get('localizations')
+        this.localizationsSubject.next(fromLS)
+        return of(fromLS);
       }),
       switchMap(() => this.localizationsSubject.asObservable())
     )
