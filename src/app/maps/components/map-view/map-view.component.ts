@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Map } from 'mapbox-gl';
-import { Subject, debounceTime, delay, first, of, switchMap, takeUntil } from 'rxjs';
+import { Subject, delay, finalize, of, switchMap, take, takeUntil } from 'rxjs';
 import { LocalizationsService } from 'src/app/services';
 import { MapService } from '../../../services/map.service';
 import { PlacesService } from '../../services/places.service';
@@ -47,12 +47,13 @@ export class MapViewComponent implements OnInit, AfterViewInit, OnDestroy {
   private _getLocalizations() {
     this.localizationsService.getLocalizations().pipe(
       takeUntil(this.unsubscribe$),
-      first(),
+      take(1),
       delay(10),
       switchMap(resp => {
         this.mapService.createMarkersFromPlaces(resp, this.placesService.userLocation!)
         return of(resp)
-      })
+      }),
+      finalize(() => {})
     ).subscribe();
   }
 

@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { initializeApp } from '@angular/fire/app';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Firestore, collectionData, getFirestore } from '@angular/fire/firestore';
+import { Firestore, getFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { addDoc, collection } from 'firebase/firestore';
 import { BehaviorSubject, Observable, catchError, from, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ILocation } from '../interfaces/data.interface';
 import { LocalStorageService } from './local-storage.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -24,15 +25,16 @@ export class LocalizationsService {
   constructor(
     private afAuth: AngularFireAuth, 
     private firestore: Firestore, 
+    private angularFirestore: AngularFirestore,
     private localStorageService: LocalStorageService,
     private router: Router
   ) { }
 
   /**
-   * Get localizations
+   * Get real time localizations
    */
   public getLocalizations(): Observable<any> {
-    const cacheDuration = 30 * 60 * 1000; // 30 minutos en milisegundos
+    const cacheDuration = 60 * 60 * 1000; // 60 minutos en milisegundos
     if (localStorage.getItem('lastUpdateTimestamp')) {
 
       const lastUpdateTimestamp = this.localStorageService.get('lastUpdateTimestamp');
@@ -44,25 +46,15 @@ export class LocalizationsService {
             this.localizationsSubject.next(response)
           }),
           switchMap(() => this.localizationsSubject.asObservable())
-        )
+          )
+        }
       }
-    }
-      
-    const placesRef = collection(this.db, 'localizations');
-    const data = collectionData(placesRef, {idField: 'id'})
-    return data.pipe(
-      tap(response => {
-        this.localStorageService.set('localizations', JSON.stringify(response));
-        this.localStorageService.set('lastUpdateTimestamp', JSON.stringify(Date.now()));
-        this.localizationsSubject.next(response)
-      }),
-      catchError(() => {
-        const fromLS = this.localStorageService.get('localizations')
-        this.localizationsSubject.next(fromLS)
-        return of(fromLS);
-      }),
-      switchMap(() => this.localizationsSubject.asObservable())
-    )
+      return this.angularFirestore.collection('localizations').valueChanges().pipe(
+        tap(response => {
+          this.localStorageService.set('localizations', JSON.stringify(response));
+          this.localStorageService.set('lastUpdateTimestamp', JSON.stringify(Date.now()));
+      })
+    );
   }
 
   /**
