@@ -10,9 +10,10 @@
             <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #endDatePicker></mat-datepicker>
         </div>
+        <span class="hide-and-show" [ngStyle]="startDate && endDate && endDate >= startDate ? { 'color': 'blueviolet' } : { 'color': 'gray' }" (click)="toggleUserInfoVisibility()"><mat-icon>visibility</mat-icon></span>
     </div>
 
-    <div *ngIf="startDate && endDate && endDate >= startDate" class="user-info">
+    <div *ngIf="isUserInfoVisible && startDate && endDate && endDate >= startDate" class="user-info">
         <div *ngFor="let date of dates; let i = index">
             <app-day [date]="date" [index]="i" [selectedColorIndex]="i" (click)="updateSelectedDate(date)"></app-day>
         </div>

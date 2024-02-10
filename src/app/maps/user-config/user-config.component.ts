@@ -14,6 +14,7 @@ export class UserConfigComponent {
   public endDate!: Date;
   public dates: IDayData[] = [];
   public colors = CURRENTCOLORS;
+  public isUserInfoVisible: boolean = true;
 
   constructor(private mapService: MapService) {}
 
@@ -39,9 +40,15 @@ export class UserConfigComponent {
   }
 
   public updateSelectedDate(date: IDayData) {
+    // TODO al volver a mostrar el listado de dias tengo que pensar cómo volver a marcar seleccionado el día que estaba antes de ocultar
     this.dates.forEach(date => date.isSelected = false);
-    if (this.dates && this.dates.find(d => d === date)) {
+    if (this.dates?.find(d => d === date)) {
       this.dates.find(d => d === date)!.isSelected = !date.isSelected;
+      const selectedDayIndex = this.dates.findIndex(d => date.isSelected);
     }
+  }
+
+  public toggleUserInfoVisibility() {
+    this.isUserInfoVisible = !this.isUserInfoVisible; 
   }
 }
