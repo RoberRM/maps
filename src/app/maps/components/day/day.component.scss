@@ -18,25 +18,32 @@ span {
       font-weight: 900;
     }
   }
-  .localizations {
-    background-color: white;
-    p {
-      display: flex;
-      .locate {
-        flex: 1;
-        width: 300px;
-      }
-      .arrow {
-        width: 36px;
-        padding: unset;
-      }
-      .remove {
+  #localizations-list {
+    padding: unset;
+    .localizations {
+      background-color: white;
+      p {
+        display: flex;
         align-items: center;
-      }
-      button {
-        border: unset;
-        background-color: unset;
-        cursor: pointer;
+        margin: unset;
+        .locate {
+          flex: 1;
+          width: 300px;
+        }
+        .arrow {
+          width: 36px;
+          padding: unset;
+          align-items: center;
+        }
+        .remove {
+          align-items: center;
+        }
+        button {
+          border: unset;
+          background-color: unset;
+          flex: 0.6;
+          cursor: pointer;
+        }
       }
     }
   }

@@ -119,7 +119,7 @@ export class MapService {
       let popup = new Popup().setHTML(`<div class="custom-popup">${popupContent}</div>`)
 
       // TODO ver como se comporta el marcador de Mapbox al hacer zoom para que los custom funcionen igual
-      const newMarker = new Marker(this._createCustomMarker(place.type))
+      const newMarker = new Marker(/* this._createCustomMarker(place.type) */)
         .setLngLat([lng, lat])
         .setPopup(popup)
         .addTo(this._map);

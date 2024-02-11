@@ -1,8 +1,9 @@
 <app-loading *ngIf="!isUserLocationReady; else mapReady"></app-loading>
 
 <ng-template #mapReady>
+    <app-date-selector *ngIf="showModal" (actionCompleted)="selectDates($event)"></app-date-selector>
     <app-map-view></app-map-view>
-    <app-user-config></app-user-config>
+    <app-user-config *ngIf="datesSelected" [dates]="datesSelected"></app-user-config>
     <!-- <app-btn-my-location></app-btn-my-location> -->
     <app-filter></app-filter>
 </ng-template>

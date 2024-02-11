@@ -1,0 +1,14 @@
+<div class="user-config">
+    <div class="hide-and-show" [ngStyle]="isUserInfoVisible ? { 'color': 'blueviolet' } : { 'color': 'gray' }" (click)="toggleUserInfoVisibility()">
+        <span>
+            <p *ngIf="isUserInfoVisible">Ocultar listado</p>
+            <p *ngIf="!isUserInfoVisible">Mostrar listado</p>
+            <mat-icon>visibility</mat-icon>
+        </span>
+    </div>
+    <div *ngIf="isUserInfoVisible" class="user-info">
+        <div *ngFor="let date of dates; let i = index">
+            <app-day [date]="date" [index]="i" [selectedColorIndex]="i"></app-day>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="date-selector-overlay">
+    <div class="date-selector-container">
+        <div class="date-selector">
+            <div class="selector">
+                <mat-card class="demo-inline-calendar-card">
+                    <mat-calendar [(selected)]="startDate" (selectedChange)="getDiferenciaDias()"></mat-calendar>
+                </mat-card>
+            </div>
+            <div class="selector">
+                <mat-card class="demo-inline-calendar-card">
+                    <mat-calendar [(selected)]="endDate" (selectedChange)="getDiferenciaDias()"></mat-calendar>
+                </mat-card>
+            </div>
+        </div>
+    
+        <!-- Contenido del componente DateSelector aquí -->
+        <button [disabled]="disabledButton" (click)="completeAction()">Completar</button>
+    </div>
+</div>
