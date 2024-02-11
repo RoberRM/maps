@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { tap } from 'rxjs';
 import { CURRENTCOLORS, ORDER } from 'src/app/consts/util.const';
@@ -12,7 +12,7 @@ import { MapService } from 'src/app/services';
   styleUrls: ['./day.component.scss']
 })
 
-export class DayComponent implements OnInit {
+export class DayComponent implements OnInit, OnChanges {
   
   @Input('date') public date!: IDayData;
   @Input() public index: number = 0;
@@ -21,24 +21,31 @@ export class DayComponent implements OnInit {
   @ViewChild("print") print!: ElementRef;
   
   public selectedColor = '';
-  public arrowsLength = 0;
+  public arrowsLength!: number;
   public report: any = null;
   public printSectionId = '';
 
   constructor(private mapService: MapService, private printService: NgxPrintService) {}
   
   public ngOnInit(): void {
+    this.isSelected = this.date.isSelected;
+    this._handleArrows();
+    this._setColor();
     this.printSectionId = 'printSection' + this.index;
+
   }
   
-  public setSelectedDay() {
-    this.mapService.showArrows.pipe(
-      tap(res => this.arrowsLength = res)
-    ).subscribe()
-    
-    this.mapService.selectedDay = this.date;
-    const colorIndex = (this.selectedColorIndex % 6 + 6) % 6;
-    this.selectedColor = CURRENTCOLORS[colorIndex];
+  ngOnChanges(changes: SimpleChanges): void {
+    const currentDate = changes['date'].currentValue;
+    if (currentDate.isSelected) {
+      this.arrowsLength = currentDate.wishlist?.length;
+    }
+  }
+  
+  public setSelectedDay(day?: IDayData) {
+    this.mapService.selectedDay = day ? day : this.date;
+    this._handleArrows();
+    this._setColor();
   }
 
   public moveLocation(index: number, position: string) {
@@ -53,6 +60,21 @@ export class DayComponent implements OnInit {
       this.date.wishlist.splice(index, 1);
       this._notifyService();
     }
+  }
+
+  private _setColor() {
+    const colorIndex = ( (this.selectedColorIndex ?? 0) % 6 + 6) % 6;
+    this.selectedColor = CURRENTCOLORS[colorIndex];
+  }
+
+  private _handleArrows() {
+    this.mapService.showArrows.pipe(
+      tap(res => {
+        if (this.date.isSelected) {
+          this.arrowsLength = res;
+        }
+      })
+    ).subscribe();
   }
 
   private _notifyService() {

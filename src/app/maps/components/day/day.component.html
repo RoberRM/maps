@@ -9,6 +9,7 @@
         </span>
         <mat-icon (click)="exportToPdf()">save_as</mat-icon>
     </div>
+    <span *ngIf="date.isSelected" id="localizations-list">
         <span *ngFor="let wish of date.wishlist; let i = index" 
                 class="localizations"
                 [ngClass]="{ 
@@ -17,16 +18,17 @@
                     'last-item': i === arrowsLength - 1,
                     'unique-item': i === 0 && i === arrowsLength - 1}">
             <p>
-                <span class="locate">{{wish.name}}</span>
+                <span class="locate">{{ wish.name }}</span>
                 <span class="arrow" (click)="moveLocation(i, 'upward')">
-                    <button *ngIf="arrowsLength > 0 && i > 0" style="flex: 0.6;"><mat-icon [style.color]="selectedColor">arrow_upward</mat-icon></button>
+                    <button *ngIf="arrowsLength > 0 && i > 0"><mat-icon [style.color]="selectedColor">arrow_upward</mat-icon></button>
                 </span>
                 <span class="arrow" (click)="moveLocation(i, 'downward')">
-                    <button *ngIf="arrowsLength > 0 && i !== arrowsLength - 1" style="flex: 0.6;"><mat-icon [style.color]="selectedColor">arrow_downward</mat-icon></button>
+                    <button *ngIf="arrowsLength > 0 && i !== arrowsLength - 1"><mat-icon [style.color]="selectedColor">arrow_downward</mat-icon></button>
                 </span>
                 <span class="arrow remove" (click)="remove(i)"><mat-icon [style.color]="selectedColor">delete</mat-icon></span>
             </p>
         </span>
+    </span>
 </span>
 
 <div class="container">

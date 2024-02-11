@@ -1,40 +1,34 @@
 .user-config {
     display: flex;
     flex-direction: column;
-}
-.date-selector {
-    display: flex;
+    width: 476px;
+    padding: 5px 10px;
+    margin: 5px;
     background-color: white;
-    padding: 0px 10px;
-    top: 0px;
-    left: 5px;
     position: fixed;
-    height: 34px;
-    border-radius: 0px 0px 8px 8px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
     .hide-and-show {
         margin: auto;
-        height: 70%;
+        cursor: pointer;
+        span {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            p {
+                margin: unset;
+            }
+        }
+    }
+    .user-info {
+        left: 2px;
+        top: 32px;
     }
 }
-.selector {
-    display: flex;
-    align-items: center;
-    flex: 1;
-}
+
 h4 {
     margin: unset !important;
 }
 
-.user-info {
-    width: 476px;
-    background-color: white;
-    padding: 5px 10px;
-    margin: 5px;
-    position: fixed;
-    left: 2px;
-    top: 32px;
-}
 
 /* Media query para dispositivos de escritorio medianos */
 @media only screen and (max-width: 1200px) {
@@ -59,14 +53,6 @@ h4 {
     .user-config {
         align-items: unset;
     }
-    .date-selector {
-        left: 5px;
-    }
-    .selector {
-        input {
-            width: 100%;
-        }
-    }
     .user-info {
         width: 476px;
         left: 2px;
@@ -78,14 +64,7 @@ h4 {
 @media only screen and (max-width: 600px) {
     .user-config {
         align-items: center;
-    }
-    .date-selector {
-        left: unset;
-    }
-    .selector {
-        input {
-            width: 95px;
-        }
+        width: 325px;
     }
     .user-info {
         width: 328px;

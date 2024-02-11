@@ -1,28 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Marker } from 'mapbox-gl';
-import { CURRENTCOLORS } from 'src/app/consts/util.const';
 import { IDayData } from 'src/app/interfaces/day.interface';
-import { MapService } from 'src/app/services';
+
 
 @Component({
-  selector: 'app-user-config',
-  templateUrl: './user-config.component.html',
-  styleUrls: ['./user-config.component.scss']
+  selector: 'app-date-selector',
+  templateUrl: './date-selector.component.html',
+  styleUrls: ['./date-selector.component.scss']
 })
-export class UserConfigComponent {
+export class DateSelectorComponent {
+  @Output('actionCompleted') actionCompleted = new EventEmitter<IDayData[]>();
+
   public startDate!: Date;
   public endDate!: Date;
   public dates: IDayData[] = [];
-  public colors = CURRENTCOLORS;
-  public isUserInfoVisible: boolean = true;
-
-  constructor(private mapService: MapService) {}
+  public disabledButton = true;
 
   public getDiferenciaDias(): number | string {
     if (this.startDate && this.endDate && this.endDate >= this.startDate) {
       const diferenciaTiempo = this.endDate.getTime() - this.startDate.getTime();
       const diferenciaDias = Math.floor(diferenciaTiempo / (1000 * 60 * 60 * 24));
-
       this.dates = [];
       let currentDate = new Date(this.startDate);
       for (let i = 0; i <= diferenciaDias; i++) {
@@ -31,24 +28,17 @@ export class UserConfigComponent {
         this.dates.push({date: fecha, weekDay: diaSemana, isSelected: false, wishlist: [], markers: [] as Marker[] });
         currentDate.setDate(currentDate.getDate() + 1);
       }
-      this.mapService.dates = this.dates;
+      this.disabledButton = false;
       return `La diferencia de días es: ${diferenciaDias}`;
     } else {
       this.dates = [];
+      this.disabledButton = true;
       return 'Ambas fechas deben estar seleccionadas.';
     }
   }
 
-  public updateSelectedDate(date: IDayData) {
-    // TODO al volver a mostrar el listado de dias tengo que pensar cómo volver a marcar seleccionado el día que estaba antes de ocultar
-    this.dates.forEach(date => date.isSelected = false);
-    if (this.dates?.find(d => d === date)) {
-      this.dates.find(d => d === date)!.isSelected = !date.isSelected;
-      const selectedDayIndex = this.dates.findIndex(d => date.isSelected);
-    }
+  public completeAction(): void {
+    this.actionCompleted.emit(this.dates);
   }
 
-  public toggleUserInfoVisibility() {
-    this.isUserInfoVisible = !this.isUserInfoVisible; 
-  }
 }

@@ -6,6 +6,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
@@ -20,9 +21,10 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
-import { MapScreenComponent } from './map-screen/map-screen.component';
+import { MapScreenComponent } from './components/map-screen/map-screen.component';
 import { MapsRoutingModule } from './maps-routing.module';
-import { UserConfigComponent } from './user-config/user-config.component';
+import { UserConfigComponent } from './components/user-config/user-config.component';
+import { DateSelectorComponent } from './components/date-selector/date-selector.component';
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -36,13 +38,15 @@ registerLocaleData(localeES, "es");
     SearchBarComponent,
     SearchResultsComponent,
     FilterComponent,
-    DayComponent
+    DayComponent,
+    DateSelectorComponent
   ],
   imports: [
     MapsRoutingModule,
     CommonModule,
     FormsModule,
     MatDatepickerModule,
+    MatCardModule,
     MatNativeDateModule,
     MatSnackBarModule,
     MatIconModule,
