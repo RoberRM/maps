@@ -1,14 +1,39 @@
 @import './../../../../styles.scss';
 
 div {
-    padding: 50px;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     button {
         display: flex;
         margin: auto;
     }
-    .logout {
-        margin: unset;
-        margin-bottom: 35px;
+    .tab-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        padding-top: 20px;
+    }
+    
+    .tab-buttons button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .tab-buttons button.active {
+        background-color: #003772;
+    }
+    .logout-button {
+        display: flex;
+        width: 100%;
+        justify-content: end;
+        margin-right: 5%;
+        .logout {
+            margin: unset;
+        }
     }
     form {
         .inputs {
@@ -26,8 +51,12 @@ div {
                 color: black;
             }
         }
+        .user-info {
+            flex-direction: row;
+            justify-content: center;
+        }
         .form-input {
-            padding: 10px;
+            padding: 19px;
             width: 100%;
             text-align: center;
             #text {
@@ -40,6 +69,7 @@ div {
             flex-direction: column;
             width: 700px;
             margin: auto;
+            margin-top: 20px;
             button {
                 justify-content: center;
                 width: 300px;
@@ -87,5 +117,74 @@ div {
           .toggle input:checked + label {
             transform: translateX(25px);
           }
+    }
+
+    .table {
+        width: 100%;
+        height: 810px;
+        overflow-y: auto; 
+        position: relative;
+        padding-top: 20px;
+        padding-bottom: 30px;
+        .filter-btn {
+            margin: unset;
+        }
+        .filters {
+            padding: unset;
+            flex-direction: row;
+            gap: 10px;
+            .buttons {
+                padding: unset;
+                margin-top: 5px;
+                button {
+                    background-color: gray;
+                    padding: 5px;
+                }
+                button.active {
+                    background-color: rgb(85, 85, 85);
+                }
+            }
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            tr {
+                td {
+                    text-align: center;
+                }
+                .name {
+                    width: 300px;
+                }
+                .edit {
+                    cursor: pointer;
+                    color: #007BFF;
+                }
+                .remove {
+                    cursor: pointer;
+                    color: #007BFF;
+                }
+            }
+        }
+        .pagination {
+            justify-content: center;
+            padding-top: 10px;
+            flex-direction: row;
+            gap: 10px; 
+            position: fixed; 
+            bottom: 0;
+            left: 0; 
+            width: 100%; 
+            background-color: white;
+            padding: 10px; 
+            box-sizing: border-box; 
+            border-top: 1px solid #ccc; 
+            button {
+                margin: unset;
+            }
+            span {
+                width: 80px;
+                text-align: center;
+            }
+        }
     }
 }

@@ -1,3 +1,5 @@
+export const DATABASE = 'new-localizations';
+
 export enum SERVICES {
     ALL = 'Todos los contenidos',
     RESOURCE = 'Recurso turístico',

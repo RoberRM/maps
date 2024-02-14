@@ -1,35 +1,82 @@
 <div>
-    <button (click)="firestoreLogout()" class="logout"> Cerrar sesión y volver al mapa </button>
-    <br>
-    <p>Al pulsar ENVIAR se van a añadir las localizaciones contenidas en el archivo where-to-sleep.json</p>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="inputs">
-            <div class="selector">
-                <label  [ngClass]="{ enabled: !form.value.useText }">Archivo JSON </label>
-                <div class="toggle" (click)="toggleCheckbox()">
-                    <input type="checkbox" formControlName="useText" [checked]="form.get('useText')?.value">
-                    <label></label>
-                </div>
-                <label [ngClass]="{ enabled: form.value.useText }">Texto </label>
-            </div>
-            <div class="form-input" *ngIf="form.value.useText">
-                <textarea id="text" type="text" formControlName="textData"></textarea>
-            </div>
-            <div class="form-input" *ngIf="!form.value.useText">
-                <input id="fileInput" type="file" formControlName="jsonData">
-            </div>
-        </div>
+    <span class="logout-button">
+        <button (click)="firestoreLogout()" class="logout"> Cerrar sesión y volver al mapa </button>
+    </span>
+    <div class="tab-buttons">
+        <button (click)="currentTab = 'add-locations'" [class.active]="currentTab === 'add-locations'">Añadir</button>
+        <button (click)="currentTab = 'tableTab'" [class.active]="currentTab === 'tableTab'">Editar/eliminar</button>
+        <!-- <button (click)="deleteDuplicated()" [class.active]="currentTab === 'tableTab'">DUPLICADOS</button> -->
+    </div>
 
-        <div>
-            <input type="checkbox" (change)="onCheckboxChange()">
-            <label>Al marcar el siguiente check se confirma que la integridad de los datos a añadir ha sido revisada por el autor de la actualización
-                de los datos</label>
-        </div>
-        <span class="footer">
-            <span *ngIf="!acceptTerms">Debe marcar la casilla de conformidad</span>
-            <span *ngIf="showError">Hay un error en el texto introducido: {{ errorMessage }}</span>
-            <span *ngIf="showSuccess" class="showSuccess">¡Localizaciones actualizadas correctamente!</span>
-            <button [disabled]="!acceptTerms" type="submit">Enviar</button>
-        </span>
+
+    <div *ngIf="currentTab === 'add-locations'">
+        <p>Al pulsar ENVIAR se van a añadir las localizaciones contenidas en el archivo where-to-sleep.json</p>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="inputs">
+                <div class="selector">
+                    <label  [ngClass]="{ enabled: !form.value.useText }">Archivo JSON </label>
+                    <div class="toggle" (click)="toggleCheckbox()">
+                        <input type="checkbox" formControlName="useText" [checked]="form.get('useText')?.value">
+                        <label></label>
+                    </div>
+                    <label [ngClass]="{ enabled: form.value.useText }">Texto </label>
+                </div>
+                <div class="form-input" *ngIf="form.value.useText">
+                    <textarea id="text" type="text" formControlName="textData"></textarea>
+                </div>
+                <div class="form-input" *ngIf="!form.value.useText">
+                    <input id="fileInput" type="file" formControlName="jsonData">
+                </div>
+            </div>
+
+            <div class="user-info">
+                <input type="checkbox" (change)="onCheckboxChange()" formControlName="isChecked">
+                <label>Al marcar el siguiente check se confirma que la integridad de los datos a añadir ha sido revisada por el autor de la actualización
+                    de los datos</label>
+            </div>
+            <span class="footer">
+                <button [disabled]="!acceptTerms" type="submit">Enviar</button>
+                <span *ngIf="!acceptTerms">Debe marcar la casilla de conformidad</span>
+                <span *ngIf="showError">Hay un error en el texto introducido: {{ errorMessage }}</span>
+                <span *ngIf="showSuccess" class="showSuccess">¡Localizaciones actualizadas correctamente!</span>
+            </span>
         </form>
+    </div>
+
+    <div *ngIf="currentTab === 'tableTab'" class="table">
+        <button *ngIf="currentTab === 'tableTab'" (click)="toggleFilters()" class="filter-btn"> * FILTROS * </button>
+        <div *ngIf="showFilters && currentTab === 'tableTab'" class="filters">
+            <div *ngFor="let option of options; let i = index" class="buttons">
+                <button (click)="setFilter(option, i)" [class.active]="i === activeButtonIndex">{{ option }}</button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Localidad</th>
+                    <th>Tipo de recurso</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of currentItems">
+                    <td class="name">{{ item.name }}</td>
+                    <td>{{ item.location }}</td>
+                    <td>{{ item.type }}</td>
+                    <td>
+                        <span class="arrow edit" (click)="openEditForm(item)"><mat-icon>edit</mat-icon></span>
+                        <span class="arrow remove" (click)="removeItem(item.customId)"><mat-icon>delete</mat-icon></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button (click)="goToFirstPage()" [disabled]="currentPage === 1">Primera</button>
+            <button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+            <span>{{ currentPage }} de {{ totalPages }}</span>
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+            <button (click)="goToLastPage()" [disabled]="currentPage === totalPages">Última</button>
+        </div>
+    </div>
 </div>
