@@ -44,7 +44,7 @@ export class FilterComponent implements OnInit {
 
   public setFilter(option: string) {
     this.filter.emit(option);
-    this.mapService.clearRouteIds()
+    this.mapService.clearRouteIds();
     option === 'Restablecer' ? this._getLocalizations() : this._getLocalizationsWithFilter(this.optionsMapping[option]);
   }
 
@@ -62,7 +62,7 @@ export class FilterComponent implements OnInit {
     this.localizationsService.localizations$.pipe(
       first(),
       switchMap(resp => {
-        resp = resp.filter((item: any) => item.type.includes(filter))
+        resp = resp.filter((item: any) => item.type?.includes(filter));
         resp ? 
           (
             this.mapService.createMarkersFromPlaces(resp as any[], this.placesService.userLocation!)

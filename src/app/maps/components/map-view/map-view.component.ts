@@ -45,7 +45,8 @@ export class MapViewComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private _getLocalizations() {
-    this.localizationsService.getLocalizations().pipe(
+    // this.localizationsService.getLocalizations().pipe(
+    this.localizationsService.getPlaces().pipe(
       takeUntil(this.unsubscribe$),
       take(1),
       delay(10),

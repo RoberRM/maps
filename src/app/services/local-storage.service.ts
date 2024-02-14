@@ -20,6 +20,6 @@ export class LocalStorageService {
     }
 
     getJsonData(): Observable<any> {
-        return this.http.get<any>('assets/files/where-to-sleep.json');
+        return this.http.get<any>('assets/files/new-localizations.json');
     }
 }

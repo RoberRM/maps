@@ -9,6 +9,7 @@ import { MapsModule } from './maps/maps.module';
 import { RootAccessComponent } from './maps/components/root-access/root-access.component';
 import { AddLocationsComponent } from './maps/components/add-locations/add-locations.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     MapsModule,
+    MatIconModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,

@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { initializeApp } from '@angular/fire/app';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Firestore, getFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Firestore, collectionData } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { addDoc, collection } from 'firebase/firestore';
 import { BehaviorSubject, Observable, catchError, from, of, switchMap, tap } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { DATABASE } from '../consts/util.const';
 import { ILocation } from '../interfaces/data.interface';
 import { LocalStorageService } from './local-storage.service';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +18,6 @@ export class LocalizationsService {
   private currentLocation!: ILocation | null;
   localizations$ = this.localizationsSubject.asObservable();
 
-  private app = initializeApp(environment.firebaseConfig);
-  private db = getFirestore(this.app);
-
   constructor(
     private afAuth: AngularFireAuth, 
     private firestore: Firestore, 
@@ -30,9 +26,6 @@ export class LocalizationsService {
     private router: Router
   ) { }
 
-  /**
-   * Get real time localizations
-   */
   public getLocalizations(): Observable<any> {
     const cacheDuration = 60 * 60 * 1000; // 60 minutos en milisegundos
     if (localStorage.getItem('lastUpdateTimestamp')) {
@@ -58,6 +51,44 @@ export class LocalizationsService {
   }
 
   /**
+   * Get real time localizations
+   */
+  public getPlaces(): Observable<any> {
+    const cacheDuration = 180 * 60 * 1000; // 60 minutos en milisegundos
+    if (localStorage.getItem('lastUpdateTimestamp')) {
+
+      const lastUpdateTimestamp = this.localStorageService.get('lastUpdateTimestamp');
+      const isCacheExpired = Date.now() - lastUpdateTimestamp > cacheDuration;      
+      if (localStorage.getItem(DATABASE) && this.localStorageService.get(DATABASE) && this.localStorageService.get(DATABASE).length > 0 && !isCacheExpired) {
+        console.log('Hay sitios? ', this.localStorageService.get(DATABASE).length > 0)
+        const localizations = this.localStorageService.get(DATABASE);
+        return of(localizations).pipe(
+          tap(response => {
+            this.localizationsSubject.next(response)
+          }),
+          switchMap(() => this.localizationsSubject.asObservable())
+        )
+      }
+    }
+    const placesRef = collection(this.firestore, DATABASE);
+    return (collectionData(placesRef, { idField: 'id' }) as Observable<any>).pipe(
+      tap(response => {
+        this.localStorageService.set(DATABASE, JSON.stringify(response));
+        this.localStorageService.set('lastUpdateTimestamp', JSON.stringify(Date.now()));
+        this.localizationsSubject.next(response);
+      })
+    )
+
+    /* return this.localStorageService.getJsonData().pipe(
+      tap(response => {
+        console.log('GET FROM JSON -> ', response);
+        this.localStorageService.set(DATABASE, JSON.stringify(response));
+        this.localStorageService.set('lastUpdateTimestamp', JSON.stringify(Date.now()));
+      })
+    ) */
+  }
+
+  /**
    * Get localizations from Firestore
    */
   public postFirestoreLocalization(location: ILocation): Observable<any> {
@@ -78,6 +109,52 @@ export class LocalizationsService {
     );
   }
 
+  public updateFirestoreLocalization(locationId: string, newData: any) {
+    const localizationRef = this.angularFirestore.collection(DATABASE, ref => ref.where('id', '==', locationId));
+    return from(localizationRef.get()).pipe(
+      catchError(error => {
+        console.error('Error fetching documents:', error);
+        return of(null);
+      }),
+      switchMap(snapshot => {
+        const doc = snapshot?.docs[0]; // Tomar el primer documento si hay coincidencias
+        if (doc) {
+          return from(doc.ref.update(newData)); // Actualizar el documento con los nuevos datos
+        } else {
+          console.error('No document found with customId:', locationId);
+          return of(null);
+        }
+      }),
+      catchError(error => {
+        console.error('Error updating document:', error);
+        return of(null);
+      })
+    );
+  }
+
+  public deleteFirestoreLocalization(customId: string) {
+    const localizationRef = this.angularFirestore.collection(DATABASE, ref => ref.where('customId', '==', customId));
+    return from(localizationRef.get()).pipe(
+      catchError(error => {
+        console.error('Error fetching documents:', error);
+        return of(null);
+      }),
+      switchMap(snapshot => {
+        const doc = snapshot?.docs[0]; // Tomar el primer documento si hay coincidencias
+        if (doc) {
+          return from(doc.ref.delete());
+        } else {
+          console.error('No document found with customId:', customId);
+          return of(null);
+        }
+      }),
+      catchError(error => {
+        console.error('Error deleting document:', error);
+        return of(null);
+      })
+    );
+  }
+
   public firestoreLogout() {
     this.afAuth.signOut().then(() => {
       this.router.navigate(['/']);
@@ -89,11 +166,8 @@ export class LocalizationsService {
 
   private handleAuthenticatedUser(location: any): Observable<any> {
     const fixedLocations: any = [];
-    const coordenadas = location.coords.split(', ').map(parseFloat);
-    location.coords = [coordenadas[1], coordenadas[0]] as any;
     fixedLocations.push(location);
-
-    const localizationRef = collection(this.firestore, 'localizations');
+    const localizationRef = collection(this.firestore, DATABASE);
 
     return from(
       Promise.all(
@@ -116,5 +190,42 @@ export class LocalizationsService {
         return of(null);
       })
     );
+  }
+
+  async eliminarDuplicados() {
+    interface localization {
+      id: string;
+      coords: number[];
+      name: string;
+      location: string;
+      type: string;
+    }
+    /* const collectionRef = this.angularFirestore.collection<localization>(DATABASE);
+    
+    const querySnapshot = await collectionRef.get();
+    const documentosDuplicados = new Map<string, string[]>(); */
+  
+    /* querySnapshot.forEach((doc: any) => {
+      const data = doc.data();
+      const key = data.campoUnico; // Campo único que identifica cada documento
+      if (documentosDuplicados.has(key)) {
+        documentosDuplicados.get(key)?.push(doc.id); // Almacena el ID del documento duplicado
+      } else {
+        documentosDuplicados.set(key, [doc.id]);
+      }
+    }); */
+  
+    // Elimina los documentos duplicados
+    /* documentosDuplicados.forEach(async (ids, key) => {
+      if (ids.length > 1) {
+        // Conserva el primer documento y elimina los duplicados restantes
+        const [primerId, ...otrosIds] = ids;
+        for (const id of otrosIds) {
+          await collectionRef.doc(id).delete();
+        }
+      }
+    });
+  
+    console.log('Documentos duplicados eliminados.'); */
   }
 }
