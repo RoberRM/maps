@@ -78,5 +78,6 @@
             <button (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
             <button (click)="goToLastPage()" [disabled]="currentPage === totalPages">Última</button>
         </div>
+        <app-edit-location *ngIf="showEditModal" [formData]="formEditData" (formSubmitted)="editItem($event)" (modalClosed)="showEditModal = false"></app-edit-location>
     </div>
 </div>

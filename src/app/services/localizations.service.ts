@@ -9,6 +9,7 @@ import { BehaviorSubject, Observable, catchError, from, of, switchMap, tap } fro
 import { DATABASE } from '../consts/util.const';
 import { ILocation } from '../interfaces/data.interface';
 import { LocalStorageService } from './local-storage.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class LocalizationsService {
     private firestore: Firestore, 
     private angularFirestore: AngularFirestore,
     private localStorageService: LocalStorageService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   public getLocalizations(): Observable<any> {
@@ -109,8 +111,8 @@ export class LocalizationsService {
     );
   }
 
-  public updateFirestoreLocalization(locationId: string, newData: any) {
-    const localizationRef = this.angularFirestore.collection(DATABASE, ref => ref.where('id', '==', locationId));
+  public updateFirestoreLocalization(customId: string, newData: any) {
+    const localizationRef = this.angularFirestore.collection(DATABASE, ref => ref.where('customId', '==', customId));
     return from(localizationRef.get()).pipe(
       catchError(error => {
         console.error('Error fetching documents:', error);
@@ -121,9 +123,12 @@ export class LocalizationsService {
         if (doc) {
           return from(doc.ref.update(newData)); // Actualizar el documento con los nuevos datos
         } else {
-          console.error('No document found with customId:', locationId);
+          console.error('No document found with customId:', customId);
           return of(null);
         }
+      }),
+      tap(() => {
+        this._showNotification(`Localización actualizada correctamente: ${newData.name}`);
       }),
       catchError(error => {
         console.error('Error updating document:', error);
@@ -132,7 +137,7 @@ export class LocalizationsService {
     );
   }
 
-  public deleteFirestoreLocalization(customId: string) {
+  public deleteFirestoreLocalization(customId: string, name: string) {
     const localizationRef = this.angularFirestore.collection(DATABASE, ref => ref.where('customId', '==', customId));
     return from(localizationRef.get()).pipe(
       catchError(error => {
@@ -147,6 +152,9 @@ export class LocalizationsService {
           console.error('No document found with customId:', customId);
           return of(null);
         }
+      }),
+      tap(() => {
+        this._showNotification(`Localización eliminada correctamente: ${name}`);
       }),
       catchError(error => {
         console.error('Error deleting document:', error);
@@ -174,6 +182,9 @@ export class LocalizationsService {
         fixedLocations.map((item: ILocation) => addDoc(localizationRef, item))
       )
     ).pipe(
+      tap(() => {
+        this._showNotification(`Localización añadida correctamente: ${location.name}`);
+      }),
       catchError(e => {
         console.error(location.name, ' no se ha añadido -> ', e);
         return of(null);
@@ -190,6 +201,14 @@ export class LocalizationsService {
         return of(null);
       })
     );
+  }
+
+  private _showNotification(message: string) {
+    this.snackBar.open(message, 'Cerrar', {
+      duration: 4000, 
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
   }
 
   async eliminarDuplicados() {
