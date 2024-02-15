@@ -1,0 +1,28 @@
+<div class="modal-overlay" (click)="closeModal()"></div>
+
+<div class="modal-container">
+    <div class="modal-content">
+        <div class="popup-container" *ngIf="formData">
+            <div class="popup-content">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <label for="nombre">Nombre:</label>
+                <input type="text" formControlName="name" id="nombre">
+                
+                <label for="type">Tipo:</label>
+                <input type="text" formControlName="type" id="type">
+                
+                <label for="location">Ubicación:</label>
+                <input type="text" formControlName="location" id="location">
+                
+                <label for="coords">Coords:</label>
+                <input type="text" formControlName="coords" id="coords">
+                
+                <label for="customId">Custom ID:</label>
+                <input type="text" formControlName="customId" id="customId" readonly>
+                
+                <button type="submit" [disabled]="!form.dirty || form.invalid">Guardar</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

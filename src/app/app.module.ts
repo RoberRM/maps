@@ -10,12 +10,14 @@ import { RootAccessComponent } from './maps/components/root-access/root-access.c
 import { AddLocationsComponent } from './maps/components/add-locations/add-locations.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { EditLocationComponent } from './maps/components/edit-location/edit-location.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RootAccessComponent,
-    AddLocationsComponent
+    AddLocationsComponent,
+    EditLocationComponent
   ],
   imports: [
     BrowserModule,

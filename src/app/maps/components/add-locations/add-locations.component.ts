@@ -18,6 +18,7 @@ export interface FormData {
 export class AddLocationsComponent implements OnDestroy {
   public form: FormGroup;
   public formData: FormData = {};
+  public formEditData: FormData = {};
   public acceptTerms = false;
   public showError = false;
   public showSuccess = false;
@@ -31,6 +32,7 @@ export class AddLocationsComponent implements OnDestroy {
   public showFilters = false;
   public activeButtonIndex: number | null = null;
   public isChecked: boolean = false;
+  public showEditModal: boolean = false;
 
   public optionsMapping: { [key: string]: string } = {
     'Restablecer': 'restore',
@@ -175,22 +177,26 @@ export class AddLocationsComponent implements OnDestroy {
   }
 
   public openEditForm(item: any) {
-    console.log("OPEN EDIT FORM MODAL")
+    this.formEditData = item;
+    this.showEditModal = true;
   }
 
-  public editItem(locationId: string, newData: any) {
-    this.localizationsService.updateFirestoreLocalization(locationId, newData).pipe(
-      takeUntil(this.unsubscribe$),
-      tap(() => {
-        const locationUpdated = this._prevLocations.find((item: any) => item.customId === locationId);
-        const index = this._prevLocations.findIndex((item: any) => item.customId === locationId);
-        if (index !== -1) {
-          this._prevLocations.splice(index, 1);
-          this._prevLocations.push(locationUpdated);
+  public editItem(event: any) {
+    const auxStorage = this.localStorageService.get(DATABASE);
+    const indexToEdit = auxStorage.findIndex((item: any) => item.customId === event.customId);
+
+    if(indexToEdit !== -1) {
+      this.localizationsService.updateFirestoreLocalization(event.customId, event).pipe(
+        takeUntil(this.unsubscribe$),
+        tap(() => {
+          auxStorage[indexToEdit] = event;
+          this._prevLocations = auxStorage;
           this.localStorageService.set(DATABASE, JSON.stringify(this._prevLocations));
-        }
-      })
-    ).subscribe();
+          this._splitItemsIntoPages();
+          this.showEditModal = false;
+        })
+      ).subscribe();
+    }
   }
   
   public removeItem(customId: string) {
@@ -198,7 +204,7 @@ export class AddLocationsComponent implements OnDestroy {
     const indexToRemove = auxStorage.findIndex((item: any) => item.customId === customId);
 
     if (indexToRemove !== -1) {
-      this.localizationsService.deleteFirestoreLocalization(customId).pipe(
+      this.localizationsService.deleteFirestoreLocalization(customId, auxStorage[indexToRemove].name).pipe(
         takeUntil(this.unsubscribe$),
         tap(() => {
           this._prevLocations = auxStorage.filter((item: any) => item.customId !== customId);
