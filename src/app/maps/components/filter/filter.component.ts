@@ -16,6 +16,10 @@ export class FilterComponent implements OnInit {
     'Dónde comer': 'where-to-eat',
     'Museos, Centros de Interpretación y oficinas de turismo': 'culture-resource',
     'Experiencias': 'experiences',
+    'Recursos acuáticos': 'aquatic-resources',
+    'Astroturismo': 'astrotourism',
+    'Naturaleza': 'nature',
+    'Monumentos': 'monuments',
     /* 'Lista de deseos': 'wishlist', */
   };
   public options = Object.keys(this.optionsMapping);
