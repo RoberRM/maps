@@ -41,6 +41,14 @@ mat-card {
   }
 }
 
+::ng-deep .mat-mdc-card-title {
+  text-align: center;
+}
+
+::ng-deep .mat-calendar-controls {
+  margin: unset !important;
+}
+
 /* Media query para dispositivos de escritorio medianos */
 @media only screen and (max-width: 1200px) {
   mat-card {
