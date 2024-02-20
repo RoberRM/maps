@@ -22,6 +22,8 @@ export class EditLocationComponent implements OnChanges {
         type: [this.formData.type || '', Validators.required],
         location: [this.formData.location || '', Validators.required],
         coords: [this.formData.coords || [], Validators.required],
+        adress: [this.formData.adress || [], Validators.required],
+        phoneNumber: [this.formData.phoneNumber || [], Validators.required],
         customId: [this.formData.customId || '', Validators.required]
       });
     }

@@ -88,6 +88,10 @@ export class AddLocationsComponent implements OnDestroy {
     ).subscribe();
   }
 
+  /* public updateCollection() {
+    this.localizationsService.updateCollection();
+  } */
+
   public onCheckboxChange() {
     this.acceptTerms = !this.acceptTerms;
   }

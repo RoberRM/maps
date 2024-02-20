@@ -1,6 +1,7 @@
 <div>
     <span class="logout-button">
         <button (click)="firestoreLogout()" class="logout"> Cerrar sesión y volver al mapa </button>
+        <!-- <button (click)="updateCollection()" class="logout"> Actualizar colección </button> -->
     </span>
     <div class="tab-buttons">
         <button (click)="currentTab = 'add-locations'" [class.active]="currentTab === 'add-locations'">Añadir</button>
@@ -56,6 +57,8 @@
                     <th>Nombre</th>
                     <th>Localidad</th>
                     <th>Tipo de recurso</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -64,6 +67,8 @@
                     <td class="name">{{ item.name }}</td>
                     <td>{{ item.location }}</td>
                     <td>{{ item.type }}</td>
+                    <td>{{ item.adress }}</td>
+                    <td>{{ item.phoneNumber }}</td>
                     <td>
                         <span class="arrow edit" (click)="openEditForm(item)"><mat-icon>edit</mat-icon></span>
                         <span class="arrow remove" (click)="removeItem(item.customId)"><mat-icon>delete</mat-icon></span>
