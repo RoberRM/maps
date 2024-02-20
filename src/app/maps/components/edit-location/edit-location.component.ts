@@ -22,8 +22,9 @@ export class EditLocationComponent implements OnChanges {
         type: [this.formData.type || '', Validators.required],
         location: [this.formData.location || '', Validators.required],
         coords: [this.formData.coords || [], Validators.required],
-        adress: [this.formData.adress || [], Validators.required],
-        phoneNumber: [this.formData.phoneNumber || [], Validators.required],
+        adress: [this.formData.adress || '', Validators.required],
+        phoneNumber: [this.formData.phoneNumber || '', Validators.required],
+        estimatedTime: [this.formData.estimatedTime || ''],
         customId: [this.formData.customId || '', Validators.required]
       });
     }
