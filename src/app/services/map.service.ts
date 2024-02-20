@@ -113,6 +113,9 @@ export class MapService {
 
       let popupContent = `
         <h6>${place.name}</h6>
+        <span>${place.adress}</span>
+        <br>
+        <span>${place.phoneNumber}</span>
         <button id="add-to-wishlist">Añadir a día seleccionado</button>
       `;
 

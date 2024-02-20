@@ -256,8 +256,7 @@ export class LocalizationsService {
         const data = doc.data() as { [key: string]: any };
         const newData = {
           ...data,
-          adress: '',
-          phoneNumber: ''
+          estimatedTime: ''
         };
 
         localizationRef.doc(docId).update(newData)
@@ -266,30 +265,4 @@ export class LocalizationsService {
       });
     });
   } */
-
-  /* public updateCollection(): void {
-    // const localizationRef = this.angularFirestore.collection(DATABASE);
-    const localizationRef = this.angularFirestore.collection('test');
-    localizationRef.get().subscribe(querySnapshot => {
-      querySnapshot.forEach(doc => {
-        const docId = doc.id;
-        const data = doc.data() as { [key: string]: any };
-  
-        // Verificar si el documento contiene el atributo 'adress'
-        delete data['adress'];
-        // if (data.hasOwnProperty('adress')) {
-          // Eliminar el atributo 'adress'
-  
-          // Agregar el atributo 'address' con el mismo valor
-          // data['address'] = data['adress'];
-        // }
-  
-        // Actualizar el documento con los datos modificados
-        localizationRef.doc(docId).update(data)
-          .then(() => console.log(`Documento ${docId} actualizado correctamente.`))
-          .catch(error => console.error(`Error al actualizar el documento ${docId}:`, error));
-      });
-    });
-  } */
-
 }
