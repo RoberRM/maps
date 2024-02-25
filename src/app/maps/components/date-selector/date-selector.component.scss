@@ -1,17 +1,36 @@
-mat-card {
-  width: 300px;
+mat-card, .demo-inline-calendar-card {
+  width: 20rem;
+  height: 22rem;
+
+  .mat-datepicker-toggle {
+    display: none;
+  }
+  .cdk-overlay-pane mat-datepicker-popup {
+    width: 100%;
+    justify-content: center;
+    margin: auto;
+  }
 }
+::ng-deep .mat-datepicker-content .mat-calendar {
+  width: 20rem !important;
+  height: unset !important;
+}
+
 .date-selector-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-  z-index: 1000; /* Asegura que esté por encima del resto de los elementos */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   .date-selector-container {
+    h2 {
+      margin: 0;
+    }
+    text-align: center;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -19,7 +38,7 @@ mat-card {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
   }
@@ -32,51 +51,6 @@ mat-card {
         flex: 1;
         padding: 0px 20px 20px 20px;
     }
-  }
-  button {
-    order: 2;
-    flex: 1;
-    width: 25%;
-    align-self: center;
-  }
-}
-
-::ng-deep .mat-mdc-card-title {
-  text-align: center;
-}
-
-::ng-deep .mat-calendar-controls {
-  margin: unset !important;
-}
-
-/* Media query para dispositivos de escritorio medianos */
-@media only screen and (max-width: 1200px) {
-  mat-card {
-    width: 300px;
-  }
-}
-
-/* Media query para dispositivos de escritorio pequeños */
-@media only screen and (max-width: 992px) {
-  mat-card {
-    width: 300px;
-  }
-}
-
-/* Media query para tabletas */
-@media only screen and (max-width: 768px) {
-  mat-card {
-    width: 200px;
-  }
-}
-
-/* Media query para móviles */
-@media only screen and (max-width: 600px) {
-  mat-card {
-    width: 200px;
-  }
-  button {
-    width: 35%;
   }
 }
 

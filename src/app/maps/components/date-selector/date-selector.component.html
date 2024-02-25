@@ -1,19 +1,15 @@
 <div class="date-selector-overlay">
     <div class="date-selector-container">
+        <h2>Seleccione rango de fechas</h2>
         <div class="date-selector">
-            <div class="selector">
-                <mat-card class="demo-inline-calendar-card">
-                    <mat-card-title>Fecha de inicio</mat-card-title>
-                    <mat-calendar [(selected)]="startDate" (selectedChange)="getDiferenciaDias()"></mat-calendar>
-                </mat-card>
-            </div>
-            <div class="selector">
-                <mat-card class="demo-inline-calendar-card">
-                    <mat-card-title>Fecha de fin</mat-card-title>
-                    <mat-calendar [(selected)]="endDate" (selectedChange)="getDiferenciaDias()"></mat-calendar>
-                </mat-card>
+            <div class="demo-inline-calendar-card">
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="" (dateChange)="onStartDateChange($event)">
+                    <input matEndDate placeholder="" id="endDate" (dateChange)="onEndDateChange($event)">
+                </mat-date-range-input>
+                <mat-datepicker-toggle id="picker" [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
             </div>
         </div>
-        <button [disabled]="disabledButton" (click)="completeAction()">Completar</button>
     </div>
 </div>
