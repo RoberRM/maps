@@ -4,8 +4,8 @@
         <div class="date-selector">
             <div class="demo-inline-calendar-card">
                 <mat-date-range-input [rangePicker]="picker">
-                    <input matStartDate placeholder="" (dateChange)="onStartDateChange($event)">
-                    <input matEndDate placeholder="" id="endDate" (dateChange)="onEndDateChange($event)">
+                    <input matStartDate placeholder="" (dateChange)="onStartDateChange($event)" style="display: none;">
+                    <input matEndDate placeholder="" id="endDate" (dateChange)="onEndDateChange($event)" style="display: none;">
                 </mat-date-range-input>
                 <mat-datepicker-toggle id="picker" [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>

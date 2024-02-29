@@ -292,8 +292,17 @@ export class MapService {
     this._route.forEach((route, index) => {
       route.legs.forEach(element => {
         element.steps.forEach(step => {
-          const instruction: {duration: number, distance: number, maneuver: string} = {duration: step.duration/60, distance: step.distance/1000, maneuver: step.maneuver.instruction}
-          explainedRoute.push({route: index, instructions: instruction, totalDistance: route.distance/1000, totalDuration: route.duration/60})
+          const instruction: {
+            duration: number, 
+            distance: number, 
+            maneuver: string
+          } = {
+            duration: step.duration,
+            distance: step.distance / 1000, // km
+            maneuver: step.maneuver.instruction
+          }
+          // * totalDistance en km, totalDuration en minutos
+          explainedRoute.push({route: index, instructions: instruction, totalDistance: route.distance/1000, totalDuration: route.duration})
         })
       });
     })
