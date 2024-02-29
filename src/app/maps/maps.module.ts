@@ -25,6 +25,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { UserConfigComponent } from './components/user-config/user-config.component';
 import { MapsRoutingModule } from './maps-routing.module';
+import { SecondsToHmsPipe } from '../pipes/seconds-to-hms.pipe';
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -39,7 +40,8 @@ registerLocaleData(localeES, "es");
     SearchResultsComponent,
     FilterComponent,
     DayComponent,
-    DateSelectorComponent
+    DateSelectorComponent,
+    SecondsToHmsPipe
   ],
   imports: [
     MapsRoutingModule,

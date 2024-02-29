@@ -1,6 +1,6 @@
 mat-card, .demo-inline-calendar-card {
   width: 20rem;
-  height: 22rem;
+  height: 45vh;
 
   .mat-datepicker-toggle {
     display: none;
@@ -14,6 +14,22 @@ mat-card, .demo-inline-calendar-card {
 ::ng-deep .mat-datepicker-content .mat-calendar {
   width: 20rem !important;
   height: unset !important;
+}
+
+::ng-deep .mat-calendar-body-cell-content {
+  &.mat-focus-indicator {
+      &:hover {
+          background-color: #0056b3 !important;
+      }
+  }
+
+  &.mat-calendar-body-selected {
+      background-color: #0056b3 !important;;
+
+      &:hover {
+          background-color: #0056b3 !important;
+      }
+  }
 }
 
 .date-selector-overlay {

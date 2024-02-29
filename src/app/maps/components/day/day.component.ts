@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { tap } from 'rxjs';
 import { CURRENTCOLORS, ORDER } from 'src/app/consts/util.const';
@@ -25,7 +26,7 @@ export class DayComponent implements OnInit, OnChanges {
   public report: any = null;
   public printSectionId = '';
 
-  constructor(private mapService: MapService, private printService: NgxPrintService) {}
+  constructor(private mapService: MapService, private printService: NgxPrintService, public sanitizer: DomSanitizer) {}
   
   public ngOnInit(): void {
     this.isSelected = this.date.isSelected;
@@ -85,7 +86,6 @@ export class DayComponent implements OnInit, OnChanges {
   public exportToPdf() {
     const resultado = this._groupRoute(this.mapService.generateReport());
     this.report = Object.values(resultado);
-
     const customPrintOptions: PrintOptions = new PrintOptions({
       printSectionId: this.printSectionId,
       printTitle: `ruta_${this._formatDate(this.date.date)}`,
