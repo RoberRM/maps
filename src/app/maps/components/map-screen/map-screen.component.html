@@ -1,11 +1,16 @@
 <app-loading *ngIf="!isUserLocationReady; else mapReady"></app-loading>
 
 <ng-template #mapReady>
-    <app-date-selector *ngIf="showModal" (actionCompleted)="selectDates($event)"></app-date-selector>
-    <app-map-view></app-map-view>
-    <app-user-config *ngIf="datesSelected" [dates]="datesSelected"></app-user-config>
-    <!-- <app-btn-my-location></app-btn-my-location> -->
-    <app-filter></app-filter>
+    <div (mouseleave)="mouseLeave()">
+        <div style="position: fixed; z-index: 1001;" *ngIf="showLoading">
+            <app-loading></app-loading>
+        </div>
+        <app-date-selector *ngIf="showModal && !showLoading" (actionCompleted)="selectDates($event)"></app-date-selector>
+        <app-map-view></app-map-view>
+        <app-user-config *ngIf="datesSelected" [dates]="datesSelected"></app-user-config>
+        <!-- <app-btn-my-location></app-btn-my-location> -->
+        <app-filter></app-filter>
+    </div>
 </ng-template>
 
 <app-angular-logo></app-angular-logo>

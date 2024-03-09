@@ -44,7 +44,7 @@ export class DayComponent implements OnInit, OnChanges {
   }
   
   public setSelectedDay(day?: IDayData) {
-    this.mapService.selectedDay = day ? day : this.date;
+    this.mapService.selectedDay = day ?? this.date;
     this._handleArrows();
     this._setColor();
   }
@@ -81,6 +81,7 @@ export class DayComponent implements OnInit, OnChanges {
   private _notifyService() {
     this.mapService.wishlistFromSelectedDay(this.date.wishlist);
     this.mapService.recalculateDirections();
+    this.mapService.allowSave = true;
   }
 
   public exportToPdf() {
