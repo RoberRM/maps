@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Firestore, collectionData } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { addDoc, collection } from 'firebase/firestore';
@@ -28,7 +28,88 @@ export class LocalizationsService {
     private snackBar: MatSnackBar
   ) { }
 
-  public getLocalizations(): Observable<any> {
+  public checkUserSession(): Observable<any> {
+    const currentUserEmail = localStorage.getItem('email');
+    if (currentUserEmail) {
+      const localizationRef = this.angularFirestore.collection('user-session', ref => ref.where('email', '==', currentUserEmail));
+      return from(localizationRef.get()).pipe(
+        catchError(error => {
+          console.error('Error fetching documents:', error);
+          return of(null);
+        }),
+        switchMap(snapshot => {
+          const doc = snapshot?.docs[0];
+          if (doc) {
+            return of(doc.data());
+          } else {
+            console.error('No document found with email:', currentUserEmail);
+            return of(null);
+          }
+        }),
+        tap(data => {
+          if (data) {
+            // console.log('User session data:', data);
+          }
+        }),
+        catchError(error => {
+          console.error('Error fetching user session data:', error);
+          return of(null);
+        })
+      );
+    } else {
+      return of(null);
+    }
+  }
+
+  public saveSelection(selection: any, currentUserEmail: string) {
+    const newData = {
+      email: currentUserEmail,
+      data: selection,
+      updatedAt: new Date().toISOString()
+    }
+    const localizationRef = this.angularFirestore.collection('user-session', ref => ref.where('email', '==', currentUserEmail));
+    return this._updateRef(localizationRef, newData, currentUserEmail)
+  }
+
+  private _updateRef(localizationRef: AngularFirestoreCollection<unknown>, newData: { email: string, data: any }, currentUserEmail: string) {
+    return from(localizationRef.get()).pipe(
+      catchError(error => {
+        console.error('Error fetching documents:', error);
+        return of(null);
+      }),
+      switchMap(snapshot => {
+        const doc = snapshot?.docs[0];
+        if (doc) {
+          return from(doc.ref.update(newData));
+        } else {
+          return of(this._addRef(newData))
+        }
+      }),
+      tap(() => {
+        // * this._showNotification(`Localización actualizada correctamente: ${newData.email}`);
+      }),
+      catchError(error => {
+        console.error('Error updating document:', error);
+        return of(null);
+      })
+    );
+  }
+
+  private _addRef( newData: { email: string, data: any }) {
+    const localizationRef = collection(this.firestore, 'user-session');
+
+    return from(addDoc(localizationRef, newData)).pipe(
+      tap(() => {
+        // this._showNotification(`Localización añadida correctamente: ${location.name}`);
+      }),
+      catchError(e => {
+        console.error(' No se ha añadido -> ', e);
+        return of(null);
+      })
+    );
+  }
+
+  /* public getLocalizations(): Observable<any> {
     const cacheDuration = 60 * 60 * 1000; // 60 minutos en milisegundos
     if (localStorage.getItem('lastUpdateTimestamp')) {
 
@@ -50,7 +131,7 @@ export class LocalizationsService {
           this.localStorageService.set('lastUpdateTimestamp', JSON.stringify(Date.now()));
       })
     );
-  }
+  } */
 
   /**
    * Get real time localizations

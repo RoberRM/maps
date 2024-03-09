@@ -16,7 +16,7 @@ export class UserConfigComponent implements OnChanges {
   constructor(private mapService: MapService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['dates']?.currentValue) {
+    if (changes['dates']?.currentValue && this.dates.length > 0) {
       this.dates[0].isSelected = true;
       this.mapService.dates = this.dates;
       this.mapService.selectedDay = this.dates[0];

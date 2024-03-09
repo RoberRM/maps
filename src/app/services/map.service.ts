@@ -1,12 +1,12 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DomSanitizer } from '@angular/platform-browser';
 import { AnySourceData, LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
 import { tap } from 'rxjs';
 import { CURRENTCOLORS } from '../consts/util.const';
 import { IDayData } from '../interfaces/day.interface';
 import { DirectionsResponse, Route } from '../interfaces/directions.interface';
 import { DirectionsApiClient } from '../maps/api';
+import { LocalizationsService } from './localizations.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,7 @@ export class MapService {
   private _userLocation!: [number, number];
   private _wishlist: [number, number][] = [];
   private _route: Route[] = [];
+  private _saveChanges: boolean = false;
 
   public showArrows = new EventEmitter<number>();
 
@@ -35,7 +36,7 @@ export class MapService {
     if (this._addedRouteIds.size !== 0) {
       this.clearRouteIds();
     }
-    document.querySelector('.mapboxgl-popup')?.remove()
+    document.querySelector('.mapboxgl-popup')?.remove();
     this._dates.filter(d => d !== this._selectedDay).forEach(date => {
       date.isSelected = false
     })
@@ -63,8 +64,19 @@ export class MapService {
   public set dates(dates: any[]) {
     this._dates = dates;
   }
+
+  public set allowSave(value: boolean) {
+    this._saveChanges = value;
+  }
+
+  public set routeMarkers(routeMarkers: Marker[]) {
+    this._routeMarkers = routeMarkers;
+  }
   
-  constructor( private directionsApiClient: DirectionsApiClient, private snackBar: MatSnackBar, private sanitizer: DomSanitizer ) {}
+  constructor( 
+    private directionsApiClient: DirectionsApiClient, 
+    private snackBar: MatSnackBar, 
+    private localizationsService: LocalizationsService ) {}
   
   setMap(map: Map) {
     this._map = map;
@@ -77,6 +89,31 @@ export class MapService {
       zoom: 14,
       center: coords
     })
+  }
+
+  public saveSelection() {
+    const currentUserEmail = localStorage.getItem('email');
+    if (!currentUserEmail || !this._saveChanges) {
+      return
+    }
+
+    const selectionToSave = this._dates.map(date => {
+      return {
+        date: date.date, 
+        isSelected: date.isSelected, 
+        weekDay: date.weekDay, 
+        wishlist: JSON.stringify(date.wishlist.map((item: any) => {
+          return { coords: JSON.stringify(item.coords), name: item.name }
+        })),
+        markers: JSON.stringify(date.markers)
+      }
+    })
+
+    this.localizationsService.saveSelection(selectionToSave, currentUserEmail).pipe(
+      tap(() => {
+        this._saveChanges = false;
+      })
+    ).subscribe();
   }
 
   public wishlistFromSelectedDay(wishlist: any[]) {
@@ -100,6 +137,7 @@ export class MapService {
         this._showNotification('Añade al menos dos puntos a la lista de deseos para calcular la ruta.');
         return
       }
+      this._saveChanges = true;
       this._checkDirections(coords, placeName, marker);
     };
 
@@ -146,6 +184,14 @@ export class MapService {
     // * Ajustar mapa a los marcadores mostrados
     this._centerMap();
     if (this._wishlist.length === 0) return;
+  }
+
+  public getMarker(coords: number[]) {
+    const idx = this._markers.findIndex((marker: Marker) => marker.getLngLat().lat === coords[1] && marker.getLngLat().lng === coords[0])
+    if (idx !== -1) {
+      return this._markers[idx]
+    }
+    return undefined
   }
 
   private _centerMap() {
@@ -221,7 +267,6 @@ export class MapService {
     const start = routeList[0];
     const end = routeList[1];
     const id = `RouteString_${start.join(',')}_${end.join(',')}`;
-
     this.getRouteBetweenPoints(start, end, id, CURRENTCOLORS[colorIndex]);
     this._calculateRouteRecursively(routeList.slice(1), colorIndex);
   }
