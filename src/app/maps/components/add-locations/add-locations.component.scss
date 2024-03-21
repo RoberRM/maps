@@ -29,7 +29,7 @@ div {
     .logout-button {
         display: flex;
         width: 100%;
-        justify-content: end;
+        justify-content: flex-end;
         margin-right: 5%;
         .logout {
             margin: unset;

@@ -46,11 +46,6 @@ export class LocalizationsService {
             return of(null);
           }
         }),
-        tap(data => {
-          if (data) {
-            // console.log('User session data:', data);
-          }
-        }),
         catchError(error => {
           console.error('Error fetching user session data:', error);
           return of(null);
@@ -61,10 +56,11 @@ export class LocalizationsService {
     }
   }
 
-  public saveSelection(selection: any, currentUserEmail: string) {
+  public saveSelection(selection: any, whishlist: any, currentUserEmail: string) {
     const newData = {
       email: currentUserEmail,
       data: selection,
+      whishlist,
       updatedAt: new Date().toISOString()
     }
     const localizationRef = this.angularFirestore.collection('user-session', ref => ref.where('email', '==', currentUserEmail));

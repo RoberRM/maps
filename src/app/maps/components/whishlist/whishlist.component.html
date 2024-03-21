@@ -1,0 +1,20 @@
+<div class="whishlist">
+    <div class="whishlist--header">
+        <div (click)="close()" class="whishlist--header-close-icon"><mat-icon>close</mat-icon></div>
+        <h3 class="whishlist--header-title">Lista de deseos</h3>
+    </div>
+    <div *ngIf="!whishlist.length" class="whishlist--no-content"> No hay destinos en tu lista de deseos </div>
+    <div *ngIf="whishlist.length" class="whishlist--list-container">
+        <div class="whishlist--list-container-list">
+            <div class="whishlist--list-container-list--item" *ngFor="let item of whishlist; let i = index;">
+                <div style="display: flex; flex-direction: row; width: 100%; gap: 10px;">
+                    <div class="whishlist--list-container-list--item-item" (click)="showAvailableDates(item)">{{ item.placeName }}</div>
+                    <div (click)="remove(i)" class="whishlist--list-container-list--item-remove"><mat-icon>delete</mat-icon></div>
+                </div>
+                <div *ngIf="showDatesMap[item.placeName]" class="whishlist--list-container-list--item-day">
+                    <button *ngFor="let day of dates" (click)="addToRoute(item, day)">Añadir a: {{ day.date | date: 'EEEE, d' | titlecase }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
