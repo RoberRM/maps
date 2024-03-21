@@ -126,7 +126,10 @@ export class MapService {
     })
 
     this.localizationsService.saveSelection(selectionToSave, whishlistToSave, currentUserEmail).pipe(
-      tap(() => this._saveChanges = false)
+      tap(() => {
+        this._saveChanges = false;
+        localStorage.removeItem("favorites");
+      })
     ).subscribe();
   }
 
@@ -142,6 +145,13 @@ export class MapService {
   public addToRouteFromWhishlist(item: any, day: any) {
     this._saveChanges = true;
     this._checkDirections(item.coords, item.placeName, item.marker, day);
+  }
+
+  public getPlaceData(placeName: string) {
+    const place = this._places.find(place => place.name === placeName);
+    if (place) {
+      return place
+    }
   }
 
   public createMarkersFromPlaces(places: any[], userLocation: [number, number]) {
@@ -213,22 +223,30 @@ export class MapService {
       newMarkers.push(newMarker);
     }
     this._markers = newMarkers;
+
+    const currentUserWhishlist = localStorage.getItem('favorites');
+    if (currentUserWhishlist) {
+      const list = JSON.parse(currentUserWhishlist);
+      list.forEach((element: any) => {
+        const place = this.getPlaceData(element);
+        if (place) {
+          const favorite = {
+            coords: place.coords,
+            placeName: place.name,
+            marker: this.getMarker(place.coords)
+          }
+          this.whishlist.push(favorite)
+        }
+      });
+      this._saveChanges = true;
+    }
+
     if (places.length === 0) return;
     // * Ajustar mapa a los marcadores mostrados
     this._centerMap();
-    // if (this._wishlist.length === 0) return;
   }
 
-  public getMarker(coords: number[], from?: string) {
-    /* if (from === 'location') {
-      console.log('LOCATION COORDS: ', coords);
-    }
-    if (from === 'whishlist') {
-      console.log('COORDS TO GET: ', coords);
-      const newLat = coords[0];
-      const newLng = coords[1];
-      coords = [newLat, newLng];
-    } */
+  public getMarker(coords: number[]) {
     const idx = this._markers.findIndex((marker: Marker) => marker.getLngLat().lat === coords[1] && marker.getLngLat().lng === coords[0])
     if (idx !== -1) {
       return this._markers[idx]

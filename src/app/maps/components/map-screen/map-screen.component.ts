@@ -14,7 +14,11 @@ export class MapScreenComponent implements OnDestroy {
   private unsubscribe$ = new Subject<void>();
   public showLoading: boolean = true;
 
-  constructor( private placesService: PlacesService, private readonly _localizationsService: LocalizationsService, private readonly _mapService: MapService ) {
+  constructor( 
+    private placesService: PlacesService, 
+    private readonly _localizationsService: LocalizationsService, 
+    private readonly _mapService: MapService
+  ) {
     this._localizationsService.checkUserSession().pipe(
       takeUntil(this.unsubscribe$),
       tap((response: {email: string, data: IDayData[], whishlist: any}) => {
@@ -30,11 +34,13 @@ export class MapScreenComponent implements OnDestroy {
             const item = {
               coords: JSON.parse(list.coords),
               placeName: list.placeName,
-              marker: this._mapService.getMarker(JSON.parse(list.coords)[0], 'whishlist')
+              marker: this._mapService.getMarker(JSON.parse(list.coords)[0])
             }
             return item
           });
-          this._mapService.whishlist = listParsed;
+          listParsed.forEach((item: any) => {
+            this._mapService.whishlist.push(item)
+          });
         }
       }),
     ).subscribe();
@@ -72,7 +78,7 @@ export class MapScreenComponent implements OnDestroy {
         data.wishlist = JSON.parse(data.wishlist);
         data.wishlist.map((item: any) => {
           item.coords = JSON.parse(item.coords);
-          item.marker = this._mapService.getMarker(item.coords[0], 'location')
+          item.marker = this._mapService.getMarker(item.coords[0])
         })
       }
       data.markers = [];
