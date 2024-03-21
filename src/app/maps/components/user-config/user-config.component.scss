@@ -80,11 +80,27 @@ h4 {
 @media only screen and (max-width: 600px) {
     .user-config {
         align-items: center;
-        width: 325px;
+        width: 370px;
+        .hide-and-show {
+            padding: 10px 0px 10px 0px;
+        }
     }
     .user-info {
-        width: 328px;
+        width: 370px;
         left: unset;
         margin: auto;
+    }
+}
+
+/* Media query para móviles */
+@media only screen and (max-width: 400px) {
+    .user-config {
+        width: 90%;
+        .hide-and-show {
+            padding: 0px 0px 5px 0px;
+        }
+    }
+    .user-info {
+        width: 90%;
     }
 }

@@ -174,12 +174,12 @@ export class MapService {
       this._checkDirections(coords, placeName, marker);
     };
 
-    const addToWhishlist = (coords: [number, number][], placeName: string, marker: Marker) => {
-      const idx = this._wishlist.findIndex(item => item.placeName === placeName);
+    const addToWhishlist = (id: string, coords: [number, number][], placeName: string, marker: Marker, address: string, location: string) => {
+      const idx = this._wishlist.findIndex(item => item.id === id);
       if (idx !== -1) {
         return
       }
-      this._wishlist.push({coords, placeName, marker});
+      this._wishlist.push({id, coords, placeName, marker, address, location});
       this._saveChanges = true;
       this.saveSelection();
     }
@@ -224,7 +224,7 @@ export class MapService {
               const whishlist = document.querySelector("#add-to-wishlist");
               if (whishlist instanceof HTMLElement) {
                 whishlist.onclick = function() {
-                  addToWhishlist([[lng, lat]], place.name, newMarker)
+                  addToWhishlist(place.id, [[lng, lat]], place.name, newMarker, place.adress, place.location)
                   document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
@@ -241,8 +241,11 @@ export class MapService {
         const place: Localization = this.getPlaceData(element) as unknown as Localization;
         if (place) {
           const favorite: Whishlist = {
+            id: place.id,
             coords: place.coords,
             placeName: place.name,
+            address: place.adress,
+            location: place.location,
             marker: this.getMarker(place.coords as unknown as number[])!
           }
           this.whishlist.push(favorite)

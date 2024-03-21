@@ -33,8 +33,9 @@ export class UserConfigComponent implements OnChanges {
   public showWhishlistPopup() {
     this.isWhishlistVisible = !this.isWhishlistVisible;
     const dialogRef = this.dialog.open(WhishlistComponent, {
-      width: '50%',
-      height: '50%'
+      width: '40%',
+      height: '50%',
+      minWidth: '290px'
     });
   }
 }
