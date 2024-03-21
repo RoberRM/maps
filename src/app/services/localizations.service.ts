@@ -3,13 +3,13 @@ import { GoogleAuthProvider } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Firestore, collectionData } from '@angular/fire/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { addDoc, collection } from 'firebase/firestore';
 import { BehaviorSubject, Observable, catchError, from, of, switchMap, tap } from 'rxjs';
 import { DATABASE } from '../consts/util.const';
 import { ILocation } from '../interfaces/data.interface';
 import { LocalStorageService } from './local-storage.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'

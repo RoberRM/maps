@@ -16,6 +16,7 @@ export class WhishlistComponent {
   public whishlist = this.mapService.whishlist;
   public dates = this.mapService.dates;
   public showDatesMap: { [key: string]: boolean } = {};
+  private _shouldSave: boolean = false;
   constructor(public dialogRef: MatDialogRef<WhishlistComponent>, private mapService: MapService) {}
 
   public addToRoute(item: any, day: any) {
@@ -29,11 +30,17 @@ export class WhishlistComponent {
   public remove(index: number) {
     if (index >= 0 && index < this.whishlist.length) {
       this.whishlist.splice(index, 1);
-      this.mapService.whishlist.splice(index, 1);
+      this._shouldSave = true;
     }
   }
 
   public close(): void {
+    if (this._shouldSave) {
+      this.mapService.whishlist = this.whishlist;
+      this.mapService.allowSave = true;
+      this.mapService.saveSelection();
+    }
     this.dialogRef.close();
   }
+
 }
