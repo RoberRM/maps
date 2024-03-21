@@ -17,13 +17,24 @@ export class MapScreenComponent implements OnDestroy {
   constructor( private placesService: PlacesService, private readonly _localizationsService: LocalizationsService, private readonly _mapService: MapService ) {
     this._localizationsService.checkUserSession().pipe(
       takeUntil(this.unsubscribe$),
-      tap((response: {email: string, data: IDayData[]}) => {
+      tap((response: {email: string, data: IDayData[], whishlist: any}) => {
         this.showLoading = false;
         if (response?.data && response?.data?.length > 0) {
           const parsed: IDayData[] = this._handleData(response.data);
           this.datesSelected = parsed;
           this._mapService.allowSave = false;
           this.showModal = false;
+        }
+        if (response.whishlist) {
+          const listParsed = response.whishlist.map((list: any) => {
+            const item = {
+              coords: JSON.parse(list.coords),
+              placeName: list.placeName,
+              marker: this._mapService.getMarker(JSON.parse(list.coords)[0], 'whishlist')
+            }
+            return item
+          });
+          this._mapService.whishlist = listParsed;
         }
       }),
     ).subscribe();
@@ -61,12 +72,11 @@ export class MapScreenComponent implements OnDestroy {
         data.wishlist = JSON.parse(data.wishlist);
         data.wishlist.map((item: any) => {
           item.coords = JSON.parse(item.coords);
-          item.marker = this._mapService.getMarker(item.coords[0])
+          item.marker = this._mapService.getMarker(item.coords[0], 'location')
         })
       }
       data.markers = [];
     });
     return parsedData
   }
-
 }

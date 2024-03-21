@@ -117,10 +117,16 @@ export class MapService {
       }
     })
 
-    this.localizationsService.saveSelection(selectionToSave, currentUserEmail).pipe(
-      tap(() => {
-        this._saveChanges = false;
-      })
+    const whishlistToSave = this.whishlist.map((whish: any) => {
+      return {
+        placeName: whish.placeName,
+        coords: JSON.stringify(whish.coords),
+        marker: {}
+      }
+    })
+
+    this.localizationsService.saveSelection(selectionToSave, whishlistToSave, currentUserEmail).pipe(
+      tap(() => this._saveChanges = false)
     ).subscribe();
   }
 
@@ -213,7 +219,16 @@ export class MapService {
     // if (this._wishlist.length === 0) return;
   }
 
-  public getMarker(coords: number[]) {
+  public getMarker(coords: number[], from?: string) {
+    /* if (from === 'location') {
+      console.log('LOCATION COORDS: ', coords);
+    }
+    if (from === 'whishlist') {
+      console.log('COORDS TO GET: ', coords);
+      const newLat = coords[0];
+      const newLng = coords[1];
+      coords = [newLat, newLng];
+    } */
     const idx = this._markers.findIndex((marker: Marker) => marker.getLngLat().lat === coords[1] && marker.getLngLat().lng === coords[0])
     if (idx !== -1) {
       return this._markers[idx]
