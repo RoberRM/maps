@@ -4,6 +4,7 @@ import { Subject, takeUntil, tap } from 'rxjs';
 import { IDayData } from 'src/app/interfaces/day.interface';
 import { LocalizationsService, MapService } from 'src/app/services';
 import { PlacesService } from '../../services/places.service';
+import { Whishlist } from 'src/app/interfaces/whishlist.interface';
 
 @Component({
   selector: 'app-map-screen',
@@ -21,7 +22,7 @@ export class MapScreenComponent implements OnDestroy {
   ) {
     this._localizationsService.checkUserSession().pipe(
       takeUntil(this.unsubscribe$),
-      tap((response: {email: string, data: IDayData[], whishlist: any}) => {
+      tap((response: {email: string, data: IDayData[], whishlist: Whishlist[]}) => {
         this.showLoading = false;
         if (response?.data && response?.data?.length > 0) {
           const parsed: IDayData[] = this._handleData(response.data);
@@ -29,7 +30,7 @@ export class MapScreenComponent implements OnDestroy {
           this._mapService.allowSave = false;
           this.showModal = false;
         }
-        if (response.whishlist) {
+        if (response?.whishlist && response?.whishlist?.length > 0) {
           const listParsed = response.whishlist.map((list: any) => {
             const item = {
               coords: JSON.parse(list.coords),
@@ -38,7 +39,7 @@ export class MapScreenComponent implements OnDestroy {
             }
             return item
           });
-          listParsed.forEach((item: any) => {
+          listParsed?.forEach((item: any) => {
             this._mapService.whishlist.push(item)
           });
         }
@@ -53,7 +54,7 @@ export class MapScreenComponent implements OnDestroy {
     return this.placesService.isUserLocationReady;
   }
 
-  public selectDates(event: any) {
+  public selectDates(event: IDayData[]) {
     this.showModal = false;
     this.datesSelected = event;
   }
