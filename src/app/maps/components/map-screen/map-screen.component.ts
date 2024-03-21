@@ -30,7 +30,7 @@ export class MapScreenComponent implements OnDestroy {
           this._mapService.allowSave = false;
           this.showModal = false;
         }
-        if (response?.whishlist) {
+        if (response?.whishlist && response?.whishlist?.length > 0) {
           const listParsed = response.whishlist.map((list: any) => {
             const item = {
               coords: JSON.parse(list.coords),
@@ -39,7 +39,7 @@ export class MapScreenComponent implements OnDestroy {
             }
             return item
           });
-          listParsed.forEach((item: any) => {
+          listParsed?.forEach((item: any) => {
             this._mapService.whishlist.push(item)
           });
         }

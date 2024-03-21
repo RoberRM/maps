@@ -152,7 +152,6 @@ export class LocalizationsService {
     const placesRef = collection(this.firestore, DATABASE);
     return (collectionData(placesRef, { idField: 'id' }) as Observable<any>).pipe(
       tap(response => {
-        console.log('RESPONSE: ', response)
         this.localStorageService.set(DATABASE, JSON.stringify(response));
         this.localStorageService.set('lastUpdateTimestamp', JSON.stringify(Date.now()));
         this.localizationsSubject.next(response);
