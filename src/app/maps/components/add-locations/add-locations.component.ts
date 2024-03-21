@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject, takeUntil, tap } from 'rxjs';
 import { DATABASE } from 'src/app/consts/util.const';
 import { ILocation } from 'src/app/interfaces/data.interface';
+import { Localization } from 'src/app/interfaces/localizations.interface';
 import { LocalStorageService, LocalizationsService } from 'src/app/services';
 
 export interface FormData {
@@ -73,7 +74,7 @@ export class AddLocationsComponent implements OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  public postLocation(location: any) {    
+  public postLocation(location: ILocation) {    
     const auxStorage = this.localStorageService.get(DATABASE);
 
     this.localizationsService.postFirestoreLocalization(location).pipe(
@@ -144,7 +145,7 @@ export class AddLocationsComponent implements OnDestroy {
                   this._manageObject(location);
                 })
               } else {
-                this._manageObject(location);
+                this._manageObject(location as unknown as ILocation);
               }
             };
           } catch (error) {
@@ -179,19 +180,19 @@ export class AddLocationsComponent implements OnDestroy {
   
   private _getLocalizationsWithFilter(filter: string) {
     this._prevLocations = this.localStorageService.get(DATABASE);
-    this._prevLocations = this._prevLocations.filter((item: any) => item.type.includes(filter));
+    this._prevLocations = this._prevLocations.filter((item: ILocation) => item.type.includes(filter));
     this.currentPage = 1;
     this._splitItemsIntoPages();
   }
 
-  public openEditForm(item: any) {
+  public openEditForm(item: FormData) {
     this.formEditData = item;
     this.showEditModal = true;
   }
 
-  public editItem(event: any) {
+  public editItem(event: Localization) {
     const auxStorage = this.localStorageService.get(DATABASE);
-    const indexToEdit = auxStorage.findIndex((item: any) => item.customId === event.customId);
+    const indexToEdit = auxStorage.findIndex((item: Localization) => item.customId === event.customId);
 
     if(indexToEdit !== -1) {
       this.localizationsService.updateFirestoreLocalization(event.customId, event).pipe(
@@ -209,13 +210,13 @@ export class AddLocationsComponent implements OnDestroy {
   
   public removeItem(customId: string) {
     const auxStorage = this.localStorageService.get(DATABASE);
-    const indexToRemove = auxStorage.findIndex((item: any) => item.customId === customId);
+    const indexToRemove = auxStorage.findIndex((item: Localization) => item.customId === customId);
 
     if (indexToRemove !== -1) {
       this.localizationsService.deleteFirestoreLocalization(customId, auxStorage[indexToRemove].name).pipe(
         takeUntil(this.unsubscribe$),
         tap(() => {
-          this._prevLocations = auxStorage.filter((item: any) => item.customId !== customId);
+          this._prevLocations = auxStorage.filter((item: Localization) => item.customId !== customId);
           this.currentPage = 1;
           this.localStorageService.set(DATABASE, JSON.stringify(this._prevLocations));
           this._splitItemsIntoPages();
@@ -248,7 +249,7 @@ export class AddLocationsComponent implements OnDestroy {
       this._splitItemsIntoPages();
   }
 
-  private _manageObject(item: any) {
+  private _manageObject(item: ILocation) {
     if (this._checkLocationProperties(item)) {
       this._handleLocation(item);
     } else {
@@ -258,10 +259,10 @@ export class AddLocationsComponent implements OnDestroy {
     }
   }
 
-  private _handleLocation(input: any) {
+  private _handleLocation(input: ILocation) {
     const lat = input.coords[0] < 0 ? input.coords[0] : input.coords[1];
     const lng = input.coords[0] > 0 ? input.coords[0] : input.coords[1];
-    const exist = this._prevLocations.filter((location: any) => location.coords[0] === lat && location.coords[1] === lng)
+    const exist = this._prevLocations.filter((location: ILocation) => location.coords[0] === lat && location.coords[1] === lng)
     this.showError = exist.length > 0 && !this._checkLocationProperties(input);
     if (this.showError) this.errorMessage = 'Esta localización ya existe';
 
@@ -281,7 +282,7 @@ export class AddLocationsComponent implements OnDestroy {
     }
   }
 
-  private _checkLocationProperties(location: any) {
+  private _checkLocationProperties(location: ILocation) {
     const toReturn = (
       'coords' in location && Array.isArray(location.coords) && typeof location.coords[0] === 'number' && typeof location.coords[1] === 'number' &&
       'customId' in location && typeof location.customId === 'string' &&

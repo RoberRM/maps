@@ -7,6 +7,9 @@ import { IDayData } from '../interfaces/day.interface';
 import { DirectionsResponse, Route } from '../interfaces/directions.interface';
 import { DirectionsApiClient } from '../maps/api';
 import { LocalizationsService } from './localizations.service';
+import { Whishlist } from '../interfaces/whishlist.interface';
+import { ILocation } from '../interfaces/data.interface';
+import { Localization } from '../interfaces/localizations.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +21,10 @@ export class MapService {
   private _routeMarkers: Marker[] = [];
   private _addedRouteIds = new Set<string>();
   private _selectedDay!: IDayData;
-  private _dates: any[] = [];
-  private _places!: any[];
+  private _dates: IDayData[] = [];
+  private _places!: ILocation[];
   private _userLocation!: [number, number];
-  private _wishlist: any = [];
+  private _wishlist: Whishlist[] = [];
   private _route: Route[] = [];
   private _saveChanges: boolean = false;
 
@@ -41,7 +44,7 @@ export class MapService {
       date.isSelected = false
     })
     const currentDate = this._dates.find(d => d === this._selectedDay);
-    currentDate.isSelected = true;
+    if (currentDate) currentDate.isSelected = true;
     if (currentDate && currentDate.wishlist.length > 1) {
       this._checkDirections();
     } else {
@@ -65,11 +68,11 @@ export class MapService {
     return this._wishlist;
   }
 
-  public set whishlist(value: any) {
+  public set whishlist(value: Whishlist[]) {
     this._wishlist = value;
   }
 
-  public set dates(dates: any[]) {
+  public set dates(dates: IDayData[]) {
     this._dates = dates;
   }
 
@@ -117,12 +120,12 @@ export class MapService {
       }
     })
 
-    const whishlistToSave = this.whishlist.map((whish: any) => {
+    const whishlistToSave = this.whishlist.map((whish: Whishlist) => {
       return {
         placeName: whish.placeName,
         coords: JSON.stringify(whish.coords),
         marker: {}
-      }
+      } as unknown as Whishlist
     })
 
     this.localizationsService.saveSelection(selectionToSave, whishlistToSave, currentUserEmail).pipe(
@@ -133,16 +136,16 @@ export class MapService {
     ).subscribe();
   }
 
-  public wishlistFromSelectedDay(wishlist: any[]) {
+  public wishlistFromSelectedDay(wishlist: Whishlist[]) {
     const currentDate = this._dates.find(d => d === this._selectedDay);
-    currentDate.wishlist = wishlist;
+    if (currentDate) currentDate.wishlist = wishlist;
   }
 
   public resetMarkersFromPlaces() {
     this._markers.forEach(marker => marker.remove());
   }
 
-  public addToRouteFromWhishlist(item: any, day: any) {
+  public addToRouteFromWhishlist(item: Whishlist, day: IDayData) {
     this._saveChanges = true;
     this._checkDirections(item.coords, item.placeName, item.marker, day);
   }
@@ -152,6 +155,7 @@ export class MapService {
     if (place) {
       return place
     }
+    return
   }
 
   public createMarkersFromPlaces(places: any[], userLocation: [number, number]) {
@@ -171,7 +175,13 @@ export class MapService {
     };
 
     const addToWhishlist = (coords: [number, number][], placeName: string, marker: Marker) => {
-      this._wishlist.push({coords, placeName, marker})
+      const idx = this._wishlist.findIndex(item => item.placeName === placeName);
+      if (idx !== -1) {
+        return
+      }
+      this._wishlist.push({coords, placeName, marker});
+      this._saveChanges = true;
+      this.saveSelection();
     }
 
     for (const place of places) {
@@ -226,14 +236,14 @@ export class MapService {
 
     const currentUserWhishlist = localStorage.getItem('favorites');
     if (currentUserWhishlist) {
-      const list = JSON.parse(currentUserWhishlist);
-      list.forEach((element: any) => {
-        const place = this.getPlaceData(element);
+      const list: string[] = JSON.parse(currentUserWhishlist);
+      list.forEach((element: string) => {
+        const place: Localization = this.getPlaceData(element) as unknown as Localization;
         if (place) {
-          const favorite = {
+          const favorite: Whishlist = {
             coords: place.coords,
             placeName: place.name,
-            marker: this.getMarker(place.coords)
+            marker: this.getMarker(place.coords as unknown as number[])!
           }
           this.whishlist.push(favorite)
         }
@@ -272,7 +282,7 @@ export class MapService {
     });
   }
 
-  private _checkDirections(coords?: [number, number][], placeName?: string, marker?: Marker, day?: any) {
+  private _checkDirections(coords?: [number, number][], placeName?: string, marker?: Marker, day?: IDayData) {
     const dayToHandle = day ?? this._selectedDay;
     const currentDayIndex = this._dates.findIndex(d => d === dayToHandle);
     const currentDate = this._dates[currentDayIndex];
@@ -280,7 +290,7 @@ export class MapService {
     
     if (currentDate) {
       if (!!coords && !!placeName) {
-        currentDate.wishlist.push({coords: coords, name: placeName, marker: marker});
+        currentDate.wishlist.push({coords: coords, name: placeName, marker: marker!});
         if (marker) this._routeMarkers.push(marker);
       }
       this.showArrows.emit(currentDate.wishlist.length);
@@ -288,11 +298,11 @@ export class MapService {
         if (this._addedRouteIds.size !== 0) {
           this.clearRouteIds();
         }
-        currentDate.wishlist.forEach((item: any) => {
+        currentDate.wishlist.forEach((item: Whishlist) => {
           const found = this._routeMarkers.find(marker => marker === item.marker)
           if (!found) this._routeMarkers.push(item.marker)
         });
-        this._calculateRouteRecursively(currentDate.wishlist.map((item: any) => item.coords), colorIndex);
+        this._calculateRouteRecursively(currentDate.wishlist.map((item: Whishlist) => item.coords), colorIndex);
         setTimeout(() => {
           this.generateReport();
         }, 800);

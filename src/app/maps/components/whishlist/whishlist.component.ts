@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, LOCALE_ID } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { IDayData } from 'src/app/interfaces/day.interface';
+import { Whishlist } from 'src/app/interfaces/whishlist.interface';
 import { MapService } from 'src/app/services';
 
 @Component({
@@ -13,17 +15,17 @@ import { MapService } from 'src/app/services';
   ]
 })
 export class WhishlistComponent {
-  public whishlist = this.mapService.whishlist;
+  public whishlist: Whishlist[] = this.mapService.whishlist;
   public dates = this.mapService.dates;
   public showDatesMap: { [key: string]: boolean } = {};
   private _shouldSave: boolean = false;
   constructor(public dialogRef: MatDialogRef<WhishlistComponent>, private mapService: MapService) {}
 
-  public addToRoute(item: any, day: any) {
+  public addToRoute(item: Whishlist, day: IDayData) {
     this.mapService.addToRouteFromWhishlist(item, day);
   }
 
-  public showAvailableDates(item: any) {
+  public showAvailableDates(item: Whishlist) {
     this.showDatesMap[item.placeName] = !this.showDatesMap[item.placeName];
   }
 

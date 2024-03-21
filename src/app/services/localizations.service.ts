@@ -10,6 +10,7 @@ import { BehaviorSubject, Observable, catchError, from, of, switchMap, tap } fro
 import { DATABASE } from '../consts/util.const';
 import { ILocation } from '../interfaces/data.interface';
 import { LocalStorageService } from './local-storage.service';
+import { Whishlist } from '../interfaces/whishlist.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +57,7 @@ export class LocalizationsService {
     }
   }
 
-  public saveSelection(selection: any, whishlist: any, currentUserEmail: string) {
+  public saveSelection(selection: any, whishlist: Whishlist[], currentUserEmail: string) {
     const newData = {
       email: currentUserEmail,
       data: selection,
@@ -64,10 +65,10 @@ export class LocalizationsService {
       updatedAt: new Date().toISOString()
     }
     const localizationRef = this.angularFirestore.collection('user-session', ref => ref.where('email', '==', currentUserEmail));
-    return this._updateRef(localizationRef, newData, currentUserEmail)
+    return this._updateRef(localizationRef, newData)
   }
 
-  private _updateRef(localizationRef: AngularFirestoreCollection<unknown>, newData: { email: string, data: any }, currentUserEmail: string) {
+  private _updateRef(localizationRef: AngularFirestoreCollection<unknown>, newData: { email: string, data: any }) {
     return from(localizationRef.get()).pipe(
       catchError(error => {
         console.error('Error fetching documents:', error);
@@ -151,6 +152,7 @@ export class LocalizationsService {
     const placesRef = collection(this.firestore, DATABASE);
     return (collectionData(placesRef, { idField: 'id' }) as Observable<any>).pipe(
       tap(response => {
+        console.log('RESPONSE: ', response)
         this.localStorageService.set(DATABASE, JSON.stringify(response));
         this.localStorageService.set('lastUpdateTimestamp', JSON.stringify(Date.now()));
         this.localizationsSubject.next(response);
