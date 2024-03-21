@@ -7,16 +7,30 @@
     background-color: white;
     position: fixed;
     .hide-and-show {
+        display: flex;
+        flex-direction: row;
         margin: auto;
+        width: 100%;
+        padding: 10px 0px 10px 0px;
         cursor: pointer;
-        span {
+        .dates-list {
+            order: 1;
+            flex: 2;
             display: flex;
             flex-direction: row;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             p {
                 margin: unset;
             }
+        }
+        .whishlist {
+            order: 2;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
     .user-info {

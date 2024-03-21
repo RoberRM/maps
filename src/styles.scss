@@ -80,10 +80,15 @@ button:disabled {
     font-size: 15px;
     font-weight: bold;
   }
+
+  .custom-popup .popup-buttons {
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    gap: 8px;
+  }
   
   .custom-popup button {
-    // margin: 0px;
-    margin-top: 15px;
     width: 100%;
     padding: 10px;
     font-size: 12px;
@@ -94,6 +99,16 @@ button:disabled {
     font-weight: bold;
     transition: background-color 0.3s;
     cursor: pointer;
+  }
+  
+  .custom-popup .heart {
+    cursor: pointer; 
+    transition: color 0.3s ease;
+    color: crimson;
+  }
+
+  .custom-popup .heart:hover {
+    color: rgb(255, 0, 51);
   }
 
 .mapboxgl-popup-close-button {

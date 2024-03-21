@@ -21,7 +21,7 @@ export class MapService {
   private _dates: any[] = [];
   private _places!: any[];
   private _userLocation!: [number, number];
-  private _wishlist: [number, number][] = [];
+  private _wishlist: any = [];
   private _route: Route[] = [];
   private _saveChanges: boolean = false;
 
@@ -59,6 +59,14 @@ export class MapService {
 
   public get dates() {
     return this._dates;
+  }
+
+  public get whishlist() {
+    return this._wishlist;
+  }
+
+  public set whishlist(value: any) {
+    this._wishlist = value;
   }
 
   public set dates(dates: any[]) {
@@ -125,6 +133,11 @@ export class MapService {
     this._markers.forEach(marker => marker.remove());
   }
 
+  public addToRouteFromWhishlist(item: any, day: any) {
+    this._saveChanges = true;
+    this._checkDirections(item.coords, item.placeName, item.marker, day);
+  }
+
   public createMarkersFromPlaces(places: any[], userLocation: [number, number]) {
     if (!this._map) throw Error('Mapa no inicializado');
     this._markers.forEach(marker => marker.remove());
@@ -141,6 +154,10 @@ export class MapService {
       this._checkDirections(coords, placeName, marker);
     };
 
+    const addToWhishlist = (coords: [number, number][], placeName: string, marker: Marker) => {
+      this._wishlist.push({coords, placeName, marker})
+    }
+
     for (const place of places) {
 
       const [lng, lat] = [place.coords[0], place.coords[1]];
@@ -154,7 +171,10 @@ export class MapService {
         <span>${place.adress}</span>
         <br>
         <span>${place.phoneNumber}</span>
-        <button id="add-to-wishlist">Añadir a día seleccionado</button>
+        <div class="popup-buttons">
+          <button id="add-to-route">Añadir a día seleccionado</button>
+          <span class="material-icons heart" id="add-to-wishlist" title="Añadir a favoritos">favorite</span>
+        </div>
       `;
 
       let popup = new Popup().setHTML(`<div class="custom-popup">${popupContent}</div>`)
@@ -168,10 +188,17 @@ export class MapService {
       newMarker.getElement()
         .addEventListener('click', () => {
             setTimeout(() => {
-              const add = document.querySelector("#add-to-wishlist");
+              const add = document.querySelector("#add-to-route");
               if (add instanceof HTMLButtonElement) {
                 add.onclick = function() {
                   addToRoute([[lng, lat]], place.name, newMarker);
+                  document.querySelector('.mapboxgl-popup')?.remove();
+                }
+              }
+              const whishlist = document.querySelector("#add-to-wishlist");
+              if (whishlist instanceof HTMLElement) {
+                whishlist.onclick = function() {
+                  addToWhishlist([[lng, lat]], place.name, newMarker)
                   document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
@@ -183,7 +210,7 @@ export class MapService {
     if (places.length === 0) return;
     // * Ajustar mapa a los marcadores mostrados
     this._centerMap();
-    if (this._wishlist.length === 0) return;
+    // if (this._wishlist.length === 0) return;
   }
 
   public getMarker(coords: number[]) {
@@ -212,8 +239,9 @@ export class MapService {
     });
   }
 
-  private _checkDirections(coords?: [number, number][], placeName?: string, marker?: Marker) {
-    const currentDayIndex = this._dates.findIndex(d => d === this._selectedDay);
+  private _checkDirections(coords?: [number, number][], placeName?: string, marker?: Marker, day?: any) {
+    const dayToHandle = day ?? this._selectedDay;
+    const currentDayIndex = this._dates.findIndex(d => d === dayToHandle);
     const currentDate = this._dates[currentDayIndex];
     const colorIndex = (currentDayIndex % 6 + 6) % 6;
     

@@ -9,10 +9,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxPrintModule } from 'ngx-print';
 import { environment } from 'src/environments/environment';
+import { SecondsToHmsPipe } from '../pipes/seconds-to-hms.pipe';
 import { AngularLogoComponent } from './components/angular-logo/angular-logo.component';
 import { BtnMyLocationComponent } from './components/btn-my-location/btn-my-location.component';
 import { DateSelectorComponent } from './components/date-selector/date-selector.component';
@@ -24,8 +26,8 @@ import { MapViewComponent } from './components/map-view/map-view.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { UserConfigComponent } from './components/user-config/user-config.component';
+import { WhishlistComponent } from './components/whishlist/whishlist.component';
 import { MapsRoutingModule } from './maps-routing.module';
-import { SecondsToHmsPipe } from '../pipes/seconds-to-hms.pipe';
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -41,7 +43,8 @@ registerLocaleData(localeES, "es");
     FilterComponent,
     DayComponent,
     DateSelectorComponent,
-    SecondsToHmsPipe
+    SecondsToHmsPipe,
+    WhishlistComponent
   ],
   imports: [
     MapsRoutingModule,
@@ -53,6 +56,7 @@ registerLocaleData(localeES, "es");
     MatNativeDateModule,
     MatSnackBarModule,
     MatIconModule,
+    MatDialogModule,
     NgxPrintModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
