@@ -49,28 +49,8 @@
     }
 }
 
-/* Media query para dispositivos de escritorio pequeños */
-@media only screen and (max-width: 992px) {
-    .filter-container {
-        width: 120px;
-        .button {
-            font-size: 12px;
-        }
-    }
-}
-
-/* Media query para tabletas */
-@media only screen and (max-width: 768px) {
-    .filter-container {
-        width: 80px;
-        .button {
-            font-size: 8px;
-        }
-    }
-}
-
 /* Media query para móviles */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     .filter-container {
         width: 150px;
         bottom: 0px;

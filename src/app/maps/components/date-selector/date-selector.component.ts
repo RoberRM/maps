@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
 import { MatDatepicker, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Marker } from 'mapbox-gl';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { IDayData } from 'src/app/interfaces/day.interface';
 
 
@@ -9,7 +10,7 @@ import { IDayData } from 'src/app/interfaces/day.interface';
   templateUrl: './date-selector.component.html',
   styleUrls: ['./date-selector.component.scss']
 })
-export class DateSelectorComponent implements AfterViewInit {
+export class DateSelectorComponent implements OnDestroy, AfterViewInit {
   @Output('actionCompleted') actionCompleted = new EventEmitter<IDayData[]>();
   @ViewChild('picker') picker!: MatDatepicker<Date>;
 
@@ -17,11 +18,32 @@ export class DateSelectorComponent implements AfterViewInit {
   public endDate!: Date | null;
   public dates: IDayData[] = [];
   public disabledButton = true;
+  private unsubscribe$ = new Subject<void>();
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
   
   ngAfterViewInit(): void {
     setTimeout(() => {
-      if (this.picker) this.picker.open();
+      if (this.picker) {
+        this.picker.open();
+        this.picker.closedStream.pipe(
+          takeUntil(this.unsubscribe$),
+          tap(() => this.openCalendar())
+        ).subscribe()
+      }
     }, 0);
+  }
+  
+  public openCalendar() {
+    const datepickerToggles = document.querySelector('.mat-datepicker-toggle');
+    setTimeout(() => {
+      if (datepickerToggles) {
+        (datepickerToggles as any).click();
+      }
+    }, 120)
   }
 
   public onStartDateChange(event: MatDatepickerInputEvent<Date>) {
@@ -53,4 +75,8 @@ export class DateSelectorComponent implements AfterViewInit {
     }
   }
 
+  public preventClose(event: MouseEvent) {
+    // Evita que el evento clic se propague y cierre el componente
+    event.stopPropagation();
+  }
 }

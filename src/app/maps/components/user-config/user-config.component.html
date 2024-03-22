@@ -1,13 +1,13 @@
 <div class="user-config">
-    <div class="hide-and-show" [ngStyle]="isUserInfoVisible ? { 'color': '#007bff' } : { 'color': 'gray' }">
-        <span class="dates-list" (click)="toggleUserInfoVisibility()">
+    <div class="user-config--hide-and-show" [ngStyle]="isUserInfoVisible ? { 'color': '#007bff' } : { 'color': 'gray' }">
+        <span class="user-config--hide-and-show--dates-list" (click)="toggleUserInfoVisibility()">
             <p *ngIf="isUserInfoVisible">Ocultar listado</p>
             <p *ngIf="!isUserInfoVisible">Mostrar listado</p>
             <mat-icon>visibility</mat-icon>
         </span>
-        <button class="whishlist" (click)="showWhishlistPopup()">Lista de deseos</button>
+        <button class="user-config--hide-and-show--whishlist" (click)="showWhishlistPopup()">Lista de deseos</button>
     </div>
-    <div *ngIf="isUserInfoVisible" class="user-info">
+    <div *ngIf="isUserInfoVisible" class="user-config--user-info">
         <div *ngFor="let date of dates; let i = index">
             <app-day [date]="date" [index]="i" [selectedColorIndex]="i"></app-day>
         </div>

@@ -1,3 +1,5 @@
+$block: "date-selector-overlay";
+
 mat-card, .demo-inline-calendar-card {
   width: 20rem;
   height: 45vh;
@@ -16,6 +18,10 @@ mat-card, .demo-inline-calendar-card {
   height: unset !important;
 }
 
+::ng-deep .mat-datepicker-content {
+  margin-left: unset;
+}
+
 ::ng-deep .mat-calendar-body-cell-content {
   &.mat-focus-indicator {
       &:hover {
@@ -32,7 +38,7 @@ mat-card, .demo-inline-calendar-card {
   }
 }
 
-.date-selector-overlay {
+.#{$block} {
   position: fixed;
   top: 0;
   left: 0;
@@ -42,11 +48,11 @@ mat-card, .demo-inline-calendar-card {
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  .date-selector-container {
+  &--date-selector-container {
     h2 {
       margin: 0;
     }
-    height: 450px;
+    height: 435px;
     text-align: center;
     position: absolute;
     top: 50%;
@@ -59,15 +65,32 @@ mat-card, .demo-inline-calendar-card {
     display: flex;
     flex-direction: column;
   }
-  .date-selector {
+  &--date-selector {
     order: 1;
     display: flex;
-    .selector {
+    /* &-selector {
         display: flex;
         align-items: center;
         flex: 1;
         padding: 0px 20px 20px 20px;
+    } */
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  $block: "date-selector-overlay";
+  .#{$block} {
+    &--date-selector-container {
+      padding: 5px;
+      width: 300px;
+      height: 415px;
     }
+  }
+  ::ng-deep .mat-datepicker-content .mat-calendar {
+    width: 18rem !important;
+  }
+  ::ng-deep .mat-datepicker-content {
+    margin-left: 5px
   }
 }
 

@@ -86,6 +86,7 @@ button:disabled {
     flex-direction: row; 
     align-items: center; 
     gap: 8px;
+    padding-top: 15px;
   }
   
   .custom-popup button {
@@ -118,4 +119,8 @@ button:disabled {
 }
 .mapboxgl-popup-close-button:hover {
   background-color: transparent !important;
+}
+
+.mapboxgl-popup-content {
+  padding: 5px !important;
 }
