@@ -8,7 +8,13 @@
         <div class="whishlist--list-container-list">
             <div class="whishlist--list-container-list--item" *ngFor="let item of whishlist; let i = index;">
                 <div style="display: flex; flex-direction: row; width: 100%; gap: 10px;">
-                    <div class="whishlist--list-container-list--item-item" (click)="showAvailableDates(item)">{{ item.placeName }}</div>
+                    <div class="whishlist--list-container-list--item-item" (click)="showAvailableDates(item)">
+                        <span>
+                            <span *ngIf="item.placeName">{{ item.placeName }}</span>
+                            <span *ngIf="item.address">&nbsp;- {{ item.address }}</span>
+                            <span *ngIf="item.location">&nbsp; ({{ item.location }})</span>
+                        </span>
+                    </div>
                     <div (click)="remove(i)" class="whishlist--list-container-list--item-remove"><mat-icon>delete</mat-icon></div>
                 </div>
                 <div *ngIf="showDatesMap[item.placeName]" class="whishlist--list-container-list--item-day">

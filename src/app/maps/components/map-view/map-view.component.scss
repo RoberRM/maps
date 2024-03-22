@@ -1,4 +1,6 @@
-.map-container {
+$block: "map-container";
+
+.#{$block} {
     position: fixed;
     top: 0px;
     right: 0px;

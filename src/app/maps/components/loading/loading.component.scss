@@ -1,4 +1,6 @@
-.loading-map {
+$block: "loading-map";
+
+.#{$block} {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +11,7 @@
     right: 0px;
     top: 0px;
     width: 100vw;
-    .text-center {
+    &--text-center {
         text-align: center;
     }
 }

@@ -4,10 +4,10 @@ form {
   gap: 15px;
   padding: 15px;
   input[readonly] {
-    background-color: #f4f4f4; /* Color de fondo gris claro */
-    color: #666; /* Color de texto gris */
-    border: 1px solid #ccc; /* Borde gris */
-    cursor: not-allowed; /* Cursor no permitido */
+    background-color: #f4f4f4;
+    color: #666;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
   }
 }
 

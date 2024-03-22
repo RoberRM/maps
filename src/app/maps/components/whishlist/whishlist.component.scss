@@ -49,26 +49,32 @@ $block: "whishlist";
                     order: 1;
                     display: flex;
                     align-items: center;
+                    color: lightgray;
+                    transition: color 0.3s ease;
+                }
+                &-remove:hover {
+                    color: darkgray;
                 }
                 &-item {
                     font-weight: bolder;
                     cursor: pointer;
-                    transition: color 0.3s ease;
+                    transition: font-weight 0.3s ease;
                     order: 2;
                     display: flex;
                     align-items: center;
                 }
                 &-item:hover {
-                    color: darkgray;
+                    font-weight: 800;
                 }
                 &-day {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    gap: 5px;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                    gap: 8px;
                     margin: 5px;
+                    width: 100%;
+                    justify-content: center;
                     button {
-                        padding: 5px 10px;
+                        padding: 5px 0px;
                     }
                 }
             }
