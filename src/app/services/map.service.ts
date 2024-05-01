@@ -192,8 +192,17 @@ export class MapService {
       const placeType = place.type;
       el.className = `marker ${placeType}-marker`;
 
-      let popupContent = `
-        <h6>${place.name}</h6>
+      let popupContent = place.description ? 
+       `<h6>${place.name}</h6>
+        <span>${place.description}</span>
+        <span>${place.adress}</span>
+        <br>
+        <span>${place.phoneNumber}</span>
+        <div class="popup-buttons">
+          <button id="add-to-route">Añadir a día seleccionado</button>
+          <span class="material-icons heart" id="add-to-wishlist" title="Añadir a favoritos">favorite</span>
+        </div>`
+      : `<h6>${place.name}</h6>
         <span>${place.adress}</span>
         <br>
         <span>${place.phoneNumber}</span>

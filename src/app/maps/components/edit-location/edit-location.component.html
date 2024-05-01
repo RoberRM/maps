@@ -26,10 +26,13 @@
                 <label for="estimatedTime">Tiempo estimado:</label>
                 <input type="text" formControlName="estimatedTime" id="estimatedTime">
                 
+                <label for="description">Descripción:</label>
+                <input type="text" formControlName="description" id="description">
+                
                 <label for="customId">Custom ID:</label>
                 <input type="text" formControlName="customId" id="customId" readonly>
                 
-                <button type="submit" [disabled]="!form.dirty || form.invalid">Guardar</button>
+                <button type="submit" [disabled]="form.invalid">Guardar</button>
             </form>
             </div>
         </div>

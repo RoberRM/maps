@@ -60,6 +60,7 @@
                     <th>Dirección</th>
                     <th>Teléfono</th>
                     <th>Tiempo estimado</th>
+                    <th>Descripción</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -71,6 +72,7 @@
                     <td>{{ item.adress }}</td>
                     <td>{{ item.phoneNumber }}</td>
                     <td>{{ item.estimatedTime }}</td>
+                    <td>{{ item.description }}</td>
                     <td>
                         <span class="arrow edit" (click)="openEditForm(item)"><mat-icon>edit</mat-icon></span>
                         <span class="arrow remove" (click)="removeItem(item.customId)"><mat-icon>delete</mat-icon></span>
