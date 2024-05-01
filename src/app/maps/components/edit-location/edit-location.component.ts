@@ -20,11 +20,12 @@ export class EditLocationComponent implements OnChanges {
       this.form = this.formBuilder.group({
         name: [this.formData.name || '', Validators.required],
         type: [this.formData.type || '', Validators.required],
-        location: [this.formData.location || '', Validators.required],
+        location: [this.formData.location || ''],
         coords: [this.formData.coords || [], Validators.required],
-        adress: [this.formData.adress || '', Validators.required],
-        phoneNumber: [this.formData.phoneNumber || '', Validators.required],
+        adress: [this.formData.adress || ''],
+        phoneNumber: [this.formData.phoneNumber || ''],
         estimatedTime: [this.formData.estimatedTime || ''],
+        description: [this.formData.description || ''],
         customId: [this.formData.customId || '', Validators.required]
       });
     }

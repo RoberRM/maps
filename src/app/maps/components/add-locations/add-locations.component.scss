@@ -125,7 +125,7 @@ div {
         overflow-y: auto; 
         position: relative;
         padding-top: 20px;
-        padding-bottom: 30px;
+        padding-bottom: 60px;
         .filter-btn {
             margin: unset;
         }
@@ -146,8 +146,7 @@ div {
             }
         }
         table {
-            width: 100%;
-            max-width: 1000px;
+            width: 90%;
             tr {
                 td {
                     text-align: center;
