@@ -7,7 +7,7 @@
             <span>{{ selectedColorIndex + 1 }}</span>
             <span>{{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}</span>
         </span>
-        <mat-icon (click)="exportToPdf()">save_as</mat-icon>
+        <mat-icon (click)="exportToPdf(date)">save_as</mat-icon>
     </div>
     <span *ngIf="date.isSelected" id="localizations-list">
         <span *ngFor="let wish of date.wishlist; let i = index" 
@@ -38,7 +38,7 @@
                 <h2 style="display: block; text-align: center; padding-top: 1%;">RUTA: {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}</h2>
                 <h3>Total de ubicaciones: {{date.wishlist.length}}</h3>
                 <div *ngFor="let item of report">
-                    <div id="image" style=" margin-bottom: 25px; text-align: center;">
+                    <div *ngIf="currentDateImages[item.route]" id="image" style="margin-bottom: 25px; text-align: center;">
                         <img style="border-radius: 10px; width: 350px; height: 300px;" [src]="currentDateImages[item.route]">
                     </div>
                     <div style="font-weight: bold;">De {{ date.wishlist[item.route]?.name }} a {{ date.wishlist[item.route+1]?.name }}</div>
@@ -56,7 +56,7 @@
                              - Duración aproximada <span>{{ instruction.duration | secondsToHms }}</span>
                         </span></li></ul>
                     </div>
-                    <div *ngIf="item.route === date.wishlist.length - 2"  style="margin-bottom: 25px; text-align: center;">
+                    <div *ngIf="item.route === date.wishlist.length - 2 && currentDateImages[item.route]"  style="margin-bottom: 25px; text-align: center;">
                         <img style="border-radius: 10px; width: 350px; height: 300px;" [src]="currentDateImages[item.route + 1]">
                     </div>
                 </div>

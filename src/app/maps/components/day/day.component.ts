@@ -68,7 +68,7 @@ export class DayComponent implements OnInit, OnChanges {
   public getCurrentDateImages() {
     this.currentDateImages = [];
     this.date.wishlist.forEach((item: any) => {
-      let imageSrc = this.sanitizer.bypassSecurityTrustUrl('assets/ambroz-caparra.jpg');
+      let imageSrc: ImageSource = '';
       if ((item.placeType && item.placeId) ?? (item.type && item.id)) {
         const type = item.placeType ?? item.type;
         const id = item.placeId ?? item.id;
@@ -99,7 +99,11 @@ export class DayComponent implements OnInit, OnChanges {
     this.mapService.allowSave = true;
   }
 
-  public exportToPdf() {
+  public exportToPdf(date: IDayData) {
+    if (date.wishlist.length <= 1) {
+      this.mapService._showNotification('Añada al menos 2 destinos para exportar las indicaciones');
+      return
+    }
     this.getCurrentDateImages();
 
     const resultado = this._groupRoute(this.mapService.generateReport());    

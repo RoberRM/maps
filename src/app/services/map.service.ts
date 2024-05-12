@@ -308,7 +308,7 @@ export class MapService {
     });
   }
 
-  private _showNotification(message: string) {
+  public _showNotification(message: string) {
     this.snackBar.open(message, 'Cerrar', {
       duration: 4000, 
       verticalPosition: 'top',
