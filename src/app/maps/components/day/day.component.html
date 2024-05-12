@@ -38,8 +38,8 @@
                 <h2 style="display: block; text-align: center; padding-top: 1%;">RUTA: {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}</h2>
                 <h3>Total de ubicaciones: {{date.wishlist.length}}</h3>
                 <div *ngFor="let item of report">
-                    <div id="image" style="width: 100%; text-align: center;">
-                        <img [src]="sanitizer.bypassSecurityTrustUrl('assets/ambroz-caparra.jpg')">
+                    <div id="image" style=" margin-bottom: 25px; text-align: center;">
+                        <img style="border-radius: 10px; width: 350px; height: 300px;" [src]="currentDateImages[item.route]">
                     </div>
                     <div style="font-weight: bold;">De {{ date.wishlist[item.route]?.name }} a {{ date.wishlist[item.route+1]?.name }}</div>
                     <div style="padding-top: 5px;">Distancia 
@@ -55,6 +55,9 @@
                             <span *ngIf="instruction.distance < 1"> {{ instruction.distance * 1000 | number:'1.0-1' }} m</span>
                              - Duración aproximada <span>{{ instruction.duration | secondsToHms }}</span>
                         </span></li></ul>
+                    </div>
+                    <div *ngIf="item.route === date.wishlist.length - 2"  style="margin-bottom: 25px; text-align: center;">
+                        <img style="border-radius: 10px; width: 350px; height: 300px;" [src]="currentDateImages[item.route + 1]">
                     </div>
                 </div>
             </div>

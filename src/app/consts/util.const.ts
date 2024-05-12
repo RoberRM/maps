@@ -26,6 +26,34 @@ export const CURRENTCOLORS = [
     COLORS.BLUE, COLORS.CORAL, COLORS.LIGHTBLUE, COLORS.GREEN, COLORS.YELLOW, COLORS.LIGHTGREY
 ]
 
+export const imageBaseUrl = 'https://ambroz.showroomc2o.com/planificador/imagenes';
+
+export const optionsMapping: { [key: string]: string } = {
+    'Restablecer': 'restore',
+    'Dónde dormir': 'where-to-sleep',
+    'Dónde comer': 'where-to-eat',
+    'Museos, Centros de Interpretación y oficinas de turismo': 'culture-resource',
+    'Experiencias': 'experiences',
+    'Recursos acuáticos': 'aquatic-resources',
+    'Astroturismo': 'astrotourism',
+    'Naturaleza': 'nature',
+    'Monumentos': 'monuments',
+    'Empresas de actividad': 'activity',
+    /* 'Lista de deseos': 'wishlist', */
+};
+
+export const imageTypeMapping: { [key: string]: string } = {
+    'where-to-sleep': 'alojamiento',
+    'where-to-eat': 'restauracion',
+    'culture-resource': 'museos-ci',
+    'experiences': '',
+    'aquatic-resources': 'agua',
+    'astrotourism': '',
+    'nature': '',
+    'monuments': 'monumentos',
+    'activity': 'actividades'
+};
+
 // * Only for development purpose
 export const sitios = [
     {
