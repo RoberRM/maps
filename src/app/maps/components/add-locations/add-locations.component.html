@@ -24,6 +24,8 @@
                 </div>
                 <div class="form-input" *ngIf="form.value.useText">
                     <textarea id="text" type="text" formControlName="textData"></textarea>
+                    <br>
+                    <button *ngIf="form.value.useText" (click)="toggleExample()">Ver ejemplo</button>
                 </div>
                 <div class="form-input" *ngIf="!form.value.useText">
                     <input id="fileInput" type="file" formControlName="jsonData">
@@ -40,6 +42,11 @@
                 <span *ngIf="!acceptTerms">Debe marcar la casilla de conformidad</span>
                 <span *ngIf="showError">Hay un error en el texto introducido: {{ errorMessage }}</span>
                 <span *ngIf="showSuccess" class="showSuccess">¡Localizaciones actualizadas correctamente!</span>
+            </span>
+            <span *ngIf="showExample && form.value.useText">
+                <br>
+                <span>El valor de coords debe ser primero el valor negativo y después el valor positivo</span>
+                <code>Datos de ejemplo:</code><br><pre><code>{{ jsonExample }}</code></pre>
             </span>
         </form>
     </div>

@@ -1,12 +1,13 @@
 import { formatDate } from '@angular/common';
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { tap } from 'rxjs';
-import { CURRENTCOLORS, ORDER } from 'src/app/consts/util.const';
+import { CURRENTCOLORS, ORDER, imageBaseUrl, imageTypeMapping } from 'src/app/consts/util.const';
 import { IDayData } from 'src/app/interfaces/day.interface';
 import { MapService } from 'src/app/services';
 
+type ImageSource = string | SafeUrl;
 @Component({
   selector: 'app-day',
   templateUrl: './day.component.html',
@@ -25,6 +26,8 @@ export class DayComponent implements OnInit, OnChanges {
   public arrowsLength!: number;
   public report: any = null;
   public printSectionId = '';
+  public imgBaseUrl = imageBaseUrl;
+  public currentDateImages: ImageSource[] = [];
 
   constructor(private mapService: MapService, private printService: NgxPrintService, public sanitizer: DomSanitizer) {}
   
@@ -33,7 +36,6 @@ export class DayComponent implements OnInit, OnChanges {
     this._handleArrows();
     this._setColor();
     this.printSectionId = 'printSection' + this.index;
-
   }
   
   ngOnChanges(changes: SimpleChanges): void {
@@ -63,6 +65,19 @@ export class DayComponent implements OnInit, OnChanges {
     }
   }
 
+  public getCurrentDateImages() {
+    this.currentDateImages = [];
+    this.date.wishlist.forEach((item: any) => {
+      let imageSrc = this.sanitizer.bypassSecurityTrustUrl('assets/ambroz-caparra.jpg');
+      if ((item.placeType && item.placeId) ?? (item.type && item.id)) {
+        const type = item.placeType ?? item.type;
+        const id = item.placeId ?? item.id;
+        imageSrc = this.sanitizer.bypassSecurityTrustUrl(`${imageBaseUrl}/${imageTypeMapping[type]}/${id}.jpg`)
+      }
+      this.currentDateImages.push(imageSrc);
+    });
+  }
+
   private _setColor() {
     const colorIndex = ( (this.selectedColorIndex ?? 0) % 6 + 6) % 6;
     this.selectedColor = CURRENTCOLORS[colorIndex];
@@ -85,7 +100,9 @@ export class DayComponent implements OnInit, OnChanges {
   }
 
   public exportToPdf() {
-    const resultado = this._groupRoute(this.mapService.generateReport());
+    this.getCurrentDateImages();
+
+    const resultado = this._groupRoute(this.mapService.generateReport());    
     this.report = Object.values(resultado);
     const customPrintOptions: PrintOptions = new PrintOptions({
       printSectionId: this.printSectionId,

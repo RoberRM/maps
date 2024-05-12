@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subject, takeUntil, tap } from 'rxjs';
-import { DATABASE } from 'src/app/consts/util.const';
+import { DATABASE, optionsMapping } from 'src/app/consts/util.const';
 import { ILocation } from 'src/app/interfaces/data.interface';
 import { Localization } from 'src/app/interfaces/localizations.interface';
 import { LocalStorageService, LocalizationsService } from 'src/app/services';
@@ -34,19 +34,34 @@ export class AddLocationsComponent implements OnDestroy {
   public activeButtonIndex: number | null = null;
   public isChecked: boolean = false;
   public showEditModal: boolean = false;
+  public jsonExample = `
+  [
+    {
+      "adress": "",
+      "phoneNumber": "",
+      "estimatedTime": "",
+      "location": "",
+      "type": "",
+      "customId": "",
+      "name": "", 
+      "description": "",
+      "coords": [-5.92976892902797, 40.259144108962104]
+    },
+    {
+      "adress": "",
+      "phoneNumber": "",
+      "estimatedTime": "",
+      "location": "",
+      "type": "",
+      "customId": "",
+      "name": "", 
+      "description": "",
+      "coords": [-5.92976892902797, 40.259144108962104]
+    }
+  ]`;
+  public showExample = false;
 
-  public optionsMapping: { [key: string]: string } = {
-    'Restablecer': 'restore',
-    'Dónde dormir': 'where-to-sleep',
-    'Dónde comer': 'where-to-eat',
-    'Museos, Centros de Interpretación y oficinas de turismo': 'culture-resource',
-    'Experiencias': 'experiences',
-    'Recursos acuáticos': 'aquatic-resources',
-    'Astroturismo': 'astrotourism',
-    'Naturaleza': 'nature',
-    'Monumentos': 'monuments',
-    /* 'Lista de deseos': 'wishlist', */
-  };
+  public optionsMapping: { [key: string]: string } = optionsMapping;
   public options = Object.keys(this.optionsMapping);
 
   private _fileContent: any;
@@ -92,6 +107,10 @@ export class AddLocationsComponent implements OnDestroy {
   /* public updateCollection() {
     this.localizationsService.updateCollection();
   } */
+
+  public toggleExample() {
+    this.showExample = !this.showExample;
+  }
 
   public onCheckboxChange() {
     this.acceptTerms = !this.acceptTerms;

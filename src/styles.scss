@@ -81,6 +81,20 @@ button:disabled {
     font-weight: bold;
   }
 
+  .custom-popup .description {
+    display: block; 
+    text-align: justify; 
+    margin-bottom: 5px; 
+    margin-top: 5px;
+  }
+
+  .custom-popup img {
+    max-width: 200px;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+  }
+
   .custom-popup .popup-buttons {
     display: flex; 
     flex-direction: row; 

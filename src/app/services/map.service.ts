@@ -2,14 +2,14 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AnySourceData, LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
 import { tap } from 'rxjs';
-import { CURRENTCOLORS } from '../consts/util.const';
+import { CURRENTCOLORS, imageBaseUrl, imageTypeMapping } from '../consts/util.const';
+import { ILocation } from '../interfaces/data.interface';
 import { IDayData } from '../interfaces/day.interface';
 import { DirectionsResponse, Route } from '../interfaces/directions.interface';
+import { Localization } from '../interfaces/localizations.interface';
+import { Whishlist } from '../interfaces/whishlist.interface';
 import { DirectionsApiClient } from '../maps/api';
 import { LocalizationsService } from './localizations.service';
-import { Whishlist } from '../interfaces/whishlist.interface';
-import { ILocation } from '../interfaces/data.interface';
-import { Localization } from '../interfaces/localizations.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,7 @@ export class MapService {
   private _wishlist: Whishlist[] = [];
   private _route: Route[] = [];
   private _saveChanges: boolean = false;
+  private _imageBaseUrl = imageBaseUrl;
 
   public showArrows = new EventEmitter<number>();
 
@@ -114,7 +115,7 @@ export class MapService {
         isSelected: date.isSelected, 
         weekDay: date.weekDay, 
         wishlist: JSON.stringify(date.wishlist.map((item: any) => {
-          return { coords: JSON.stringify(item.coords), name: item.name }
+          return { coords: JSON.stringify(item.coords), name: item.name, placeType: item.type, placeId: item.id }
         })),
         markers: JSON.stringify(date.markers)
       }
@@ -138,7 +139,9 @@ export class MapService {
 
   public wishlistFromSelectedDay(wishlist: Whishlist[]) {
     const currentDate = this._dates.find(d => d === this._selectedDay);
-    if (currentDate) currentDate.wishlist = wishlist;
+    if (currentDate) {
+      currentDate.wishlist = wishlist;
+    } 
   }
 
   public resetMarkersFromPlaces() {
@@ -147,7 +150,8 @@ export class MapService {
 
   public addToRouteFromWhishlist(item: Whishlist, day: IDayData) {
     this._saveChanges = true;
-    this._checkDirections(item.coords, item.placeName, item.marker, day);
+    const currentItem: any = this._places.find(place => place.name === item.placeName)
+    this._checkDirections(item.coords, item.placeName, item.marker, day, currentItem!.type, currentItem!.customId);
   }
 
   public getPlaceData(placeName: string) {
@@ -165,21 +169,21 @@ export class MapService {
     this._places = places;
     this._userLocation = userLocation;
 
-    const addToRoute = (coords: [number, number][], placeName: string, marker: Marker) => {
+    const addToRoute = (coords: [number, number][], placeName: string, marker: Marker, placeType: string, placeId: string) => {
       if (!this._selectedDay) {
         this._showNotification('Añade al menos dos puntos a la lista de deseos para calcular la ruta.');
         return
       }
       this._saveChanges = true;
-      this._checkDirections(coords, placeName, marker);
+      this._checkDirections(coords, placeName, marker, undefined,  placeType, placeId);
     };
 
-    const addToWhishlist = (id: string, coords: [number, number][], placeName: string, marker: Marker, address: string, location: string) => {
+    const addToWhishlist = (id: string, coords: [number, number][], placeName: string, marker: Marker, address: string, location: string, type: string, customId: string) => {
       const idx = this._wishlist.findIndex(item => item.id === id);
       if (idx !== -1) {
         return
       }
-      this._wishlist.push({id, coords, placeName, marker, address, location});
+      this._wishlist.push({id, coords, placeName, marker, address, location, type, customId});
       this._saveChanges = true;
       this.saveSelection();
     }
@@ -193,8 +197,8 @@ export class MapService {
       el.className = `marker ${placeType}-marker`;
 
       let popupContent = place.description ? 
-       `<h6>${place.name}</h6>
-        <span>${place.description}</span>
+       `<h6 id="placeName">${place.name}</h6>
+        <span class="description">${place.description}</span>
         <span>${place.adress}</span>
         <br>
         <span>${place.phoneNumber}</span>
@@ -223,17 +227,33 @@ export class MapService {
       newMarker.getElement()
         .addEventListener('click', () => {
             setTimeout(() => {
+              const placeName = document.getElementById('placeName');
+              if (placeName) {
+                const imgElement = document.createElement('img');
+                imgElement.src = `${this._imageBaseUrl}/${imageTypeMapping[place.type]}/${place.customId}.jpg`;
+                placeName.parentNode?.insertBefore(imgElement, placeName.nextSibling);
+
+                const handleClickOutside = function (event: any) {
+                  const customPopup = document.querySelector('.custom-popup');
+                  if (customPopup && !customPopup.contains(event.target)) {
+                      imgElement.remove();
+                      document.removeEventListener('click', handleClickOutside);
+                  }
+                };
+                document.addEventListener('click', handleClickOutside);
+              }
+            
               const add = document.querySelector("#add-to-route");
               if (add instanceof HTMLButtonElement) {
                 add.onclick = function() {
-                  addToRoute([[lng, lat]], place.name, newMarker);
+                  addToRoute([[lng, lat]], place.name, newMarker, place.type, place.customId);
                   document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
               const whishlist = document.querySelector("#add-to-wishlist");
               if (whishlist instanceof HTMLElement) {
                 whishlist.onclick = function() {
-                  addToWhishlist(place.id, [[lng, lat]], place.name, newMarker, place.adress, place.location)
+                  addToWhishlist(place.id, [[lng, lat]], place.name, newMarker, place.adress, place.location, place.type, place.customId)
                   document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
@@ -255,6 +275,8 @@ export class MapService {
             placeName: place.name,
             address: place.adress,
             location: place.location,
+            type: place.type,
+            customId: place.customId,
             marker: this.getMarker(place.coords as unknown as number[])!
           }
           this.whishlist.push(favorite)
@@ -294,7 +316,7 @@ export class MapService {
     });
   }
 
-  private _checkDirections(coords?: [number, number][], placeName?: string, marker?: Marker, day?: IDayData) {
+  private _checkDirections(coords?: [number, number][], placeName?: string, marker?: Marker, day?: IDayData, placeType?: string, placeId?: string) {
     const dayToHandle = day ?? this._selectedDay;
     const currentDayIndex = this._dates.findIndex(d => d === dayToHandle);
     const currentDate = this._dates[currentDayIndex];
@@ -302,7 +324,7 @@ export class MapService {
     
     if (currentDate) {
       if (!!coords && !!placeName) {
-        currentDate.wishlist.push({coords: coords, name: placeName, marker: marker!});
+        currentDate.wishlist.push({coords: coords, name: placeName, marker: marker!, type: placeType, id: placeId});
         if (marker) this._routeMarkers.push(marker);
       }
       this.showArrows.emit(currentDate.wishlist.length);
@@ -349,9 +371,11 @@ export class MapService {
 
     const start = routeList[0];
     const end = routeList[1];
-    const id = `RouteString_${start.join(',')}_${end.join(',')}`;
-    this.getRouteBetweenPoints(start, end, id, CURRENTCOLORS[colorIndex]);
-    this._calculateRouteRecursively(routeList.slice(1), colorIndex);
+    if (start && end) {
+      const id = `RouteString_${start.join(',')}_${end.join(',')}`;
+      this.getRouteBetweenPoints(start, end, id, CURRENTCOLORS[colorIndex]);
+      this._calculateRouteRecursively(routeList.slice(1), colorIndex);
+    }
   }
 
   public getRouteBetweenPoints( start: [number, number], end: [number, number], id: string, color: string) {

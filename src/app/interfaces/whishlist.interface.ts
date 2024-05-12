@@ -6,5 +6,7 @@ export interface Whishlist {
     placeName: string,
     address: string,
     location: string,
-    marker: Marker
+    marker: Marker,
+    type: string,
+    customId: string
 }

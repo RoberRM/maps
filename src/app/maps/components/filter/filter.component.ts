@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { first, of, switchMap } from 'rxjs';
+import { optionsMapping } from 'src/app/consts/util.const';
 import { LocalizationsService, MapService } from 'src/app/services';
-import { switchMap, of, tap, first } from 'rxjs';
 import { PlacesService } from '../../services/places.service';
 
 @Component({
@@ -10,18 +11,7 @@ import { PlacesService } from '../../services/places.service';
 })
 export class FilterComponent implements OnInit {
   @Output('filter') public filter = new EventEmitter<string>();
-  public optionsMapping: { [key: string]: string } = {
-    'Restablecer': 'restore',
-    'Dónde dormir': 'where-to-sleep',
-    'Dónde comer': 'where-to-eat',
-    'Museos, Centros de Interpretación y oficinas de turismo': 'culture-resource',
-    'Experiencias': 'experiences',
-    'Recursos acuáticos': 'aquatic-resources',
-    'Astroturismo': 'astrotourism',
-    'Naturaleza': 'nature',
-    'Monumentos': 'monuments',
-    /* 'Lista de deseos': 'wishlist', */
-  };
+  public optionsMapping: { [key: string]: string } = optionsMapping;
   public options = Object.keys(this.optionsMapping);
 
   constructor(private placesService: PlacesService, private mapService: MapService, private localizationsService: LocalizationsService) {}
