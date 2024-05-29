@@ -6,5 +6,6 @@ export interface Localization {
     location: string,
     name: string,
     phoneNumber: string,
+    description: string,
     type: string
 }
