@@ -69,7 +69,8 @@ export class DayComponent implements OnInit, OnChanges {
     this.currentDateImages = [];
     this.date.wishlist.forEach((item: any) => {
       let imageSrc: ImageSource = '';
-      if ((item.placeType && item.placeId) ?? (item.type && item.id)) {
+      const plainId = item.placeId ?? item.id;
+      if (plainId?.length < 12 && ((item.placeType && item.placeId) ?? (item.type && item.id))) {
         const type = item.placeType ?? item.type;
         const id = item.placeId ?? item.id;
         imageSrc = this.sanitizer.bypassSecurityTrustUrl(`${imageBaseUrl}/${imageTypeMapping[type]}/${id}.jpg`)

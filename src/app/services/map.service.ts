@@ -115,7 +115,7 @@ export class MapService {
         isSelected: date.isSelected, 
         weekDay: date.weekDay, 
         wishlist: JSON.stringify(date.wishlist.map((item: any) => {
-          return { coords: JSON.stringify(item.coords), name: item.name, placeType: item.type, placeId: item.id }
+          return { coords: JSON.stringify(item.coords), name: item.name, placeType: item.type, placeId: item.placeId ?? item.id, description: item.description }
         })),
         markers: JSON.stringify(date.markers)
       }
@@ -124,6 +124,8 @@ export class MapService {
     const whishlistToSave = this.whishlist.map((whish: Whishlist) => {
       return {
         placeName: whish.placeName,
+        customId: whish.customId,
+        description: whish.description ?? '',
         coords: JSON.stringify(whish.coords),
         marker: {}
       } as unknown as Whishlist
@@ -169,21 +171,21 @@ export class MapService {
     this._places = places;
     this._userLocation = userLocation;
 
-    const addToRoute = (coords: [number, number][], placeName: string, marker: Marker, placeType: string, placeId: string) => {
+    const addToRoute = (coords: [number, number][], placeName: string, marker: Marker, placeType: string, placeId: string, description: string) => {
       if (!this._selectedDay) {
         this._showNotification('Añade al menos dos puntos a la lista de deseos para calcular la ruta.');
         return
       }
       this._saveChanges = true;
-      this._checkDirections(coords, placeName, marker, undefined,  placeType, placeId);
+      this._checkDirections(coords, placeName, marker, undefined,  placeType, placeId, description);
     };
 
-    const addToWhishlist = (id: string, coords: [number, number][], placeName: string, marker: Marker, address: string, location: string, type: string, customId: string) => {
+    const addToWhishlist = (id: string, coords: [number, number][], placeName: string, marker: Marker, address: string, location: string, type: string, customId: string, description: string) => {
       const idx = this._wishlist.findIndex(item => item.id === id);
       if (idx !== -1) {
         return
       }
-      this._wishlist.push({id, coords, placeName, marker, address, location, type, customId});
+      this._wishlist.push({id, coords, placeName, marker, address, location, type, customId, description});
       this._saveChanges = true;
       this.saveSelection();
     }
@@ -246,14 +248,14 @@ export class MapService {
               const add = document.querySelector("#add-to-route");
               if (add instanceof HTMLButtonElement) {
                 add.onclick = function() {
-                  addToRoute([[lng, lat]], place.name, newMarker, place.type, place.customId);
+                  addToRoute([[lng, lat]], place.name, newMarker, place.type, place.customId, place.description);
                   document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
               const whishlist = document.querySelector("#add-to-wishlist");
               if (whishlist instanceof HTMLElement) {
                 whishlist.onclick = function() {
-                  addToWhishlist(place.id, [[lng, lat]], place.name, newMarker, place.adress, place.location, place.type, place.customId)
+                  addToWhishlist(place.id, [[lng, lat]], place.name, newMarker, place.adress, place.location, place.type, place.customId, place.description)
                   document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
@@ -277,6 +279,7 @@ export class MapService {
             location: place.location,
             type: place.type,
             customId: place.customId,
+            description: place.description,
             marker: this.getMarker(place.coords as unknown as number[])!
           }
           this.whishlist.push(favorite)
@@ -316,7 +319,7 @@ export class MapService {
     });
   }
 
-  private _checkDirections(coords?: [number, number][], placeName?: string, marker?: Marker, day?: IDayData, placeType?: string, placeId?: string) {
+  private _checkDirections(coords?: [number, number][], placeName?: string, marker?: Marker, day?: IDayData, placeType?: string, placeId?: string, description?: string) {
     const dayToHandle = day ?? this._selectedDay;
     const currentDayIndex = this._dates.findIndex(d => d === dayToHandle);
     const currentDate = this._dates[currentDayIndex];
@@ -324,7 +327,7 @@ export class MapService {
     
     if (currentDate) {
       if (!!coords && !!placeName) {
-        currentDate.wishlist.push({coords: coords, name: placeName, marker: marker!, type: placeType, id: placeId});
+        currentDate.wishlist.push({coords: coords, name: placeName, marker: marker!, type: placeType, id: placeId, description: description});
         if (marker) this._routeMarkers.push(marker);
       }
       this.showArrows.emit(currentDate.wishlist.length);

@@ -8,5 +8,6 @@ export interface Whishlist {
     location: string,
     marker: Marker,
     type: string,
+    description: string,
     customId: string
 }

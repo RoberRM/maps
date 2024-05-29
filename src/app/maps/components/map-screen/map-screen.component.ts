@@ -35,6 +35,8 @@ export class MapScreenComponent implements OnDestroy {
             const item = {
               coords: JSON.parse(list.coords),
               placeName: list.placeName,
+              description: list.description,
+              customId: list.customId,
               marker: this._mapService.getMarker(JSON.parse(list.coords)[0])
             }
             return item
