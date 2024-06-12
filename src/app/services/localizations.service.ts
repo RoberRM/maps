@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { addDoc, collection } from 'firebase/firestore';
 import { BehaviorSubject, Observable, catchError, from, of, switchMap, tap } from 'rxjs';
-import { DATABASE } from '../consts/util.const';
+import { DATABASE, OLD_DATABASE } from '../consts/util.const';
 import { ILocation } from '../interfaces/data.interface';
 import { LocalStorageService } from './local-storage.service';
 import { Whishlist } from '../interfaces/whishlist.interface';
@@ -328,14 +328,16 @@ export class LocalizationsService {
   // ? Función para añadir atributo a item de colección
   /* public updateCollection(): void {
     const localizationRef = this.angularFirestore.collection(DATABASE)
+    // const localizationRef = this.angularFirestore.collection(OLD_DATABASE);
     localizationRef.get().subscribe(querySnapshot => {
       querySnapshot.forEach(doc => {
         const docId = doc.id;
         const data = doc.data() as { [key: string]: any };
         const newData = {
           ...data,
-          estimatedTime: ''
+          visible: 'false'
         };
+        // console.log('NEW DATA: ', newData)
 
         localizationRef.doc(docId).update(newData)
           .then(() => console.log(`Documento ${docId} actualizado correctamente.`))

@@ -45,7 +45,8 @@ export class AddLocationsComponent implements OnDestroy {
       "customId": "",
       "name": "", 
       "description": "",
-      "coords": [-5.92976892902797, 40.259144108962104]
+      "coords": [-5.92976892902797, 40.259144108962104],
+      "visible": ""
     },
     {
       "adress": "",
@@ -56,7 +57,8 @@ export class AddLocationsComponent implements OnDestroy {
       "customId": "",
       "name": "", 
       "description": "",
-      "coords": [-5.92976892902797, 40.259144108962104]
+      "coords": [-5.92976892902797, 40.259144108962104],
+      "visible": ""
     }
   ]`;
   public showExample = false;
