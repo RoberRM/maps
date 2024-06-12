@@ -1,4 +1,5 @@
 export const DATABASE = 'new-localizations';
+export const OLD_DATABASE = 'localizations';
 
 export enum SERVICES {
     ALL = 'Todos los contenidos',
