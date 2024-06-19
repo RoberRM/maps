@@ -34,7 +34,7 @@ export const optionsMapping: { [key: string]: string } = {
     'Dónde dormir': 'where-to-sleep',
     'Dónde comer': 'where-to-eat',
     'Museos, Centros de Interpretación y oficinas de turismo': 'culture-resource',
-    'Experiencias': 'experiences',
+    /* 'Experiencias': 'experiences', */
     'Recursos acuáticos': 'aquatic-resources',
     'Astroturismo': 'astrotourism',
     'Naturaleza': 'nature',
@@ -47,7 +47,7 @@ export const imageTypeMapping: { [key: string]: string } = {
     'where-to-sleep': 'alojamiento',
     'where-to-eat': 'restauracion',
     'culture-resource': 'museos-ci',
-    'experiences': '',
+    /* 'experiences': '', */
     'aquatic-resources': 'agua',
     'astrotourism': '',
     'nature': '',
