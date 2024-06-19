@@ -212,6 +212,9 @@ export class MapService {
         <span>${place.adress}</span>
         <br>
         <span>${place.phoneNumber}</span>
+        <span class="center-button">
+          <button target onclick="window.open('${place.infoUrl}','_blank')"">Ver más</button>
+        </span>
         <div class="popup-buttons">
           <button id="add-to-route">Añadir a día seleccionado</button>
           <span class="material-icons heart" id="add-to-wishlist" title="Añadir a favoritos">favorite</span>
@@ -389,7 +392,7 @@ export class MapService {
           this._route.push(resp.routes[0]);
           this.drawPolyline(id, color);
           const bounds = new LngLatBounds();
-          this._routeMarkers.forEach(routeMarker => bounds.extend(routeMarker.getLngLat()));
+          this._routeMarkers.forEach(routeMarker => bounds.extend(routeMarker?.getLngLat()));
           this._map?.fitBounds(bounds, {
             padding: 200,
           });

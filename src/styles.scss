@@ -103,6 +103,14 @@ button:disabled {
     padding-top: 15px;
   }
   
+  .center-button {
+    display: flex;
+    width: 50%;
+    padding-top: 15px;
+    align-items: center; 
+    margin: 0 auto;
+  }
+  
   .custom-popup button {
     width: 100%;
     padding: 10px;
