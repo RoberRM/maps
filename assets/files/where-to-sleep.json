@@ -1,0 +1,1087 @@
+[
+    {
+      "coords": "40.32394383400131, -5.859693205693268",
+      "location": "Baños de Montemayor",
+      "name": "Complejo El Solitario",
+      "id": "ALO1",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.26068873039656, -5.92626655928261",
+      "location": "Aldeanueva del Camino",
+      "name": "Casa Rural El Caño de Abajo",
+      "id": "ALO2",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.22504415378731, -5.948008665363624",
+      "location": "Segura de Toro",
+      "name": "Casa Rural Las Cuatro Esquinas",
+      "id": "ALO3",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.31909523803601, -5.856075311393689",
+      "location": "Baños de Montemayor",
+      "name": "Apartamento Turístico Casa Tio Basilio",
+      "id": "ALO4",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.273884457160285, -5.856456989971272",
+      "location": "Hervás",
+      "name": "Casa Rural La Iguana 2",
+      "id": "ALO5",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.317039181244354, -5.858567531776709",
+      "location": "Baños de Montemayor",
+      "name": "Casa Rural La Fuentecilla",
+      "id": "ALO6",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27271325247752, -5.8548277274694085",
+      "location": "Hervás",
+      "name": "Casa Rural La Calleja",
+      "id": "ALO7",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.2750395685633, -5.8589769304459764",
+      "location": "Hervás",
+      "name": "Casa Rural Víctor Chamorro del Arco",
+      "id": "ALO8",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.274103470449994, -5.857543166294536",
+      "location": "Hervás",
+      "name": "Casa Rural La Plaza",
+      "id": "ALO9",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27532048346175, -5.860202891303534",
+      "location": "Hervás",
+      "name": "Casa Rural Alborada Duplex",
+      "id": "ALO10",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.223600, -5.948400",
+      "location": "Segura de Toro",
+      "name": "Casa Rural Los Vettones",
+      "id": "ALO11",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.258998546988536, -5.92942504764414",
+      "location": "Aldeanueva del Camino",
+      "name": "Casa Rural La Luna",
+      "id": "ALO12",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.2773300480498, -5.861409090262182",
+      "location": "Hervás",
+      "name": "Casa Rural Fuente Chiquita",
+      "id": "ALO13",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.272703539921, -5.85821621559",
+      "location": "Hervás",
+      "name": "Casa Rural La Luna",
+      "id": "ALO14",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.22355101921669, -5.948430168464433",
+      "location": "",
+      "name": "Apartamento Turístico El Mirador de Segura",
+      "id": "ALO15",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.20227727986974, -5.96064268231651",
+      "location": "Casas del Monte",
+      "name": "Apartamento Turístico Navalinda",
+      "id": "ALO16",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.26904652486715, -5.883480423034228",
+      "location": "Hervás",
+      "name": "Apartamento Turístico Aldea Vetonia",
+      "id": "ALO17",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.2678564514313, -5.876864269067955",
+      "location": "Hervás",
+      "name": "Casa Rural El Canchal de la Gallina",
+      "id": "ALO18",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27437932724536, -5.8578942188073695",
+      "location": "Hervás",
+      "name": "Apartamento Turístico Hervás Suites",
+      "id": "ALO19",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27050093556597, -5.857843464841229",
+      "location": "Hervás",
+      "name": "Casa Rural Apartamentos La Vía",
+      "id": "ALO20",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27384347151003, -5.858158688118284",
+      "location": "Hervás",
+      "name": "Casa Rural Senderos de Hervás",
+      "id": "ALO21",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.319081756546524, -5.857484858759757",
+      "location": "Baños de Montemayor",
+      "name": "Apartamento Turístico La Plazuela",
+      "id": "ALO22",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.20137337496061, -5.9613776350561425",
+      "location": "Casas del Monte",
+      "name": "Casa Rural La Fragaria",
+      "id": "ALO23",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.32939530809126, -5.82346762711721",
+      "location": "La Garganta",
+      "name": "Casa Rural Peña Negra",
+      "id": "ALO24",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27331318715718, -5.858046336004964",
+      "location": "Hervás",
+      "name": "Apartamento Turístico La Antigua Fonda",
+      "id": "ALO25",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27463834136464, -5.856904449260118",
+      "location": "Hervás",
+      "name": "Casa Rural Calleabajo",
+      "id": "ALO26",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27572449608735, -5.86229126908257",
+      "location": "Hervás",
+      "name": "Casa Rural Hervás y Punto",
+      "id": "ALO27",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.273229044779214, -5.856567158761523",
+      "location": "Hervás",
+      "name": "Casa Rural El Jardín del Convento",
+      "id": "ALO28",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.20658416764505, -5.955059965862176",
+      "location": "Casas del Monte",
+      "name": "Casa Rural Las Mareas",
+      "id": "ALO29",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.20130401194986, -5.955812178856115",
+      "location": "Casas del Monte",
+      "name": "Casa Rural Acebuche",
+      "id": "ALO30",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27546023856687, -5.856937164841021",
+      "location": "Hervás",
+      "name": "Casa Rural El Acebo",
+      "id": "ALO31",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.20228730393992, -5.9598464783353995",
+      "location": "Casas del Monte",
+      "name": "Casa Rural Casa de la Abuela",
+      "id": "ALO32",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.20486951108077, -5.958473674293498",
+      "location": "Casas del Monte",
+      "name": "Casa Rural y Apartamento Turístico Manolo",
+      "id": "ALO33",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.22412304843564, -5.947689330447899",
+      "location": "Segura de Toro",
+      "name": "Casa Rural Ciudad de Verdeoliva",
+      "id": "ALO34",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27453139906398, -5.8555554322989405",
+      "location": "Hervás",
+      "name": "Casa Rural Aljama",
+      "id": "ALO35",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.25746568697003, -5.934953094198515",
+      "location": "Aldeanueva del Camino",
+      "name": "Casa Rural El Caminante",
+      "id": "ALO36",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.20681907269319, -5.957601069070324",
+      "location": "Casas del Monte",
+      "name": "Casa Rural La Ondina del Madrigal",
+      "id": "ALO37",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.32234210535421, -5.848608875189608",
+      "location": "Baños de Montemayor",
+      "name": "Casa Rural La Casa de Su",
+      "id": "ALO38",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.31876447852619, -5.8577730360032225",
+      "location": "Baños de Montemayor",
+      "name": "Casa Rural El Jardín de la Plata",
+      "id": "ALO39",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.20223647033428, -5.959990578335432",
+      "location": "Casas del Monte",
+      "name": "Casa Rural Arbequina",
+      "id": "ALO40",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27561459469785, -5.855656732298932",
+      "location": "Hervás",
+      "name": "Casa Rural El Vado",
+      "id": "ALO41",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.24894064615088, -5.917139224887977",
+      "location": "Gargantilla",
+      "name": "Casa Rural Alejandra",
+      "id": "ALO42",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.205661311107896, -5.956500216957035",
+      "location": "Casas del Monte",
+      "name": "Casa Rural La Dehesa",
+      "id": "ALO43",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.320157141984055, -5.850389702496944",
+      "location": "Baños de Montemayor",
+      "name": "Casa Rural Villa Asunción",
+      "id": "ALO44",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.26974442334648, -5.863778218807582",
+      "location": "Hervás",
+      "name": "Casa Rural Calzadilla",
+      "id": "ALO45",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27355285894985, -5.858099613248459",
+      "location": "Hervás",
+      "name": "Casa Rural El Zarzo",
+      "id": "ALO46",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.22383019046418, -5.948773764843039",
+      "location": "Segura de Toro",
+      "name": "Casa Rural La Tasca",
+      "id": "ALO47",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.275399623355476, -5.861675863751898",
+      "location": "Hervás",
+      "name": "Apartamento Turístico Solaz del Ambroz Hervás",
+      "id": "ALO48",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27437392726085, -5.857240245269863",
+      "location": "Hervás",
+      "name": "Casa Rural La Atalaya",
+      "id": "ALO49",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.205488005306506, -5.957907895532867",
+      "location": "Casas del Monte",
+      "name": "Apartamento Turístico La Charca de la Dehesa",
+      "id": "ALO50",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.31771467753332, -5.857773103461146",
+      "location": "Baños de Montemayor",
+      "name": "Casa Rural Los Postigos",
+      "id": "ALO51",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27312693016185, -5.882444818807446",
+      "location": "Hervás",
+      "name": "Casa Rural Manantial del Fresno",
+      "id": "ALO52",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.275289696817154, -5.857650474105978",
+      "location": "Hervás",
+      "name": "Casa Rural La Casita del Tejo",
+      "id": "ALO53",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.269533991034784, -5.873255701125077",
+      "location": "Hervás",
+      "name": "Casa Rural Fuente del Aliso",
+      "id": "ALO54",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27419318502653, -5.855910886265269",
+      "location": "Hervás",
+      "name": "Casa Rural La Cuestecilla",
+      "id": "ALO55",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.202453586775825, -5.959499799759576",
+      "location": "Casas del Monte",
+      "name": "Casa Rural El Naranjo",
+      "id": "ALO56",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.2244062220857, -5.9480228285948895",
+      "location": "Segura de Toro",
+      "name": "Casa Rural El Rincón de la Abuela",
+      "id": "ALO57",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27506696943652, -5.856596580185621",
+      "location": "Hervás",
+      "name": "Casa Rural La Estrella de David",
+      "id": "ALO58",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.273393629613004, -5.856403266694138",
+      "location": "Hervás",
+      "name": "Casa Rural Beit Shalom",
+      "id": "ALO59",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27432518007529, -5.858498682408153",
+      "location": "Hervás",
+      "name": "Casa Rural El Romero",
+      "id": "ALO60",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.274658211905155, -5.857839982408166",
+      "location": "Hervás",
+      "name": "Casa Rural La Casa de Severina",
+      "id": "ALO61",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27481615474528, -5.859979060614449",
+      "location": "Hervás",
+      "name": "Casa Rural La Casita del Collado",
+      "id": "ALO62",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.25961173251823, -5.926998924887545",
+      "location": "Aldeanueva del Camino",
+      "name": "Albergue La Casa de mi Abuela",
+      "id": "ALO63",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.201774832481576, -5.95586664579331",
+      "location": "Casas del Monte",
+      "name": "Albergue Aurora Boreal",
+      "id": "ALO64",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27151079363293, -5.835363788118349",
+      "location": "Hervás",
+      "name": "Albergue Valle del Ambroz",
+      "id": "ALO65",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27001345169931, -5.877909833894624",
+      "location": "Hervás",
+      "name": "Camping El Pinajarro",
+      "id": "ALO66",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.28536872063407, -5.88070757092027",
+      "location": "Baños de Montemayor",
+      "name": "Camping Las Cañadas",
+      "id": "ALO67",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27465649673875, -5.889656708210045",
+      "location": "Hervás",
+      "name": "Hotel El Salugral",
+      "id": "ALO68",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.26141595214226, -5.926459515913584",
+      "location": "Aldeanueva del Camino",
+      "name": "Hotel Rural Posada Tres Mentiras",
+      "id": "ALO69",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.32048117823562, -5.8594389136747616",
+      "location": "Baños de Montemayor",
+      "name": "Hotel Rural El Molino",
+      "id": "ALO70",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.26756965511174, -5.910640516433985",
+      "location": "Aldeanueva del Camino",
+      "name": "Complejo Roma",
+      "id": "ALO71",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.32321065197291, -5.856281240229707",
+      "location": "Baños de Montemayor",
+      "name": "Hotel La Glorieta",
+      "id": "ALO72",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.31956089691558, -5.8572553457887935",
+      "location": "Baños de Montemayor",
+      "name": "Hostal Las Termas",
+      "id": "ALO73",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27482704032985, -5.863045382559254",
+      "location": "Hervás",
+      "name": "Hotel Spa Sinagoga",
+      "id": "ALO74",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.321370355433, -5.85682825762753",
+      "location": "Baños de Montemayor",
+      "name": "Hostal El Sendero",
+      "id": "ALO75",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.31805024935555, -5.85794159642863",
+      "location": "Baños de Montemayor",
+      "name": "Hotel Alegría",
+      "id": "ALO76",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.32021677284647, -5.856717944717662",
+      "location": "Baños de Montemayor",
+      "name": "Hotel Balneario",
+      "id": "ALO77",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27297445964979, -5.855832560555707",
+      "location": "Hervás",
+      "name": "Hospedería Valle del Ambroz",
+      "id": "ALO78",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.274852838645266, -5.859594045437373",
+      "location": "Hervás",
+      "name": "Hostal El Griel",
+      "id": "ALO79",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.273129633266315, -5.8556958423193795",
+      "location": "Hervás",
+      "name": "Casa Rural La Casita Hervás",
+      "id": "ALO80",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.270725137861405, -5.865660160555778",
+      "location": "Hervás",
+      "name": "Casa Rural La Platea",
+      "id": "ALO81",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27614093851013, -5.855690559782439",
+      "location": "Hervás",
+      "name": "Casa Rural Puente de la Judería",
+      "id": "ALO82",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.274150042566774, -5.85440268807957",
+      "location": "Hervás",
+      "name": "Casa Rural Doña Jimena del Ambroz",
+      "id": "ALO83",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.274448941382325, -5.856532058705098",
+      "location": "Hervás",
+      "name": "Casa Rural Caño las Parras",
+      "id": "ALO84",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27494558320467, -5.8621438034227324",
+      "location": "Hervás",
+      "name": "Apartamento Turístico El Castañar",
+      "id": "ALO85",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27445558482276, -5.857311422467058",
+      "location": "Hervás",
+      "name": "Apartamento Turístico La Casita del Olivo",
+      "id": "ALO86",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27446371339328, -5.856120521805745",
+      "location": "Hervás",
+      "name": "Apartamento Turístico Hervás y Vuelves",
+      "id": "ALO87",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27306139004465, -5.859402085663096",
+      "location": "Hervás",
+      "name": "Apartamento Turístico Hervás Centro",
+      "id": "ALO88",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27444589875787, -5.856814287540865",
+      "location": "Hervás",
+      "name": "Apartamento Turístico El Wala",
+      "id": "ALO89",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27356007885612, -5.857489230805196",
+      "location": "Hervás",
+      "name": "Apartamento Turístico Vedelejos",
+      "id": "ALO90",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.19133568975718, -6.185459503425785",
+      "location": "Ahigal",
+      "name": "Casa Rural Dompani",
+      "id": "ALO91",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.260785830173106, -5.926376980677815",
+      "location": "Aldeanueva del Camino",
+      "name": "Casa Rural La Cañada",
+      "id": "ALO92",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.138161142540305, -6.002062611085462",
+      "location": "Cabezabellosa",
+      "name": "Casa Rural Palacio Carvajal",
+      "id": "ALO93",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.144665922009416, -5.996884628816158",
+      "location": "Cabezabelloza",
+      "name": "Casa Rural Villa Lucía",
+      "id": "ALO94",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.139468610762634, -5.999357073279989",
+      "location": "Cabezabelloza",
+      "name": "Hostal La Bellosina",
+      "id": "ALO95",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.236848909686316, -6.226488237021541",
+      "location": "Cerezo",
+      "name": "Casa Rural La Posada del Teso",
+      "id": "ALO96",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.1930916127674, -6.162085811366627",
+      "location": "Guijo de Granadilla",
+      "name": "Casa Rural El Olivo",
+      "id": "ALO97",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.21928532556134, -6.138545738350924",
+      "location": "Gujo de Granadilla",
+      "name": "Apartamento Turístico La Presa",
+      "id": "ALO98",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.19447763587663, -6.158896897873985",
+      "location": "Gujo de Granadilla",
+      "name": "Casa Rural El Jardín del Poeta",
+      "id": "ALO99",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.193466066676066, -6.163067974051224",
+      "location": "Guijo de Granadilla",
+      "name": "Casa Rural Roquemar",
+      "id": "ALO100",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.188486056874694, -6.0038174285605574",
+      "location": "Jarilla",
+      "name": "Hotel Restaurante Jarilla",
+      "id": "ALO101",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.186778264150384, -6.007649339908558",
+      "location": "Jarilla",
+      "name": "Hostal Restaurante Asturias",
+      "id": "ALO102",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.268009689985234, -6.273498016915607",
+      "location": "Marchagaz",
+      "name": "Casa Rural Casa Tenerías",
+      "id": "ALO103",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.11353314786022, -6.084582717459867",
+      "location": "Oliva de Plasencia",
+      "name": "Casa Rural Vía Cáparra",
+      "id": "ALO104",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.112461181529454, -6.085571376166006",
+      "location": "Oliva de Plasencia",
+      "name": "Albergue San Blas",
+      "id": "ALO105",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.247108538891716, -6.275672693632247",
+      "location": "Palomero",
+      "name": "Casa Rural Casa Queta",
+      "id": "ALO106",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.32601028009093, -6.177323947061151",
+      "location": "La Pesga",
+      "name": "Apartamento Turístico La Almazara",
+      "id": "ALO107",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.190634201884315, -6.338810832245327",
+      "location": "Santa Cruz de Paniagua",
+      "name": "Apartamento Turístico La Fuentenita",
+      "id": "ALO108",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.17621124670046, -6.2218044150683935",
+      "location": "Santbáñez el Bajo",
+      "name": "Casa Rural la Moraquintana",
+      "id": "ALO109",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.14256171451929, -6.043247334113873",
+      "location": "Villar de Plasencia",
+      "name": "Hostal Restaurante El Avión",
+      "id": "ALO110",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.13813251612366, -6.0281304108299425",
+      "location": "Villar de Plasencia",
+      "name": "Casa Rural Tía Emilia",
+      "id": "ALO111",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.13781263288568, -6.030061601272937",
+      "location": "Villar de Plasencia",
+      "name": "Casa Rural El Rincón del Villar",
+      "id": "ALO112",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.13827049885245, -6.029273114531092",
+      "location": "Villar de Plasencia",
+      "name": "Casa Rural Villabellosa",
+      "id": "ALO113",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.234390281355836, -6.049688910826438",
+      "location": "Zarza de Granadilla",
+      "name": "Casa Rural Ambroz",
+      "id": "ALO114",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.233315974589175, -6.045328189392965",
+      "location": "Zarza de Granadilla",
+      "name": "Casa Rural Granadilla del Duque",
+      "id": "ALO115",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.2284145749187, -6.055853865571102",
+      "location": "Zarza de Granadilla",
+      "name": "Casa Rural Tierras de Granadilla",
+      "id": "ALO116",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.23194562289171, -6.052298584379996",
+      "location": "Zarza de Granadilla",
+      "name": "Casas Rurales Posadas de Granadilla",
+      "id": "ALO117",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.23498068772044, -6.048263710083948",
+      "location": "Zarza de Granadilla",
+      "name": "Apartamento Turístico La Casa Jardín",
+      "id": "ALO118",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.239477988187744, -6.045097168497857",
+      "location": "Zarza de Granadilla",
+      "name": "Casa Rural El Calama",
+      "id": "ALO119",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.23702868815877, -6.049453118372935",
+      "location": "Zarza de Granadilla",
+      "name": "Apartamento Turístico El Lince de Granadilla",
+      "id": "ALO120",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.31945213445964, -5.857637641240406",
+      "location": "Baños de Montemayor",
+      "name": "Apartamentos Turísticos La Peña",
+      "id": "ALO121",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.3185050957805, -5.857528324854692",
+      "location": "Baños de Montemayor",
+      "name": "Hotel Rural Martín",
+      "id": "ALO122",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.270922962537824, -5.85889248252804",
+      "location": "Hervás",
+      "name": "Casa Rural Valdeamor",
+      "id": "ALO123",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.25885599842255, -5.977365226935889",
+      "location": "Abadía",
+      "name": "Casa Rural Barlow",
+      "id": "ALO124",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.25967963514865, -5.975588593068359",
+      "location": "Abadía",
+      "name": "Casa Rural El Encanto de Abadía",
+      "id": "ALO125",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.19005338856513, -6.1870461439036575",
+      "location": "Ahigal",
+      "name": "Casa Rural el Olivar Agloipe Ahigal",
+      "id": "ALO126",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.18499091843372, -6.188592805276584",
+      "location": "Ahigal",
+      "name": "Casa Rural Pozo Cinojal",
+      "id": "ALO127",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.200068248322836, -6.19559128993283",
+      "location": "Ahigal",
+      "name": "Casa Rural Cardadorum",
+      "id": "ALO128",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.26039418165361, -5.925710620616971",
+      "location": "Aldeanueva del Camino",
+      "name": "Casa Rural El Mullaero",
+      "id": "ALO129",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.25919817136483, -5.928025289930696",
+      "location": "Aldeanueva del Camino",
+      "name": "Casa Rural Ambroz y Plata",
+      "id": "ALO130",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.320514418782345, -5.856706084591362",
+      "location": "Baños de Montemayor",
+      "name": "Hotel Rural Eloy",
+      "id": "ALO131",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.13707630072655, -6.00198873095164",
+      "location": "Cabezabellosa",
+      "name": "Casa Rural El Romanejo",
+      "id": "ALO132",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.203605305369784, -5.960812690173562",
+      "location": "Casas del Monte",
+      "name": "Casa Rural La Casa de Piedra",
+      "id": "ALO133",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.238289422097054, -5.995971358706424",
+      "location": "La Granja",
+      "name": "Casa Rural El Miliario",
+      "id": "ALO134",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.208360, -6.117205",
+      "location": "Guijo de Granadilla",
+      "name": "Casa Rural Lidenex",
+      "id": "ALO135",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.208360, -6.117205",
+      "location": "Gujo de Granadilla",
+      "name": "Casas Rural Villa del Encinar",
+      "id": "ALO136",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.17245454014195, -6.002641590456487",
+      "location": "Jarilla",
+      "name": "Casa Rural Solaz de Ambroz",
+      "id": "ALO137",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.17226333553024, -6.002910956858259",
+      "location": "Jarilla",
+      "name": "Casa Rural Piedras Labradas",
+      "id": "ALO138",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.33025700809546, -6.179542139658777",
+      "location": "La Pesga",
+      "name": "Casa Rural El Recuerdo",
+      "id": "ALO139",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.137540432294294, -6.029456890977621",
+      "location": "Villar de Plasencia",
+      "name": "Casa Rural Tía Antonia",
+      "id": "ALO140",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.237589053853455, -6.0476443298706535",
+      "location": "Zarza de Granadilla",
+      "name": "Versátil Apartamentos",
+      "id": "ALO141",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.23466967115068, -6.046424534110535",
+      "location": "Zarza de Granadilla",
+      "name": "Casa Rural Veata Vita",
+      "id": "ALO142",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.274882340175644, -5.856315420616486",
+      "location": "Hervás",
+      "name": "Casa Rural Sefardí",
+      "id": "ALO143",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27514655184996, -5.859956797270316",
+      "location": "Hervás",
+      "name": "Casa Rural Alborada Jardín",
+      "id": "ALO144",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27350942875564, -5.856740752894679",
+      "location": "Hervás",
+      "name": "Casa Rural La Morucha",
+      "id": "ALO145",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27144783361716, -5.862959164795574",
+      "location": "Hervás",
+      "name": "Casa Rural The Home Hervás",
+      "id": "ALO146",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.262922738208715, -5.9210052605561",
+      "location": "Aldeanueva del Camino",
+      "name": "Hostal Montesol",
+      "id": "ALO147",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.318213017687846, -5.858143558703541",
+      "location": "Baños de Montemayor",
+      "name": "Hostal Martín II",
+      "id": "ALO148",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.25754182533487, -5.980119945751764",
+      "location": "Abadía",
+      "name": "Apartamento Turístico Buenavista",
+      "id": "ALO149",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.26066441920659, -5.975209130408512",
+      "location": "Abadía",
+      "name": "Apartamento Turístico Los Álamos",
+      "id": "ALO150",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.190043763797824, -6.189735481992284",
+      "location": "Ahigal",
+      "name": "Apartamento Turístico Los Chulillos",
+      "id": "ALO151",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.193457700000, -6.159942400000",
+      "location": "Guijo de Granadilla",
+      "name": "Apartamento Turístico Villa Jara",
+      "id": "ALO152",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27390492141611, -5.856188769556609",
+      "location": "Hervás",
+      "name": "Apartamento Turístico La Iguana 1",
+      "id": "ALO153",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.31695350349753, -5.85692251082345",
+      "location": "Baños de Montemayor",
+      "name": "Albergue Vía de la Plata",
+      "id": "ALO154",
+      "type": "where-to-sleep"
+    },
+    {
+      "coords": "40.27037514274667, -5.858954117436874",
+      "location": "Hervás",
+      "name": "Albergue Vía de la Plata",
+      "id": "ALO155",
+      "type": "where-to-sleep"
+    }
+  ]
