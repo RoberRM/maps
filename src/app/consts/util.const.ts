@@ -37,7 +37,7 @@ export const optionsMapping: { [key: string]: string } = {
     /* 'Experiencias': 'experiences', */
     'Recursos acuáticos': 'aquatic-resources',
     'Astroturismo': 'astrotourism',
-    'Naturaleza': 'nature',
+    /* 'Naturaleza': 'nature', */
     'Monumentos': 'monuments',
     'Empresas de actividad': 'activity',
     /* 'Lista de deseos': 'wishlist', */

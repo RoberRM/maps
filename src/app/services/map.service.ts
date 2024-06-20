@@ -204,6 +204,9 @@ export class MapService {
         <span>${place.adress}</span>
         <br>
         <span>${place.phoneNumber}</span>
+        <span class="center-button">
+          <button target onclick="window.open('${place.infoUrl}','_blank')"">Ver más</button>
+        </span>
         <div class="popup-buttons">
           <button id="add-to-route">Añadir a día seleccionado</button>
           <span class="material-icons heart" id="add-to-wishlist" title="Añadir a favoritos">favorite</span>
