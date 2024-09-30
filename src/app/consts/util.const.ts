@@ -27,7 +27,7 @@ export const CURRENTCOLORS = [
     COLORS.BLUE, COLORS.CORAL, COLORS.LIGHTBLUE, COLORS.GREEN, COLORS.YELLOW, COLORS.LIGHTGREY
 ]
 
-export const imageBaseUrl = 'https://ambroz.showroomc2o.com/planificador/imagenes';
+export const imageBaseUrl = 'https://turismoambrozcaparra.es//planificador/imagenes';
 
 export const optionsMapping: { [key: string]: string } = {
     'Restablecer': 'restore',
