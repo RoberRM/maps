@@ -9,5 +9,6 @@ export interface Whishlist {
     marker: Marker,
     type: string,
     description: string,
-    customId: string
+    customId: string,
+    hasImage: boolean
 }
