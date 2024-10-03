@@ -113,6 +113,10 @@ export class DayComponent implements OnInit, OnChanges {
     this.mapService.allowSave = true;
   }
 
+  private _toTitleCase(str: string) {
+    return str.replace(/\w\S*/g, text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase());
+  }
+
   public exportToPdf(date: IDayData) {
     if (date.wishlist.length <= 1) {
       this.mapService._showNotification('Añada al menos 2 destinos para exportar las indicaciones');
@@ -123,66 +127,15 @@ export class DayComponent implements OnInit, OnChanges {
     const resultado = this._groupRoute(this.mapService.generateReport());    
     this.report = Object.values(resultado);
     this.mapService.wishlistFromSelectedDay(this.date.wishlist);
+    const currentDate = new Date(this.date.date);
+    const documentTitle = `Indicaciones-${this._toTitleCase(this.date.weekDay)}-${currentDate.getDate()}/${currentDate.getMonth()}/${currentDate.getFullYear()}`
+
     setTimeout(() => {
       printJS({
         printable: this.printSectionId,
+        documentTitle: documentTitle,
         type: 'html',
-        style: `
-        /* Estilos generales */
-        body {
-          font-family: 'Karla', sans-serif;
-        }
-        
-        /* Estilos de títulos */
-        h2 {
-          display: block;
-          text-align: center;
-          padding-top: 1%;
-        }
-
-        h3 {
-          text-align: center;
-        }
-
-        /* Estilos de imagen */
-        #image, .lastImage {
-          margin-bottom: 25px;
-          text-align: center;
-        }
-        
-        .showImage {
-          border-radius: 10px;
-          width: 350px !important;
-          height: 300px !important;
-        }
-
-        .boldType {
-          font-weight: bold;
-        }
-
-        .paddingTop {
-          padding-top: 5px;
-        }
-
-        .separation {
-          border-top: 1px solid lightgray; 
-          margin-top: 10px; 
-          margin-bottom: 10px;
-        }
-
-        /* Listas y distancias */
-        li {
-          font-weight: bold;
-        }
-
-        li span {
-          font-weight: normal;
-        }
-
-        span {
-          display: inline;
-        }
-      `,
+        css: ['assets/print-config.css'],
         scanStyles: true
       })
     }, 800);
