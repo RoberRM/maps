@@ -260,13 +260,15 @@ export class MapService {
                 if (checkImage) {
                   const currentWidth = checkImage.clientWidth || checkImage.width;
                   const currentHeight = checkImage.clientHeight || checkImage.height;
-                  if (currentWidth !== 100 && currentHeight < 20) {
+                  if (checkImage.id === 'logo' || (currentWidth !== 100 && currentHeight < 50)) {
                     checkImage.parentNode?.removeChild(checkImage);
                     hasImage = false;
                   }
+                } else {
+                  hasImage = false;
                 }
                 place.hasImage = hasImage;
-              }, 50)
+              }, 10)
             
               const add = document.querySelector("#add-to-route");
               if (add instanceof HTMLButtonElement) {

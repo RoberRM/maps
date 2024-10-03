@@ -131,8 +131,7 @@ export class DayComponent implements OnInit, OnChanges {
     setTimeout(() => {
       this.printService.print(customPrintOptions);
       this._resetCurrentDateImages();
-
-    }, 100);
+    }, 800);
   }
 
   private _formatDate(date: Date) {
