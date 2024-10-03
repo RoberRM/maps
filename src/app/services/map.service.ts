@@ -260,7 +260,7 @@ export class MapService {
                 if (checkImage) {
                   const currentWidth = checkImage.clientWidth || checkImage.width;
                   const currentHeight = checkImage.clientHeight || checkImage.height;
-                  if (checkImage.id === 'logo' || (currentWidth !== 100 && currentHeight < 50)) {
+                  if (!checkImage.id || checkImage.id === 'logo' || (currentWidth !== 100 && currentHeight < 50)) {
                     checkImage.parentNode?.removeChild(checkImage);
                     hasImage = false;
                   }

@@ -33,28 +33,28 @@
 
 <div class="container">
     <div class="row">
-        <div [id]="printSectionId" *ngIf="report" ngxPrint>
-            <div style="font-family: 'Karla', sans-serif;">
-                <h2 style="display: block; text-align: center; padding-top: 1%;">RUTA: {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}</h2>
+        <div [id]="printSectionId" *ngIf="report">
+            <div>
+                <h2>RUTA: {{ date.weekDay| titlecase }} - {{ date.date | date: 'dd/MM/YYYY'}}</h2>
                 <h3>Total de ubicaciones: {{date.wishlist.length}}</h3>
                 <div *ngFor="let item of report">
-                    <div *ngIf="currentDateImages[item.route]" id="image" style="margin-bottom: 25px; text-align: center;">
-                        <img style="border-radius: 10px; width: 350px; height: 300px;" [src]="currentDateImages[item.route]">
+                    <div *ngIf="currentDateImages[item.route]" id="image">
+                        <img class="showImage" [src]="currentDateImages[item.route]">
                     </div>
                     <div *ngIf="!currentDateImages[item.route]">
                         <br>
                     </div>
-                    <div style="font-weight: bold;">De {{ date.wishlist[item.route]?.name }} a {{ date.wishlist[item.route+1]?.name }}</div>
-                    <div style="padding-top: 5px;">Distancia 
+                    <div class="boldType">De {{ date.wishlist[item.route]?.name }} a {{ date.wishlist[item.route+1]?.name }}</div>
+                    <div class="paddingTop">Distancia 
                         <span *ngIf="item.totalDistance >= 1"> {{ item.totalDistance | number:'1.0-1' }} km</span>
                         <span *ngIf="item.totalDistance < 1"> {{ item.totalDistance * 1000 | number:'1.0-1' }} m</span>
                          - Duración aproximada <span>{{ item.totalDuration | secondsToHms }}</span>
-                    <div style="border-top: 1px solid lightgray; margin-top: 10px; margin-bottom: 10px;"></div>
+                    <div class="separation"></div>
                         <div *ngIf="date.wishlist[item.route + 1]">
-                            <span><p style="font-weight: bold;">{{ date.wishlist[item.route]?.name }}:</p> {{date.wishlist[item.route]?.description}}</span>
-                            <span><p style="font-weight: bold;">{{ date.wishlist[item.route + 1]?.name }}:</p> {{date.wishlist[item.route + 1]?.description}}</span>
+                            <span><p class="boldType">{{ date.wishlist[item.route]?.name }}:</p> {{date.wishlist[item.route]?.description}}</span>
+                            <span><p class="boldType">{{ date.wishlist[item.route + 1]?.name }}:</p> {{date.wishlist[item.route + 1]?.description}}</span>
                         </div>
-                    <div style="border-top: 1px solid lightgray; margin-top: 10px; margin-bottom: 10px;"></div>
+                    <div class="separation"></div>
                     <div *ngFor="let instruction of item.instructions">
                         <ul><li>{{instruction.maneuver}}
                         <span *ngIf="instruction.distance > 0 && instruction.duration > 0">
@@ -64,8 +64,8 @@
                              - Duración aproximada <span>{{ instruction.duration | secondsToHms }}</span>
                         </span></li></ul>
                     </div>
-                    <div *ngIf="item.route === date.wishlist.length - 2 && currentDateImages[item.route + 1]" style="margin-bottom: 25px; text-align: center;">
-                        <img style="border-radius: 10px; width: 350px; height: 300px;" [src]="currentDateImages[item.route + 1]">
+                    <div *ngIf="item.route === date.wishlist.length - 2 && currentDateImages[item.route + 1]" class="lastImage">
+                        <img class="showImage" [src]="currentDateImages[item.route + 1]">
                     </div>
                 </div>
             </div>

@@ -12,7 +12,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { NgxPrintModule } from 'ngx-print';
 import { environment } from 'src/environments/environment';
 import { SecondsToHmsPipe } from '../pipes/seconds-to-hms.pipe';
 import { AngularLogoComponent } from './components/angular-logo/angular-logo.component';
@@ -57,7 +56,6 @@ registerLocaleData(localeES, "es");
     MatSnackBarModule,
     MatIconModule,
     MatDialogModule,
-    NgxPrintModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
