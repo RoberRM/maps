@@ -1,11 +1,11 @@
 import { formatDate } from '@angular/common';
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { tap } from 'rxjs';
 import { CURRENTCOLORS, ORDER, imageBaseUrl, imageTypeMapping } from 'src/app/consts/util.const';
 import { IDayData } from 'src/app/interfaces/day.interface';
 import { MapService } from 'src/app/services';
+import printJS from 'print-js';
 
 type ImageSource = string | SafeUrl;
 @Component({
@@ -29,7 +29,7 @@ export class DayComponent implements OnInit, OnChanges {
   public imgBaseUrl = imageBaseUrl;
   public currentDateImages: ImageSource[] = [];
 
-  constructor(private mapService: MapService, private printService: NgxPrintService, public sanitizer: DomSanitizer) {}
+  constructor(private readonly mapService: MapService, public sanitizer: DomSanitizer) {}
   
   public ngOnInit(): void {
     this.isSelected = this.date.isSelected;
@@ -122,15 +122,69 @@ export class DayComponent implements OnInit, OnChanges {
 
     const resultado = this._groupRoute(this.mapService.generateReport());    
     this.report = Object.values(resultado);
-    const customPrintOptions: PrintOptions = new PrintOptions({
-      printSectionId: this.printSectionId,
-      printTitle: `ruta_${this._formatDate(this.date.date)}`,
-      openNewTab: false,
-    });
     this.mapService.wishlistFromSelectedDay(this.date.wishlist);
     setTimeout(() => {
-      this.printService.print(customPrintOptions);
-      this._resetCurrentDateImages();
+      printJS({
+        printable: this.printSectionId,
+        type: 'html',
+        style: `
+        /* Estilos generales */
+        body {
+          font-family: 'Karla', sans-serif;
+        }
+        
+        /* Estilos de títulos */
+        h2 {
+          display: block;
+          text-align: center;
+          padding-top: 1%;
+        }
+
+        h3 {
+          text-align: center;
+        }
+
+        /* Estilos de imagen */
+        #image, .lastImage {
+          margin-bottom: 25px;
+          text-align: center;
+        }
+        
+        .showImage {
+          border-radius: 10px;
+          width: 350px !important;
+          height: 300px !important;
+        }
+
+        .boldType {
+          font-weight: bold;
+        }
+
+        .paddingTop {
+          padding-top: 5px;
+        }
+
+        .separation {
+          border-top: 1px solid lightgray; 
+          margin-top: 10px; 
+          margin-bottom: 10px;
+        }
+
+        /* Listas y distancias */
+        li {
+          font-weight: bold;
+        }
+
+        li span {
+          font-weight: normal;
+        }
+
+        span {
+          display: inline;
+        }
+      `,
+        scanStyles: true
+      })
     }, 800);
   }
 
