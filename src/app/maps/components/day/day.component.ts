@@ -60,6 +60,14 @@ export class DayComponent implements OnInit, OnChanges {
   
   public remove(index: number) {
     if (index >= 0 && index < this.date.wishlist.length) {
+      const item = this.date.wishlist[index];
+      const type = item.placeType ?? item.type;
+      const id = item.placeId ?? item.id;
+      const imageSrc = this.sanitizer.bypassSecurityTrustUrl(`${imageBaseUrl}/${imageTypeMapping[type]}/${id}.jpg`);
+      const idx = this.currentDateImages.findIndex(item => item === imageSrc);
+      if (idx !== -1) {
+        this.currentDateImages.splice(idx, 1)
+      }
       this.date.wishlist.splice(index, 1);
       this._notifyService();
     }
@@ -69,14 +77,19 @@ export class DayComponent implements OnInit, OnChanges {
     this.currentDateImages = [];
     this.date.wishlist.forEach((item: any) => {
       let imageSrc: ImageSource = '';
-      const plainId = item.placeId ?? item.id;
-      if (plainId?.length < 12 && ((item.placeType && item.placeId) ?? (item.type && item.id))) {
+      if (item.id.length < 12 && ((item.placeType && item.placeId) ?? (item.type && item.id))) {
         const type = item.placeType ?? item.type;
         const id = item.placeId ?? item.id;
-        imageSrc = this.sanitizer.bypassSecurityTrustUrl(`${imageBaseUrl}/${imageTypeMapping[type]}/${id}.jpg`)
+        if (item.hasImage) {
+          imageSrc = this.sanitizer.bypassSecurityTrustUrl(`${imageBaseUrl}/${imageTypeMapping[type]}/${id}.jpg`)
+        }
       }
       this.currentDateImages.push(imageSrc);
     });
+  }
+
+  private _resetCurrentDateImages() {
+    this.currentDateImages = [];
   }
 
   private _setColor() {
@@ -116,9 +129,10 @@ export class DayComponent implements OnInit, OnChanges {
     });
     this.mapService.wishlistFromSelectedDay(this.date.wishlist);
     setTimeout(() => {
-      this.printService.print(customPrintOptions)
-    }, 800);
+      this.printService.print(customPrintOptions);
+      this._resetCurrentDateImages();
 
+    }, 100);
   }
 
   private _formatDate(date: Date) {

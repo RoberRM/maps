@@ -7,5 +7,6 @@ export interface Localization {
     name: string,
     phoneNumber: string,
     description: string,
-    type: string
+    type: string,
+    hasImage: boolean
 }

@@ -171,21 +171,21 @@ export class MapService {
     this._places = places;
     this._userLocation = userLocation;
 
-    const addToRoute = (coords: [number, number][], placeName: string, marker: Marker, placeType: string, placeId: string, description: string) => {
+    const addToRoute = (coords: [number, number][], placeName: string, marker: Marker, placeType: string, placeId: string, description: string, hasImage: boolean) => {
       if (!this._selectedDay) {
         this._showNotification('Añade al menos dos puntos a la lista de deseos para calcular la ruta.');
         return
       }
       this._saveChanges = true;
-      this._checkDirections(coords, placeName, marker, undefined,  placeType, placeId, description);
+      this._checkDirections(coords, placeName, marker, undefined,  placeType, placeId, description, hasImage);
     };
 
-    const addToWhishlist = (id: string, coords: [number, number][], placeName: string, marker: Marker, address: string, location: string, type: string, customId: string, description: string) => {
+    const addToWhishlist = (id: string, coords: [number, number][], placeName: string, marker: Marker, address: string, location: string, type: string, customId: string, description: string, hasImage: boolean) => {
       const idx = this._wishlist.findIndex(item => item.id === id);
       if (idx !== -1) {
         return
       }
-      this._wishlist.push({id, coords, placeName, marker, address, location, type, customId, description});
+      this._wishlist.push({id, coords, placeName, marker, address, location, type, customId, description, hasImage});
       this._saveChanges = true;
       this.saveSelection();
     }
@@ -239,9 +239,11 @@ export class MapService {
         .addEventListener('click', () => {
             setTimeout(() => {
               const placeName = document.getElementById('placeName');
+              let hasImage = true;
               if (placeName) {
                 const imgElement = document.createElement('img');
                 imgElement.src = `${this._imageBaseUrl}/${imageTypeMapping[place.type]}/${place.customId}.jpg`;
+                imgElement.id = place.customId;
                 placeName.parentNode?.insertBefore(imgElement, placeName.nextSibling);
 
                 const handleClickOutside = function (event: any) {
@@ -253,18 +255,30 @@ export class MapService {
                 };
                 document.addEventListener('click', handleClickOutside);
               }
+              setTimeout(() => {
+                const checkImage = document.getElementsByTagName("img")[0];
+                if (checkImage) {
+                  const currentWidth = checkImage.clientWidth || checkImage.width;
+                  const currentHeight = checkImage.clientHeight || checkImage.height;
+                  if (currentWidth !== 100 && currentHeight < 20) {
+                    checkImage.parentNode?.removeChild(checkImage);
+                    hasImage = false;
+                  }
+                }
+                place.hasImage = hasImage;
+              }, 50)
             
               const add = document.querySelector("#add-to-route");
               if (add instanceof HTMLButtonElement) {
                 add.onclick = function() {
-                  addToRoute([[lng, lat]], place.name, newMarker, place.type, place.customId, place.description);
+                  addToRoute([[lng, lat]], place.name, newMarker, place.type, place.customId, place.description, place.hasImage);
                   document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
               const whishlist = document.querySelector("#add-to-wishlist");
               if (whishlist instanceof HTMLElement) {
                 whishlist.onclick = function() {
-                  addToWhishlist(place.id, [[lng, lat]], place.name, newMarker, place.adress, place.location, place.type, place.customId, place.description)
+                  addToWhishlist(place.id, [[lng, lat]], place.name, newMarker, place.adress, place.location, place.type, place.customId, place.description, place.hasImage)
                   document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
@@ -289,7 +303,8 @@ export class MapService {
             type: place.type,
             customId: place.customId,
             description: place.description,
-            marker: this.getMarker(place.coords as unknown as number[])!
+            marker: this.getMarker(place.coords as unknown as number[])!,
+            hasImage: place.hasImage
           }
           this.whishlist.push(favorite)
         }
@@ -328,7 +343,7 @@ export class MapService {
     });
   }
 
-  private _checkDirections(coords?: [number, number][], placeName?: string, marker?: Marker, day?: IDayData, placeType?: string, placeId?: string, description?: string) {
+  private _checkDirections(coords?: [number, number][], placeName?: string, marker?: Marker, day?: IDayData, placeType?: string, placeId?: string, description?: string, hasImage?: boolean) {
     const dayToHandle = day ?? this._selectedDay;
     const currentDayIndex = this._dates.findIndex(d => d === dayToHandle);
     const currentDate = this._dates[currentDayIndex];
@@ -336,7 +351,7 @@ export class MapService {
     
     if (currentDate) {
       if (!!coords && !!placeName) {
-        currentDate.wishlist.push({coords: coords, name: placeName, marker: marker!, type: placeType, id: placeId, description: description});
+        currentDate.wishlist.push({coords: coords, name: placeName, marker: marker!, type: placeType, id: placeId, description: description, hasImage: hasImage});
         if (marker) this._routeMarkers.push(marker);
       }
       this.showArrows.emit(currentDate.wishlist.length);
