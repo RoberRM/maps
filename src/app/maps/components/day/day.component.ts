@@ -73,18 +73,35 @@ export class DayComponent implements OnInit, OnChanges {
     }
   }
 
-  public getCurrentDateImages() {
+  public async getCurrentDateImages() {
     this.currentDateImages = [];
-    this.date.wishlist.forEach((item: any) => {
+    const imagePromises = this.date.wishlist.map(async (item: any) => {
       let imageSrc: ImageSource = '';
       if (item.id.length < 12 && ((item.placeType && item.placeId) ?? (item.type && item.id))) {
         const type = item.placeType ?? item.type;
         const id = item.placeId ?? item.id;
         if (item.hasImage) {
-          imageSrc = this.sanitizer.bypassSecurityTrustUrl(`${imageBaseUrl}/${imageTypeMapping[type]}/${id}.jpg`)
+          const imageUrl = `${imageBaseUrl}/${imageTypeMapping[type]}/${id}.jpg`;
+          imageSrc = await this._loadImage(imageUrl)
+            .then((loadedUrl: string) => this.sanitizer.bypassSecurityTrustUrl(loadedUrl))
+            .catch((error: Error) => {
+              console.error(`Error al cargar la imagen: ${imageUrl}`, error);
+              return '';
+            });
         }
       }
-      this.currentDateImages.push(imageSrc);
+      return imageSrc;
+    });
+    this.currentDateImages = await Promise.all(imagePromises);
+  }
+
+  private _loadImage(url: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = url;
+  
+      img.onload = () => resolve(url);
+      img.onerror = (err) => reject(err);
     });
   }
 

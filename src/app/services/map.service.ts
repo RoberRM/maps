@@ -209,8 +209,8 @@ export class MapService {
             <button target onclick="window.open('${place.infoUrl}','_blank')">Ver más</button>
           </span>` : ''}
         <div class="popup-buttons">
-          <button id="add-to-route">Añadir a día seleccionado</button>
-          <span class="material-icons heart" id="add-to-wishlist" title="Añadir a favoritos">favorite</span>
+          <button id="add-to-route" disabled>Añadir a día seleccionado</button>
+          <span class="material-icons heart" id="add-to-wishlist" title="Añadir a favoritos" style="cursor: not-allowed;">favorite</span>
         </div>`
       : `<h6>${place.name}</h6>
         <span>${place.adress}</span>
@@ -222,8 +222,8 @@ export class MapService {
           </span>`
           : ''}
         <div class="popup-buttons">
-          <button id="add-to-route">Añadir a día seleccionado</button>
-          <span class="material-icons heart" id="add-to-wishlist" title="Añadir a favoritos">favorite</span>
+          <button id="add-to-route" disabled>Añadir a día seleccionado</button>
+          <span class="material-icons heart" id="add-to-wishlist" title="Añadir a favoritos" style="cursor: not-allowed;">favorite</span>
         </div>
       `;
 
@@ -245,16 +245,19 @@ export class MapService {
                 imgElement.src = `${this._imageBaseUrl}/${imageTypeMapping[place.type]}/${place.customId}.jpg`;
                 imgElement.id = place.customId;
                 placeName.parentNode?.insertBefore(imgElement, placeName.nextSibling);
-
-                const handleClickOutside = function (event: any) {
-                  const customPopup = document.querySelector('.custom-popup');
-                  if (customPopup && !customPopup.contains(event.target)) {
-                      imgElement.remove();
-                      document.removeEventListener('click', handleClickOutside);
-                  }
+                imgElement.onload = () => {
+                  placeName.parentNode?.insertBefore(imgElement, placeName.nextSibling);
+                  const handleClickOutside = function (event: any) {
+                      const customPopup = document.querySelector('.custom-popup');
+                      if (customPopup && !customPopup.contains(event.target)) {
+                          imgElement.remove();
+                          document.removeEventListener('click', handleClickOutside);
+                      }
+                  };
+                  document.addEventListener('click', handleClickOutside);
                 };
-                document.addEventListener('click', handleClickOutside);
               }
+
               setTimeout(() => {
                 const checkImage = document.getElementsByTagName("img")[0];
                 if (checkImage) {
@@ -268,8 +271,8 @@ export class MapService {
                   hasImage = false;
                 }
                 place.hasImage = hasImage;
-              }, 10)
-            
+              }, 60)
+              
               const add = document.querySelector("#add-to-route");
               if (add instanceof HTMLButtonElement) {
                 add.onclick = function() {
@@ -284,7 +287,8 @@ export class MapService {
                   document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
-            }, 50)
+              this._enableButtons();
+            }, 120)
         });
       newMarkers.push(newMarker);
     }
@@ -325,6 +329,20 @@ export class MapService {
       return this._markers[idx]
     }
     return undefined
+  }
+
+  private _enableButtons() {
+    setTimeout(() => {
+      const addToRouteBtn = document.getElementById('add-to-route') as HTMLButtonElement;
+      const addToWishlistSpan = document.getElementById('add-to-wishlist') as HTMLSpanElement;
+      if (addToRouteBtn) {
+          addToRouteBtn.disabled = false;
+      }
+      if (addToWishlistSpan) {
+          addToWishlistSpan.style.cursor = 'pointer';
+          addToWishlistSpan.classList.remove('disabled');
+      }
+    }, 100);
   }
 
   private _centerMap() {
