@@ -245,7 +245,16 @@ export class MapService {
                 imgElement.src = `${this._imageBaseUrl}/${imageTypeMapping[place.type]}/${place.customId}.jpg`;
                 imgElement.id = place.customId;
                 placeName.parentNode?.insertBefore(imgElement, placeName.nextSibling);
+
+                const slowLoadTimeout = setTimeout(() => {
+                  // console.warn("Carga lenta: la imagen está tardando en cargarse.");
+                  imgElement.src = '';
+                  imgElement.remove();
+                  this._enableButtons();
+                }, 1500);
+
                 imgElement.onload = () => {
+                  clearTimeout(slowLoadTimeout);
                   placeName.parentNode?.insertBefore(imgElement, placeName.nextSibling);
                   const handleClickOutside = function (event: any) {
                       const customPopup = document.querySelector('.custom-popup');
@@ -255,6 +264,7 @@ export class MapService {
                       }
                   };
                   document.addEventListener('click', handleClickOutside);
+                  this._enableButtons();
                 };
               }
 
@@ -287,8 +297,10 @@ export class MapService {
                   document.querySelector('.mapboxgl-popup')?.remove();
                 }
               }
-              this._enableButtons();
-            }, 120)
+              if (!placeName) {
+                this._enableButtons();
+              }
+            }, 150)
         });
       newMarkers.push(newMarker);
     }
@@ -342,7 +354,7 @@ export class MapService {
           addToWishlistSpan.style.cursor = 'pointer';
           addToWishlistSpan.classList.remove('disabled');
       }
-    }, 100);
+    }, 50);
   }
 
   private _centerMap() {
