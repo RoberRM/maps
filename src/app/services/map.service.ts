@@ -212,7 +212,8 @@ export class MapService {
           <button id="add-to-route" disabled>Añadir a día seleccionado</button>
           <span class="material-icons heart" id="add-to-wishlist" title="Añadir a favoritos" style="cursor: not-allowed;">favorite</span>
         </div>`
-      : `<h6>${place.name}</h6>
+      : `<h6 id="placeName">${place.name}</h6>
+        ${place.description ? `<span class="description">${place.description}</span>` : ''}
         <span>${place.adress}</span>
         <br>
         <span>${place.phoneNumber}</span>
@@ -250,6 +251,7 @@ export class MapService {
                   // console.warn("Carga lenta: la imagen está tardando en cargarse.");
                   imgElement.src = '';
                   imgElement.remove();
+                  hasImage = false;
                   this._enableButtons();
                 }, 1500);
 
@@ -282,7 +284,7 @@ export class MapService {
                 }
                 place.hasImage = hasImage;
               }, 60)
-              
+
               const add = document.querySelector("#add-to-route");
               if (add instanceof HTMLButtonElement) {
                 add.onclick = function() {
@@ -300,7 +302,7 @@ export class MapService {
               if (!placeName) {
                 this._enableButtons();
               }
-            }, 150)
+            }, 160)
         });
       newMarkers.push(newMarker);
     }
@@ -354,7 +356,7 @@ export class MapService {
           addToWishlistSpan.style.cursor = 'pointer';
           addToWishlistSpan.classList.remove('disabled');
       }
-    }, 50);
+    }, 80);
   }
 
   private _centerMap() {
