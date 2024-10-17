@@ -10,17 +10,17 @@ import { GoogleAuthProvider } from 'firebase/auth';
 })
 export class RootAccessComponent {
   public login = false;
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(private readonly _afAuth: AngularFireAuth, private readonly _router: Router) {}
   
   public userLogin() {
     this.login = true;
-    this.afAuth.signInWithPopup(new GoogleAuthProvider())
+    this._afAuth.signInWithPopup(new GoogleAuthProvider())
       .then(() => {
-        this.router.navigate(['/add-locations']);
+        this._router.navigate(['/add-locations']);
       })
       .catch(() => {
         this.login = false;
-        this.router.navigate(['/']);
+        this._router.navigate(['/']);
     });
   }
 
