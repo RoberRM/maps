@@ -26,7 +26,7 @@ export class EditLocationComponent implements OnChanges {
         phoneNumber: [this.formData.phoneNumber || ''],
         estimatedTime: [this.formData.estimatedTime || ''],
         description: [this.formData.description || ''],
-        visible: [this.formData.visible || ''],
+        visible: [this.formData.visible || true],
         customId: [this.formData.customId || '', Validators.required]
       });
     }

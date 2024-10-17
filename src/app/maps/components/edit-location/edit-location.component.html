@@ -30,7 +30,10 @@
                 <input type="text" formControlName="description" id="description">
 
                 <label for="visible">Visible:</label>
-                <input type="text" formControlName="visible" id="visible">
+                <select formControlName="visible" id="visible">
+                    <option [value]="true">Mostrar</option>
+                    <option [value]="false">Ocultar</option>
+                </select>
                 
                 <label for="customId">Custom ID:</label>
                 <input type="text" formControlName="customId" id="customId" readonly>
