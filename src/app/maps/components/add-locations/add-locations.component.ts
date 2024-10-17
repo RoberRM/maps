@@ -4,7 +4,7 @@ import { Subject, takeUntil, tap } from 'rxjs';
 import { DATABASE, optionsMapping } from 'src/app/consts/util.const';
 import { ILocation } from 'src/app/interfaces/data.interface';
 import { Localization } from 'src/app/interfaces/localizations.interface';
-import { LocalStorageService, LocalizationsService } from 'src/app/services';
+import { LocalizationsService, LocalStorageService } from 'src/app/services';
 
 export interface FormData {
   textData?: string;
@@ -67,12 +67,12 @@ export class AddLocationsComponent implements OnDestroy {
   public options = Object.keys(this.optionsMapping);
 
   private _fileContent: any;
-  private unsubscribe$ = new Subject<void>();
+  private readonly unsubscribe$ = new Subject<void>();
 
   constructor(
-    private localizationsService: LocalizationsService, 
-    private formBuilder: FormBuilder, 
-    private localStorageService: LocalStorageService 
+    private readonly localizationsService: LocalizationsService, 
+    private readonly formBuilder: FormBuilder, 
+    private readonly localStorageService: LocalStorageService
   ) {
     this.form = this.formBuilder.group({
       useText: [false],

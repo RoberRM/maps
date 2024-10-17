@@ -7,7 +7,7 @@ import { map, take } from "rxjs";
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(private readonly afAuth: AngularFireAuth, private readonly router: Router) {}
 
   canActivate() {
     return this.afAuth.authState.pipe(

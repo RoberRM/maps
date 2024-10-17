@@ -8,15 +8,30 @@ import * as CryptoJS from 'crypto-js';
 }) 
 export class LocalStorageService {
     CryptoJS = require("crypto-js");
-    constructor(private http: HttpClient) {}
+    private readonly _secretKey = 'superSecretKeyThatShouldBeStoredSecurely';
+    constructor(private readonly http: HttpClient) {}
 
     set(id: string, data: string) {
-        localStorage.setItem(id, this.CryptoJS.AES.encrypt(data, 'secretKey').toString())
+        localStorage.setItem(id, this.CryptoJS.AES.encrypt(data, this._secretKey).toString())
     }
 
     get(id: string) {
-        const bytesFromStorage = this.CryptoJS.AES.decrypt(localStorage.getItem(id), 'secretKey');
-        return JSON.parse(bytesFromStorage.toString(CryptoJS.enc.Utf8));
+        const encryptedData = localStorage.getItem(id);
+
+        if (!encryptedData) {
+            // console.error(`No se encontró el valor con el id: ${id} en localStorage.`);
+            return [];
+        }
+
+        try {
+            const bytesFromStorage = this.CryptoJS.AES.decrypt(encryptedData, this._secretKey);
+            const decryptedData = bytesFromStorage.toString(this.CryptoJS.enc.Utf8);
+
+            return JSON.parse(decryptedData);
+        } catch (error) {
+            // console.error('Error al desencriptar o parsear el dato de localStorage:', error);
+            return [];
+        }
     }
 
     getJsonData(): Observable<any> {
