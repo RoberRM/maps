@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AnySourceData, LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
 import { tap } from 'rxjs';
-import { CURRENTCOLORS, imageBaseUrl, imageTypeMapping } from '../consts/util.const';
+import { CURRENTCOLORS, imageBaseUrl, imageTypeMapping, COLORS, typesMapping, TYPE_COLORS } from '../consts/util.const';
 import { ILocation } from '../interfaces/data.interface';
 import { IDayData } from '../interfaces/day.interface';
 import { DirectionsResponse, Route } from '../interfaces/directions.interface';
@@ -19,7 +19,7 @@ export class MapService {
   private _map: Map | undefined;
   private _markers: Marker[] = [];
   private _routeMarkers: Marker[] = [];
-  private _addedRouteIds = new Set<string>();
+  private readonly _addedRouteIds = new Set<string>();
   private _selectedDay!: IDayData;
   private _dates: IDayData[] = [];
   private _places!: ILocation[];
@@ -27,7 +27,7 @@ export class MapService {
   private _wishlist: Whishlist[] = [];
   private _route: Route[] = [];
   private _saveChanges: boolean = false;
-  private _imageBaseUrl = imageBaseUrl;
+  private readonly _imageBaseUrl = imageBaseUrl;
 
   public showArrows = new EventEmitter<number>();
 
@@ -86,9 +86,9 @@ export class MapService {
   }
   
   constructor( 
-    private directionsApiClient: DirectionsApiClient, 
-    private snackBar: MatSnackBar, 
-    private localizationsService: LocalizationsService ) {}
+    private readonly directionsApiClient: DirectionsApiClient, 
+    private readonly snackBar: MatSnackBar, 
+    private readonly localizationsService: LocalizationsService ) {}
   
   setMap(map: Map) {
     this._map = map;
@@ -196,6 +196,10 @@ export class MapService {
       let el = document.createElement('div');
       el.id  = place.id;
       const placeType = place.type;
+      if (placeType === 'monuments') {
+        console.log('INDEX: ', Object.values(typesMapping).findIndex(type => type === placeType))
+      }
+      const typeColor = TYPE_COLORS[Object.values(typesMapping).findIndex(type => type === placeType)];
       el.className = `marker ${placeType}-marker`;
 
       let popupContent = place.description ? 
@@ -231,7 +235,7 @@ export class MapService {
       let popup = new Popup().setHTML(`<div class="custom-popup">${popupContent}</div>`)
 
       // TODO ver como se comporta el marcador de Mapbox al hacer zoom para que los custom funcionen igual
-      const newMarker = new Marker(/* this._createCustomMarker(place.type) */)
+      const newMarker = new Marker({ color: `${typeColor}` })
         .setLngLat([lng, lat])
         .setPopup(popup)
         .addTo(this._map);
