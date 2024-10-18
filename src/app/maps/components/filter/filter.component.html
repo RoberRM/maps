@@ -1,7 +1,7 @@
 <div class="filter-container" id="contenedor"><p> FILTROS </p>
     <div id="elemento">
-        <div *ngFor="let option of options" class="buttons">
-            <button class="button" (click)="setFilter(option)">{{ option }}</button>
+        <div *ngFor="let option of options; let i = index" class="buttons">
+            <button class="button" [ngStyle]="{'background-color': getBackgroundColor(i)}"  (click)="setFilter(option)">{{ option }}</button>
         </div>
     </div>
 </div>

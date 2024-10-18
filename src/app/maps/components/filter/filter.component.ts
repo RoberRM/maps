@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { first, of, switchMap } from 'rxjs';
-import { optionsMapping } from 'src/app/consts/util.const';
+import { CURRENTCOLORS, optionsMapping, TYPE_COLORS } from 'src/app/consts/util.const';
 import { LocalizationsService, MapService } from 'src/app/services';
 import { PlacesService } from '../../services/places.service';
 
@@ -13,10 +13,17 @@ export class FilterComponent implements OnInit {
   @Output('filter') public filter = new EventEmitter<string>();
   public optionsMapping: { [key: string]: string } = optionsMapping;
   public options = Object.keys(this.optionsMapping);
+  public optionsKey = Object.values(this.optionsMapping).filter(option => option !== 'restore');
 
-  constructor(private placesService: PlacesService, private mapService: MapService, private localizationsService: LocalizationsService) {}
+  constructor(
+    private readonly placesService: PlacesService, 
+    private readonly mapService: MapService, 
+    private readonly localizationsService: LocalizationsService
+  ) {}
 
   ngOnInit(): void {
+    console.log('options: ', this.options)
+    console.log('optionsKey: ', this.optionsKey)
     const contenedor: any = document.getElementById('contenedor');
     const elemento: any = document.getElementById('elemento');
 
@@ -34,6 +41,13 @@ export class FilterComponent implements OnInit {
       }
     })
 
+  }
+
+  public getBackgroundColor(index: number): string {
+    if (index === 0) {
+      return '#007BFF'
+    }
+    return TYPE_COLORS[index-1];
   }
 
   public setFilter(option: string) {

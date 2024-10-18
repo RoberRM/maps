@@ -9,7 +9,9 @@
                 <input type="text" formControlName="name" id="nombre">
                 
                 <label for="type">Tipo:</label>
-                <input type="text" formControlName="type" id="type">
+                <select formControlName="type" id="type">
+                    <option *ngFor="let key of typesMappingKeys" [value]="typesMapping[key]">{{ key }}</option>
+                </select>
                 
                 <label for="location">Ubicación:</label>
                 <input type="text" formControlName="location" id="location">
@@ -36,9 +38,10 @@
                 </select>
                 
                 <label for="customId">Custom ID:</label>
-                <input type="text" formControlName="customId" id="customId" readonly>
+                <input type="text" formControlName="customId" id="customId" [attr.readonly]="isEditForm ? true : null">
                 
                 <button type="submit" [disabled]="form.invalid">Guardar</button>
+                <button type="button" *ngIf="!isEditForm" (click)="resetAddMore()">Limpiar campos</button>
             </form>
             </div>
         </div>

@@ -11,10 +11,12 @@ export enum SERVICES {
 export enum COLORS {
     BLUE = '#07a8b7',
     CORAL = '#DB795E',
-    LIGHTBLUE = '#75c5c3',
+    LIGHTSLATEGRAY = '#778899',
     GREEN = '#91c792',
     YELLOW = '#f0bd67',
     LIGHTGREY = '#d3d3d3',
+    FOREST = '#228B22',
+    BROWNIERED = '#8B2121',
     BLACK = '#000000'
 }
 
@@ -24,10 +26,26 @@ export enum ORDER {
 }
 
 export const CURRENTCOLORS = [
-    COLORS.BLUE, COLORS.CORAL, COLORS.LIGHTBLUE, COLORS.GREEN, COLORS.YELLOW, COLORS.LIGHTGREY
+    COLORS.BLUE, COLORS.CORAL, COLORS.LIGHTSLATEGRAY, COLORS.GREEN, COLORS.YELLOW, COLORS.LIGHTGREY, COLORS.BROWNIERED
+]
+
+export const TYPE_COLORS = [
+    COLORS.BLUE, COLORS.CORAL, COLORS.LIGHTSLATEGRAY, COLORS.GREEN, COLORS.YELLOW, COLORS.LIGHTGREY, COLORS.FOREST, COLORS.BROWNIERED
 ]
 
 export const imageBaseUrl = 'https://turismoambrozcaparra.es//planificador/imagenes';
+
+export const typesMapping: { [key: string]: string } = {
+    'Dónde dormir': 'where-to-sleep',
+    'Dónde comer': 'where-to-eat',
+    'Museos, Centros de Interpretación y oficinas de turismo': 'culture-resource',
+    /* 'Experiencias': 'experiences', */
+    'Recursos acuáticos': 'aquatic-resources',
+    'Astroturismo': 'astrotourism',
+    /* 'Naturaleza': 'nature', */
+    'Monumentos': 'monuments',
+    'Empresas de actividad': 'activity'
+};
 
 export const optionsMapping: { [key: string]: string } = {
     'Restablecer': 'restore',

@@ -4,14 +4,23 @@
         <!-- <button (click)="updateCollection()" class="logout"> Actualizar colección </button> -->
     </span>
     <div class="tab-buttons">
-        <button (click)="currentTab = 'add-locations'" [class.active]="currentTab === 'add-locations'">Añadir</button>
+        <button (click)="currentTab = 'add-form-location'" [class.active]="currentTab === 'add-form-location'" (click)="openEditForm({})">Añadir ubicación</button>
+        <button (click)="currentTab = 'add-text-locations'" [class.active]="currentTab === 'add-text-locations'">Añadir texto</button>
         <button (click)="currentTab = 'tableTab'" [class.active]="currentTab === 'tableTab'">Editar/eliminar</button>
         <!-- <button (click)="deleteDuplicated()" [class.active]="currentTab === 'tableTab'">DUPLICADOS</button> -->
     </div>
 
 
-    <div *ngIf="currentTab === 'add-locations'">
-        <p>Al pulsar ENVIAR se van a añadir las localizaciones contenidas en el archivo where-to-sleep.json</p>
+    <div *ngIf="currentTab === 'add-form-location'">
+        <app-edit-location 
+            *ngIf="showEditModal" 
+            [formData]="formEditData" 
+            [isEditForm]="false"
+            (formSubmitted)="saveNewLocation($event)" 
+            (modalClosed)="showEditModal = false"
+        ></app-edit-location>
+    </div>
+    <div *ngIf="currentTab === 'add-text-locations'">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="inputs">
                 <div class="selector">
@@ -97,6 +106,6 @@
             <button (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
             <button (click)="goToLastPage()" [disabled]="currentPage === totalPages">Última</button>
         </div>
-        <app-edit-location *ngIf="showEditModal" [formData]="formEditData" (formSubmitted)="editItem($event)" (modalClosed)="showEditModal = false"></app-edit-location>
+        <app-edit-location *ngIf="showEditModal" [isEditForm]="true" [formData]="formEditData" (formSubmitted)="editItem($event)" (modalClosed)="showEditModal = false"></app-edit-location>
     </div>
 </div>
