@@ -15,14 +15,14 @@ import { MapService } from 'src/app/services';
   ]
 })
 export class WhishlistComponent {
-  public whishlist: Whishlist[] = this.mapService.whishlist;
-  public dates = this.mapService.dates;
+  public whishlist: Whishlist[] = this._mapService.whishlist;
+  public dates = this._mapService.dates;
   public showDatesMap: { [key: string]: boolean } = {};
   private _shouldSave: boolean = false;
-  constructor(public dialogRef: MatDialogRef<WhishlistComponent>, private mapService: MapService) {}
+  constructor(public dialogRef: MatDialogRef<WhishlistComponent>, private readonly _mapService: MapService) {}
 
   public addToRoute(item: Whishlist, day: IDayData) {
-    this.mapService.addToRouteFromWhishlist(item, day);
+    this._mapService.addToRouteFromWhishlist(item, day);
   }
 
   public showAvailableDates(item: Whishlist) {
@@ -38,9 +38,9 @@ export class WhishlistComponent {
 
   public close(): void {
     if (this._shouldSave) {
-      this.mapService.whishlist = this.whishlist;
-      this.mapService.allowSave = true;
-      this.mapService.saveSelection();
+      this._mapService.whishlist = this.whishlist;
+      this._mapService.allowSave = true;
+      this._mapService.saveSelection();
     }
     this.dialogRef.close();
   }
