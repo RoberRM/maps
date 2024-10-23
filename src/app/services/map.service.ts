@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AnySourceData, LngLatBounds, LngLatLike, Map, Marker, Popup } from 'mapbox-gl';
 import { tap } from 'rxjs';
-import { CURRENTCOLORS, imageBaseUrl, imageTypeMapping, COLORS, typesMapping, TYPE_COLORS } from '../consts/util.const';
+import { CURRENTCOLORS, imageBaseUrl, imageTypeMapping, TYPE_COLORS, typesMapping } from '../consts/util.const';
 import { ILocation } from '../interfaces/data.interface';
 import { IDayData } from '../interfaces/day.interface';
 import { DirectionsResponse, Route } from '../interfaces/directions.interface';
@@ -153,7 +153,7 @@ export class MapService {
   public addToRouteFromWhishlist(item: Whishlist, day: IDayData) {
     this._saveChanges = true;
     const currentItem: any = this._places.find(place => place.name === item.placeName)
-    this._checkDirections(item.coords, item.placeName, item.marker, day, currentItem!.type, currentItem!.customId);
+    this._checkDirections(item.coords, item.placeName, item.marker, day, currentItem!.type, currentItem!.customId, currentItem!.description, currentItem!.hasImage);
   }
 
   public getPlaceData(placeName: string) {
@@ -196,9 +196,6 @@ export class MapService {
       let el = document.createElement('div');
       el.id  = place.id;
       const placeType = place.type;
-      if (placeType === 'monuments') {
-        console.log('INDEX: ', Object.values(typesMapping).findIndex(type => type === placeType))
-      }
       const typeColor = TYPE_COLORS[Object.values(typesMapping).findIndex(type => type === placeType)];
       el.className = `marker ${placeType}-marker`;
 
@@ -389,8 +386,14 @@ export class MapService {
     
     if (currentDate) {
       if (!!coords && !!placeName) {
+        const found = currentDate.wishlist.find((item: any) => item.id === placeId);
+        if (found) {
+          this._showNotification('Destino añadido previamente al día seleccionado');
+          return
+        }
         currentDate.wishlist.push({coords: coords, name: placeName, marker: marker!, type: placeType, id: placeId, description: description, hasImage: hasImage});
         if (marker) this._routeMarkers.push(marker);
+        this._showNotification('Destino añadido correctamente');
       }
       this.showArrows.emit(currentDate.wishlist.length);
       if (currentDate.wishlist.length > 1) {

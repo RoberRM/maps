@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { first, of, switchMap } from 'rxjs';
-import { CURRENTCOLORS, optionsMapping, TYPE_COLORS } from 'src/app/consts/util.const';
+import { optionsMapping, TYPE_COLORS } from 'src/app/consts/util.const';
 import { LocalizationsService, MapService } from 'src/app/services';
 import { PlacesService } from '../../services/places.service';
 
@@ -22,8 +22,6 @@ export class FilterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('options: ', this.options)
-    console.log('optionsKey: ', this.optionsKey)
     const contenedor: any = document.getElementById('contenedor');
     const elemento: any = document.getElementById('elemento');
 

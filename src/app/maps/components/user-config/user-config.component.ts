@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CURRENTCOLORS } from 'src/app/consts/util.const';
 import { IDayData } from 'src/app/interfaces/day.interface';
 import { MapService } from 'src/app/services';
-import { MatDialog } from '@angular/material/dialog';
 import { WhishlistComponent } from '../whishlist/whishlist.component';
 
 @Component({
@@ -16,13 +16,13 @@ export class UserConfigComponent implements OnChanges {
   public isUserInfoVisible: boolean = true;
   public isWhishlistVisible: boolean = false;
 
-  constructor(private mapService: MapService, public dialog: MatDialog) {}
+  constructor(private readonly _mapService: MapService, public dialog: MatDialog) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['dates']?.currentValue && this.dates.length > 0) {
       this.dates[0].isSelected = true;
-      this.mapService.dates = this.dates;
-      this.mapService.selectedDay = this.dates[0];
+      this._mapService.dates = this.dates;
+      this._mapService.selectedDay = this.dates[0];
     }
   }
 
@@ -32,7 +32,7 @@ export class UserConfigComponent implements OnChanges {
 
   public showWhishlistPopup() {
     this.isWhishlistVisible = !this.isWhishlistVisible;
-    const dialogRef = this.dialog.open(WhishlistComponent, {
+    this.dialog.open(WhishlistComponent, {
       width: '40%',
       height: '50%',
       minWidth: '290px'
