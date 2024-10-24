@@ -62,7 +62,17 @@
     </div>
 
     <div *ngIf="currentTab === 'tableTab'" class="table">
-        <button *ngIf="currentTab === 'tableTab'" (click)="toggleFilters()" class="filter-btn"> * FILTROS * </button>
+        <div class="search-btn">
+            <button *ngIf="currentTab === 'tableTab'" (click)="toggleFilters()" class="filter-btn"> * FILTROS * </button>
+            <button *ngIf="currentTab === 'tableTab' && !showSearchBox" (click)="showSearchBox = !showSearchBox" class="filter-btn"> * BUSCAR * </button>
+            <div class="search-btn" *ngIf="currentTab === 'tableTab' && showSearchBox">
+                <input type="text" #searchInput placeholder="Escribe aquí..." />
+                <button (click)="search(searchInput.value)">
+                    <span class="material-icons">search</span>
+                  </button>
+                <button (click)="closeSearch()">Cerrar</button>
+            </div>
+        </div>
         <div *ngIf="showFilters && currentTab === 'tableTab'" class="filters">
             <div *ngFor="let option of options; let i = index" class="buttons">
                 <button (click)="setFilter(option, i)" [class.active]="i === activeButtonIndex">{{ option }}</button>
