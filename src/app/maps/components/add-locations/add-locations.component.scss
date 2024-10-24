@@ -126,6 +126,12 @@ div {
         position: relative;
         padding-top: 20px;
         padding-bottom: 60px;
+        .search-btn {
+            display: flex; 
+            flex-direction: row; 
+            gap: 40px; 
+            padding-top: unset;
+        }
         .filter-btn {
             margin: unset;
         }

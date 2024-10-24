@@ -134,7 +134,7 @@ export class LocalizationsService {
    * Get real time localizations
    */
   public getPlaces(): Observable<any> {
-    const cacheDuration = 180 * 60 * 1000; // 60 minutos en milisegundos
+    const cacheDuration = 180 * 30 * 1000; // 30 minutos en milisegundos
     if (localStorage.getItem('lastUpdateTimestamp')) {
 
       const lastUpdateTimestamp = this.localStorageService.get('lastUpdateTimestamp');

@@ -67,7 +67,7 @@ export const imageTypeMapping: { [key: string]: string } = {
     'culture-resource': 'museos-ci',
     /* 'experiences': '', */
     'aquatic-resources': 'agua',
-    'astrotourism': '',
+    'astrotourism': 'astroturismo',
     'nature': '',
     'monuments': 'monumentos',
     'activity': 'actividades'

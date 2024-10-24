@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { first, of, switchMap } from 'rxjs';
+import { first, map, of, switchMap } from 'rxjs';
 import { optionsMapping, TYPE_COLORS } from 'src/app/consts/util.const';
 import { LocalizationsService, MapService } from 'src/app/services';
 import { PlacesService } from '../../services/places.service';
@@ -57,7 +57,8 @@ export class FilterComponent implements OnInit {
   private _getLocalizations() {
     this.localizationsService.localizations$.pipe(
       first(),
-      switchMap(resp => {
+      map((resp: any) => resp.filter((item: any) => item.visible === "true")),
+      switchMap((resp: any) => {
         this.mapService.createMarkersFromPlaces(resp as any[], this.placesService.userLocation!)
         return of(resp)
       })

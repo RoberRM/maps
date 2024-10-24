@@ -25,6 +25,7 @@ export class AddLocationsComponent implements OnInit, OnDestroy {
   public showSuccess = false;
   public errorMessage = '';
   private _prevLocations = this.localStorageService.get(DATABASE);
+  private _safePrevLocations: any = [];
   public currentTab: string = 'add-text-locations';
   public currentPage: number = 1;
   public itemsPerPage: number = 20;
@@ -62,6 +63,7 @@ export class AddLocationsComponent implements OnInit, OnDestroy {
     }
   ]`;
   public showExample = false;
+  public showSearchBox = false;
 
   public optionsMapping: { [key: string]: string } = optionsMapping;
   public options = Object.keys(this.optionsMapping);
@@ -90,12 +92,14 @@ export class AddLocationsComponent implements OnInit, OnDestroy {
         delay(10),
         map(response =>  response.filter((item: any) => item.visible === 'true')),
         tap(response => {
-          this._splitItemsIntoPages();
+          this._safePrevLocations = response;
           this._prevLocations = response;
+          this._splitItemsIntoPages();
         }),
         finalize(() => {})
       ).subscribe();
     } else {
+      this._safePrevLocations = JSON.parse(JSON.stringify(this._prevLocations));
       this._splitItemsIntoPages();
     }
   }
@@ -362,6 +366,7 @@ export class AddLocationsComponent implements OnInit, OnDestroy {
   }
 
   private _splitItemsIntoPages() {
+    this._prevLocations.sort((a: any, b: any) => a.name.localeCompare(b.name));
     const totalItems = this._prevLocations.length;
     this.totalPages = Math.ceil(totalItems / this.itemsPerPage);
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
@@ -372,6 +377,23 @@ export class AddLocationsComponent implements OnInit, OnDestroy {
   toggleCheckbox() {
     const currentValue = this.form.get('useText')?.value;
     this.form.get('useText')?.setValue(!currentValue);
+  }
+
+  search(search: string) {
+    const filteredLocations = this._prevLocations.filter((location: any) => 
+      location.name.toLowerCase().includes(search.toLowerCase()) ||
+      location.location.toLowerCase().includes(search.toLowerCase())
+    );
+    this._prevLocations = filteredLocations;
+    this._splitItemsIntoPages();
+    this.currentPage = 1;
+  }
+
+  closeSearch() {
+    this.showSearchBox = false;
+    this._prevLocations = this._safePrevLocations;
+    this._splitItemsIntoPages();
+    this.currentPage = 1;
   }
 
 }
