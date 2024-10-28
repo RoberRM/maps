@@ -1,0 +1,54 @@
+/* Estilos generales */
+body {
+    font-family: 'Karla', sans-serif;
+}
+  
+/* Estilos de títulos */
+h2 {
+    display: block;
+    text-align: center;
+    padding-top: 1%;
+}
+
+h3 {
+    text-align: center;
+}
+
+/* Estilos de imagen */
+#image, .lastImage {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.showImage {
+    border-radius: 10px;
+    width: 350px !important;
+    height: 300px !important;
+}
+
+.boldType {
+    font-weight: bold;
+}
+
+.paddingTop {
+    padding-top: 5px;
+}
+
+.separation {
+    border-top: 1px solid lightgray; 
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+/* Listas y distancias */
+li {
+    font-weight: bold;
+}
+
+li span {
+    font-weight: normal;
+}
+
+span {
+    display: inline;
+}

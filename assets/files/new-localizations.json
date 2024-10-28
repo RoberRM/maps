@@ -1,0 +1,2162 @@
+[
+    {
+        "coords": [
+            -6.0476443298706535,
+            40.237589053853455
+        ],
+        "customId": "014uDjh1NrVJMNKjwJsA",
+        "type": "where-to-sleep",
+        "name": "Versátil Apartamentos",
+        "location": "Zarza de Granadilla"
+    },
+    {
+        "customId": "02huN97AWEQ4x1gHAMW4",
+        "name": "Casa Rural Las Mareas",
+        "coords": [
+            -5.955059965862176,
+            40.20658416764505
+        ],
+        "location": "Casas del Monte",
+        "type": "where-to-sleep"
+    },
+    {
+        "location": "Hervás",
+        "coords": [
+            -5.856937164841021,
+            40.27546023856687
+        ],
+        "name": "Casa Rural El Acebo",
+        "type": "where-to-sleep",
+        "customId": "04zOVH6DXdEtRAVjvR7a"
+    },
+    {
+        "type": "where-to-sleep",
+        "customId": "07hOxEYbutxdGDIfKfBu",
+        "coords": [
+            -5.85440268807957,
+            40.274150042566774
+        ],
+        "name": "Casa Rural Doña Jimena del Ambroz",
+        "location": "Hervás"
+    },
+    {
+        "coords": [
+            -5.856456989971272,
+            40.273884457160285
+        ],
+        "location": "Hervás",
+        "customId": "0EOOzEeRy1EkHXpDfs3q",
+        "name": "Casa Rural La Iguana 2",
+        "type": "where-to-sleep"
+    },
+    {
+        "name": "Casa Rural El Naranjo",
+        "location": "Casas del Monte",
+        "coords": [
+            -5.959499799759576,
+            40.202453586775825
+        ],
+        "customId": "0GXIkMyLswjkNxRSnT36",
+        "type": "where-to-sleep"
+    },
+    {
+        "coords": [
+            -5.926998924887545,
+            40.25961173251823
+        ],
+        "type": "where-to-sleep",
+        "customId": "0GvrnpjlPB4zl23xvZGC",
+        "location": "Aldeanueva del Camino",
+        "name": "Albergue La Casa de mi Abuela"
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Casa Rural El Encanto de Abadía",
+        "coords": [
+            -5.975588593068359,
+            40.25967963514865
+        ],
+        "customId": "0IGD1NSwFst6TSiZMJGd",
+        "location": "Abadía"
+    },
+    {
+        "customId": "0J6Ob6OT9l9jpZpveGLK",
+        "type": "where-to-sleep",
+        "name": "Hotel Rural El Molino",
+        "location": "Baños de Montemayor",
+        "coords": [
+            -5.8594389136747616,
+            40.32048117823562
+        ]
+    },
+    {
+        "location": "Jarilla",
+        "type": "where-to-sleep",
+        "customId": "0JtRACiiuBfkxVm3WMBF",
+        "name": "Hostal Restaurante Asturias",
+        "coords": [
+            -6.007649339908558,
+            40.186778264150384
+        ]
+    },
+    {
+        "customId": "0KWbgVGPbYcZFvXfIj61",
+        "name": "Apartamento Turístico Los Álamos",
+        "location": "Abadía",
+        "coords": [
+            -5.975209130408512,
+            40.26066441920659
+        ],
+        "type": "where-to-sleep"
+    },
+    {
+        "customId": "0L2Y2CgyTaCVmWiP3pWI",
+        "name": "Hotel Rural Eloy",
+        "coords": [
+            -5.856706084591362,
+            40.320514418782345
+        ],
+        "type": "where-to-sleep",
+        "location": "Baños de Montemayor"
+    },
+    {
+        "coords": [
+            -5.859693205693268,
+            40.32394383400131
+        ],
+        "customId": "0LpOffisnlBJ3VCAk8dH",
+        "type": "where-to-sleep",
+        "location": "Baños de Montemayor",
+        "name": "Complejo El Solitario"
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Casa Rural Calzadilla",
+        "location": "Hervás",
+        "coords": [
+            -5.863778218807582,
+            40.26974442334648
+        ],
+        "customId": "0O1vHSdoZJML7LwHkBBk"
+    },
+    {
+        "customId": "0PNsKcuMd50eMxCxX1Yn",
+        "type": "where-to-sleep",
+        "name": "Casa Rural Granadilla del Duque",
+        "coords": [
+            -6.045328189392965,
+            40.233315974589175
+        ],
+        "location": "Zarza de Granadilla"
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Casa Rural Piedras Labradas",
+        "customId": "0PYtKNBJFwI4nMDhleKw",
+        "coords": [
+            -6.002910956858259,
+            40.17226333553024
+        ],
+        "location": "Jarilla"
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Hostal La Bellosina",
+        "coords": [
+            -5.999357073279989,
+            40.139468610762634
+        ],
+        "location": "Cabezabelloza",
+        "customId": "0TiQWDoRiHQRrvCUzk4n"
+    },
+    {
+        "coords": [
+            -6.048263710083948,
+            40.23498068772044
+        ],
+        "name": "Apartamento Turístico La Casa Jardín",
+        "location": "Zarza de Granadilla",
+        "customId": "0XohCWjF8XvJN9saabBv",
+        "type": "where-to-sleep"
+    },
+    {
+        "coords": [
+            -5.85692251082345,
+            40.31695350349753
+        ],
+        "type": "where-to-sleep",
+        "location": "Baños de Montemayor",
+        "name": "Albergue Vía de la Plata",
+        "customId": "0dk97AOzJ3XWvnAQPtXe"
+    },
+    {
+        "name": "Hospedería Valle del Ambroz",
+        "location": "Hervás",
+        "customId": "0g1DyGF9io3LAdLRNEX0",
+        "coords": [
+            -5.855832560555707,
+            40.27297445964979
+        ],
+        "type": "where-to-sleep"
+    },
+    {
+        "location": "Hervás",
+        "customId": "0jDaX2r1RGEOQzE963n5",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.86229126908257,
+            40.27572449608735
+        ],
+        "name": "Casa Rural Hervás y Punto"
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -5.917139224887977,
+            40.24894064615088
+        ],
+        "location": "Gargantilla",
+        "customId": "0r9SLc25gkAkcbe8D9fD",
+        "name": "Casa Rural Alejandra"
+    },
+    {
+        "coords": [
+            -6.049453118372935,
+            40.23702868815877
+        ],
+        "customId": "0t0sTBb7ysiUCkyzR39J",
+        "type": "where-to-sleep",
+        "name": "Apartamento Turístico El Lince de Granadilla",
+        "location": "Zarza de Granadilla"
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -6.188592805276584,
+            40.18499091843372
+        ],
+        "location": "Ahigal",
+        "name": "Casa Rural Pozo Cinojal",
+        "customId": "0xVCmc6lYRQJowxL98IX"
+    },
+    {
+        "coords": [
+            -5.855910886265269,
+            40.27419318502653
+        ],
+        "customId": "0xvuIBa1Bf0b1hf74DmD",
+        "name": "Casa Rural La Cuestecilla",
+        "type": "where-to-sleep",
+        "location": "Hervás"
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Casa Rural El Recuerdo",
+        "location": "La Pesga",
+        "customId": "11X3ILAqkTLHxH2mtfo9",
+        "coords": [
+            -6.179542139658777,
+            40.33025700809546
+        ]
+    },
+    {
+        "coords": [
+            -5.858143558703541,
+            40.318213017687846
+        ],
+        "location": "Baños de Montemayor",
+        "customId": "14jtFOTwAT1Sv9HkDK1x",
+        "type": "where-to-sleep",
+        "name": "Hostal Martín II"
+    },
+    {
+        "customId": "178NBWKvZC5En4M9GJqV",
+        "location": "Baños de Montemayor",
+        "name": "Apartamentos Turísticos La Peña",
+        "coords": [
+            -5.857637641240406,
+            40.31945213445964
+        ],
+        "type": "where-to-sleep"
+    },
+    {
+        "location": "Hervás",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.8556958423193795,
+            40.273129633266315
+        ],
+        "name": "Casa Rural La Casita Hervás",
+        "customId": "18GtYl4E49ljYRZeu3xs"
+    },
+    {
+        "customId": "18UdQWfnYt86uLMQxh0J",
+        "type": "where-to-sleep",
+        "name": "Casa Rural y Apartamento Turístico Manolo",
+        "location": "Casas del Monte",
+        "coords": [
+            -5.958473674293498,
+            40.20486951108077
+        ]
+    },
+    {
+        "location": "Aldeanueva del Camino",
+        "coords": [
+            -5.92942504764414,
+            40.258998546988536
+        ],
+        "customId": "1AVUCO2GidXIOArrN1Mt",
+        "type": "where-to-sleep",
+        "name": "Casa Rural La Luna"
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -6.046424534110535,
+            40.23466967115068
+        ],
+        "location": "Zarza de Granadilla",
+        "name": "Casa Rural Veata Vita",
+        "customId": "1ER5V9CuvUtLoXSIfFzq"
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Casa Rural Alborada Duplex",
+        "coords": [
+            -5.860202891303534,
+            40.27532048346175
+        ],
+        "location": "Hervás",
+        "customId": "1EcDhPyl1we02VuXmfbX"
+    },
+    {
+        "coords": [
+            -5.85682825762753,
+            40.321370355433
+        ],
+        "customId": "1FlvBdmBwxIgFO1oAYEp",
+        "type": "where-to-sleep",
+        "name": "Hostal El Sendero",
+        "location": "Baños de Montemayor"
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Casa Rural Cardadorum",
+        "location": "Ahigal",
+        "coords": [
+            -6.19559128993283,
+            40.200068248322836
+        ],
+        "customId": "1LnJDymHnlJl3hEEiiui"
+    },
+    {
+        "coords": [
+            -5.857528324854692,
+            40.3185050957805
+        ],
+        "name": "Hotel Rural Martín",
+        "type": "where-to-sleep",
+        "location": "Baños de Montemayor",
+        "customId": "1NMNrVEZWEXzT0febdbp"
+    },
+    {
+        "location": "Hervás",
+        "coords": [
+            -5.882444818807446,
+            40.27312693016185
+        ],
+        "name": "Casa Rural Manantial del Fresno",
+        "type": "where-to-sleep",
+        "customId": "1PQEAjJacpqGIeTSr4Zg"
+    },
+    {
+        "coords": [
+            -5.934953094198515,
+            40.25746568697003
+        ],
+        "type": "where-to-sleep",
+        "name": "Casa Rural El Caminante",
+        "location": "Aldeanueva del Camino",
+        "customId": "1Pv6XshvAneIf3cqM0Ss"
+    },
+    {
+        "customId": "1UQQ5CPonLnCUg22TfJx",
+        "name": "Casa Rural El Calama",
+        "coords": [
+            -6.045097168497857,
+            40.239477988187744
+        ],
+        "location": "Zarza de Granadilla",
+        "type": "where-to-sleep"
+    },
+    {
+        "location": "Casas del Monte",
+        "name": "Casa Rural La Ondina del Madrigal",
+        "coords": [
+            -5.957601069070324,
+            40.20681907269319
+        ],
+        "type": "where-to-sleep",
+        "customId": "1bqJ1hcHKB25VEYP0CZh"
+    },
+    {
+        "customId": "1qWZQTT9ekLApWmBiOKb",
+        "name": "Casa Rural Acebuche",
+        "type": "where-to-sleep",
+        "location": "Casas del Monte",
+        "coords": [
+            -5.955812178856115,
+            40.20130401194986
+        ]
+    },
+    {
+        "name": "Casa Rural La Plaza",
+        "location": "Hervás",
+        "coords": [
+            -5.857543166294536,
+            40.274103470449994
+        ],
+        "customId": "1qxrLKDwUmBayooTaCrA",
+        "type": "where-to-sleep"
+    },
+    {
+        "name": "Albergue Turístico Aurora Boreal",
+        "customId": "1ruAxqDUXoy2MeyXRvCv",
+        "location": "Casas del Monte",
+        "type": "where-to-eat",
+        "coords": [
+            -5.955576967187352,
+            40.20175024919381
+        ]
+    },
+    {
+        "type": "where-to-sleep",
+        "customId": "1uXVaruQDY0CQB0msqkt",
+        "coords": [
+            -5.8589769304459764,
+            40.2750395685633
+        ],
+        "location": "Hervás",
+        "name": "Casa Rural Víctor Chamorro del Arco"
+    },
+    {
+        "name": "Casa Rural Roquemar",
+        "customId": "1wMkQzFOwRaxGmRlLdHQ",
+        "type": "where-to-sleep",
+        "location": "Guijo de Granadilla",
+        "coords": [
+            -6.163067974051224,
+            40.193466066676066
+        ]
+    },
+    {
+        "name": "Apartamento Turístico Hervás y Vuelves",
+        "location": "Hervás",
+        "coords": [
+            -5.856120521805745,
+            40.27446371339328
+        ],
+        "type": "where-to-sleep",
+        "customId": "1wQE8wWCHzB13PshTTSe"
+    },
+    {
+        "coords": [
+            -5.857240245269863,
+            40.27437392726085
+        ],
+        "name": "Casa Rural La Atalaya",
+        "customId": "1xAbYkazaOPRkIexroVl",
+        "location": "Hervás",
+        "type": "where-to-sleep"
+    },
+    {
+        "coords": [
+            -5.960812690173562,
+            40.203605305369784
+        ],
+        "name": "Casa Rural La Casa de Piedra",
+        "type": "where-to-sleep",
+        "location": "Casas del Monte",
+        "customId": "1xJNMAY9mhGPXcKnSwAf"
+    },
+    {
+        "coords": [
+            -6.189735481992284,
+            40.190043763797824
+        ],
+        "location": "Ahigal",
+        "type": "where-to-sleep",
+        "name": "Apartamento Turístico Los Chulillos",
+        "customId": "1xal4REakk7b08Opt2g8"
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -5.856814287540865,
+            40.27444589875787
+        ],
+        "customId": "24m3OVPURy1XDtLoMAhJ",
+        "name": "Apartamento Turístico El Wala",
+        "location": "Hervás"
+    },
+    {
+        "customId": "2AfsTdC0gcLMmeP7xXLi",
+        "coords": [
+            -5.855656732298932,
+            40.27561459469785
+        ],
+        "type": "where-to-sleep",
+        "name": "Casa Rural El Vado",
+        "location": "Hervás"
+    },
+    {
+        "customId": "2BaHuVksJHlPwwmCx2qi",
+        "type": "where-to-sleep",
+        "name": "Casa Rural Alborada Jardín",
+        "location": "Hervás",
+        "coords": [
+            -5.859956797270316,
+            40.27514655184996
+        ]
+    },
+    {
+        "name": "Cafetería BBT Otra",
+        "coords": [
+            -5.858910174048318,
+            40.27358047227244
+        ],
+        "type": "where-to-eat",
+        "customId": "2EBJcSACeUVifELIcXzE",
+        "location": "Hervás"
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -5.948008665363624,
+            40.22504415378731
+        ],
+        "customId": "2I0nkUtgGK25UXlZWjKz",
+        "name": "Casa Rural Las Cuatro Esquinas",
+        "location": "Segura de Toro"
+    },
+    {
+        "customId": "2IpeUsJYAnesEciRXjah",
+        "coords": [
+            -5.857843464841229,
+            40.27050093556597
+        ],
+        "location": "Hervás",
+        "name": "Casa Rural Apartamentos La Vía",
+        "type": "where-to-sleep"
+    },
+    {
+        "location": "Casas del Monte",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.9598464783353995,
+            40.20228730393992
+        ],
+        "name": "Casa Rural Casa de la Abuela",
+        "customId": "2OkSHuuTRmpIBfWzTYxB"
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Casa Rural Fuente Chiquita",
+        "location": "Hervás",
+        "customId": "2RWgTFyqdHJWX8VhdJGG",
+        "coords": [
+            -5.861409090262182,
+            40.2773300480498
+        ]
+    },
+    {
+        "name": "Casa Rural El Miliario",
+        "type": "where-to-sleep",
+        "location": "La Granja",
+        "customId": "2Tvd6nPOaAOk5SO8hFWn",
+        "coords": [
+            -5.995971358706424,
+            40.238289422097054
+        ]
+    },
+    {
+        "coords": [
+            -5.8578942188073695,
+            40.27437932724536
+        ],
+        "customId": "2ZQABjfAJejdGX3fXzpx",
+        "name": "Apartamento Turístico Hervás Suites",
+        "location": "Hervás",
+        "type": "where-to-sleep"
+    },
+    {
+        "coords": [
+            -5.959990578335432,
+            40.20223647033428
+        ],
+        "customId": "2aFe8vMMlgGtxAnPiSRv",
+        "location": "Casas del Monte",
+        "name": "Casa Rural Arbequina",
+        "type": "where-to-sleep"
+    },
+    {
+        "location": "Segura de Toro",
+        "name": "Casa Rural La Tasca",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.948773764843039,
+            40.22383019046418
+        ],
+        "customId": "2ebQuJA3gPORczwBJDJV"
+    },
+    {
+        "name": "Apartamento Turístico Aldea Vetonia",
+        "location": "Hervás",
+        "customId": "2vUrtfhVGTKGE43TBzeK",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.883480423034228,
+            40.26904652486715
+        ]
+    },
+    {
+        "type": "where-to-sleep",
+        "location": "Marchagaz",
+        "customId": "2vuJNTC2ZG6PFfYb3H7T",
+        "name": "Casa Rural Casa Tenerías",
+        "coords": [
+            -6.273498016915607,
+            40.268009689985234
+        ]
+    },
+    {
+        "location": "Hervás",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.877909833894624,
+            40.27001345169931
+        ],
+        "customId": "2w80uMZp8y5MUJoQG75o",
+        "name": "Camping El Pinajarro"
+    },
+    {
+        "name": "Apartamento Turístico Villa Jara",
+        "location": "Guijo de Granadilla",
+        "coords": [
+            -6.1599424,
+            40.1934577
+        ],
+        "type": "where-to-sleep",
+        "customId": "2wTfIi76V1ELOYF72GJe"
+    },
+    {
+        "location": "Baños de Montemayor",
+        "coords": [
+            -5.857773103461146,
+            40.31771467753332
+        ],
+        "name": "Casa Rural Los Postigos",
+        "type": "where-to-sleep",
+        "customId": "2zKXNrHNOsSkLE0x2bRG"
+    },
+    {
+        "customId": "31FKVKzAH7vgJwpbNmFr",
+        "coords": [
+            -5.8555554322989405,
+            40.27453139906398
+        ],
+        "type": "where-to-sleep",
+        "name": "Casa Rural Aljama",
+        "location": "Hervás"
+    },
+    {
+        "type": "where-to-sleep",
+        "customId": "31v98AYYRxOBZagAMWG4",
+        "location": "Baños de Montemayor",
+        "name": "Casa Rural La Fuentecilla",
+        "coords": [
+            -5.858567531776709,
+            40.317039181244354
+        ]
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -5.859979060614449,
+            40.27481615474528
+        ],
+        "name": "Casa Rural La Casita del Collado",
+        "customId": "3647jrUHrAZivHZyx1Ie",
+        "location": "Hervás"
+    },
+    {
+        "coords": [
+            -6.340523926953476,
+            40.19128734636054
+        ],
+        "customId": "3AUNaPYn8eWiV98cClAa",
+        "type": "where-to-eat",
+        "location": "Santa Cruz de Paniagua",
+        "name": "Mesón El Rincón de Estrella"
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -6.2218044150683935,
+            40.17621124670046
+        ],
+        "location": "Santbáñez el Bajo",
+        "customId": "3G00eIrusB0tfORwmPdy",
+        "name": "Casa Rural la Moraquintana"
+    },
+    {
+        "customId": "3IgNVvAYev6JCg2InYHc",
+        "coords": [
+            -5.92626655928261,
+            40.26068873039656
+        ],
+        "type": "where-to-sleep",
+        "location": "Aldeanueva del Camino",
+        "name": "Casa Rural El Caño de Abajo"
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Casa Rural Ambroz y Plata",
+        "coords": [
+            -5.928025289930696,
+            40.25919817136483
+        ],
+        "customId": "3Iwzt8hAKg6Nt1WPHRMi",
+        "location": "Aldeanueva del Camino"
+    },
+    {
+        "location": "Ahigal",
+        "type": "where-to-sleep",
+        "name": "Casa Rural Dompani",
+        "coords": [
+            -6.185459503425785,
+            40.19133568975718
+        ],
+        "customId": "3J6jhLHAOE4PjwG7j9uK"
+    },
+    {
+        "type": "where-to-sleep",
+        "location": "Villar de Plasencia",
+        "name": "Casa Rural Tía Emilia",
+        "coords": [
+            -6.0281304108299425,
+            40.13813251612366
+        ],
+        "customId": "3KEIvmAWonppzzpYAGjD"
+    },
+    {
+        "location": "Hervás",
+        "coords": [
+            -5.856315420616486,
+            40.274882340175644
+        ],
+        "type": "where-to-sleep",
+        "customId": "3Pt5Po5MZ4eCReIx0kCJ",
+        "name": "Casa Rural Sefardí"
+    },
+    {
+        "location": "Segura de Toro",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.9484,
+            40.2236
+        ],
+        "customId": "3UNxeztAv8sTbY4hq0SJ",
+        "name": "Casa Rural Los Vettones"
+    },
+    {
+        "coords": [
+            -5.8548277274694085,
+            40.27271325247752
+        ],
+        "type": "where-to-sleep",
+        "name": "Casa Rural La Calleja",
+        "customId": "3giBLPTjaPKyPs2dzn1k",
+        "location": "Hervás"
+    },
+    {
+        "location": "Casas del Monte",
+        "customId": "3iSIAd6rjkhB8Q0VyVRW",
+        "coords": [
+            -5.96064268231651,
+            40.20227727986974
+        ],
+        "name": "Apartamento Turístico Navalinda",
+        "type": "where-to-sleep"
+    },
+    {
+        "location": "Zarza de Granadilla",
+        "type": "where-to-sleep",
+        "customId": "3lJ7jIS8OU4dQH2vjC7O",
+        "name": "Casas Rurales Posadas de Granadilla",
+        "coords": [
+            -6.052298584379996,
+            40.23194562289171
+        ]
+    },
+    {
+        "customId": "3naS1nYo1I1qdtV9II9v",
+        "name": "Casa Rural El Romanejo",
+        "coords": [
+            -6.00198873095164,
+            40.13707630072655
+        ],
+        "location": "Cabezabellosa",
+        "type": "where-to-sleep"
+    },
+    {
+        "coords": [
+            -5.956500216957035,
+            40.205661311107896
+        ],
+        "name": "Casa Rural La Dehesa",
+        "type": "where-to-sleep",
+        "customId": "3uoc4ULwwKq9jdyQWJFY",
+        "location": "Casas del Monte"
+    },
+    {
+        "customId": "408bvNIxyUlS3FoSbLl2",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.865660160555778,
+            40.270725137861405
+        ],
+        "name": "Casa Rural La Platea",
+        "location": "Hervás"
+    },
+    {
+        "type": "where-to-sleep",
+        "location": "Ahigal",
+        "coords": [
+            -6.1870461439036575,
+            40.19005338856513
+        ],
+        "name": "Casa Rural el Olivar Agloipe Ahigal",
+        "customId": "418vy5BtJNuVIRtHpNfa"
+    },
+    {
+        "type": "where-to-sleep",
+        "location": "Oliva de Plasencia",
+        "coords": [
+            -6.085571376166006,
+            40.112461181529454
+        ],
+        "customId": "45quCkdWIFExCWsnHcbF",
+        "name": "Albergue San Blas"
+    },
+    {
+        "type": "where-to-sleep",
+        "customId": "46Qm6vPS0hu03SNfelGI",
+        "location": "Palomero",
+        "coords": [
+            -6.275672693632247,
+            40.247108538891716
+        ],
+        "name": "Casa Rural Casa Queta"
+    },
+    {
+        "location": "Baños de Montemayor",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.8572553457887935,
+            40.31956089691558
+        ],
+        "customId": "46awt9J9zFO8GKo7sim8",
+        "name": "Hostal Las Termas"
+    },
+    {
+        "location": "Santibáñez El Bajo",
+        "type": "where-to-eat",
+        "name": "Bar El Dólar",
+        "coords": [
+            -6.225714561097932,
+            40.1753302406685
+        ],
+        "customId": "4EWDuq9kfgr2x6gQq9Mn"
+    },
+    {
+        "coords": [
+            -6.029456890977621,
+            40.137540432294294
+        ],
+        "name": "Casa Rural Tía Antonia",
+        "customId": "4RXFQ4Myf737z1lvDnXq",
+        "type": "where-to-sleep",
+        "location": "Villar de Plasencia"
+    },
+    {
+        "coords": [
+            -5.857759051841587,
+            40.2738383286976
+        ],
+        "name": "Pizzería La Cosa Nostra",
+        "customId": "4Zzg7CfAZDTSwTuktFsb",
+        "location": "Hervás",
+        "type": "where-to-eat"
+    },
+    {
+        "customId": "4acIzhYzR1kbgY3qUTyr",
+        "location": "Hervás",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.876864269067955,
+            40.2678564514313
+        ],
+        "name": "Casa Rural El Canchal de la Gallina"
+    },
+    {
+        "customId": "4eepy23woOCqWUqrEGdJ",
+        "coords": [
+            -5.889656708210045,
+            40.27465649673875
+        ],
+        "type": "where-to-sleep",
+        "name": "Hotel El Salugral",
+        "location": "Hervás"
+    },
+    {
+        "customId": "4j3OLuTIPMorzLrIVI9t",
+        "type": "where-to-sleep",
+        "location": "Hervás",
+        "coords": [
+            -5.858099613248459,
+            40.27355285894985
+        ],
+        "name": "Casa Rural El Zarzo"
+    },
+    {
+        "location": "",
+        "customId": "4nXVwZjeYXt9K1mENAUU",
+        "coords": [
+            -5.948430168464433,
+            40.22355101921669
+        ],
+        "type": "where-to-sleep",
+        "name": "Apartamento Turístico El Mirador de Segura"
+    },
+    {
+        "coords": [
+            -6.138545738350924,
+            40.21928532556134
+        ],
+        "name": "Apartamento Turístico La Presa",
+        "type": "where-to-sleep",
+        "location": "Gujo de Granadilla",
+        "customId": "4oxZMoPotnnNnX8faR7a"
+    },
+    {
+        "coords": [
+            -6.117205,
+            40.20836
+        ],
+        "name": "Casas Rural Villa del Encinar",
+        "type": "where-to-sleep",
+        "location": "Gujo de Granadilla",
+        "customId": "4p4caobr93msM4cr5sHu"
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -5.856740752894679,
+            40.27350942875564
+        ],
+        "name": "Casa Rural La Morucha",
+        "customId": "4py0p4fQTw7igSH0nSE1",
+        "location": "Hervás"
+    },
+    {
+        "customId": "4rmYmVDCCNJ7xQ49nAif",
+        "name": "Hostal Montesol",
+        "location": "Aldeanueva del Camino",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.9210052605561,
+            40.262922738208715
+        ]
+    },
+    {
+        "location": "Hervás",
+        "name": "Apartamento Turístico Vedelejos",
+        "coords": [
+            -5.857489230805196,
+            40.27356007885612
+        ],
+        "customId": "4speV7Zje2QpuGwEXS4z",
+        "type": "where-to-sleep"
+    },
+    {
+        "location": "Cabezabelloza",
+        "name": "Casa Rural Villa Lucía",
+        "coords": [
+            -5.996884628816158,
+            40.144665922009416
+        ],
+        "customId": "4toGkf86npSBEsQCaG29",
+        "type": "where-to-sleep"
+    },
+    {
+        "coords": [
+            -5.947689330447899,
+            40.22412304843564
+        ],
+        "name": "Casa Rural Ciudad de Verdeoliva",
+        "type": "where-to-sleep",
+        "location": "Segura de Toro",
+        "customId": "4v2HoTkkE5jOUPHh9PII"
+    },
+    {
+        "location": "Hervás",
+        "coords": [
+            -5.856904449260118,
+            40.27463834136464
+        ],
+        "type": "where-to-sleep",
+        "customId": "4zrxCLydPll0BKJJJJO7",
+        "name": "Casa Rural Calleabajo"
+    },
+    {
+        "coords": [
+            -5.9480228285948895,
+            40.2244062220857
+        ],
+        "type": "where-to-sleep",
+        "location": "Segura de Toro",
+        "customId": "54IpoOFm5DE1oeLFnvch",
+        "name": "Casa Rural El Rincón de la Abuela"
+    },
+    {
+        "name": "Albergue Aurora Boreal",
+        "location": "Casas del Monte",
+        "type": "where-to-sleep",
+        "customId": "55ffpOw4e78jWpZQROZT",
+        "coords": [
+            -5.95586664579331,
+            40.201774832481576
+        ]
+    },
+    {
+        "type": "where-to-eat",
+        "location": "Guijo de Granadilla",
+        "customId": "56zBhlxO7yhJescfoX33",
+        "coords": [
+            -6.164363274460851,
+            40.193354203720325
+        ],
+        "name": "Café-Bar Santa Ana"
+    },
+    {
+        "coords": [
+            -5.859594045437373,
+            40.274852838645266
+        ],
+        "name": "Hostal El Griel",
+        "type": "where-to-sleep",
+        "location": "Hervás",
+        "customId": "5HGx9GZ8m3R6QX5EdXrl"
+    },
+    {
+        "coords": [
+            -5.926459515913584,
+            40.26141595214226
+        ],
+        "location": "Aldeanueva del Camino",
+        "customId": "5LLwgypBWsid7WsiPPle",
+        "name": "Hotel Rural Posada Tres Mentiras",
+        "type": "where-to-sleep"
+    },
+    {
+        "coords": [
+            -5.856567158761523,
+            40.273229044779214
+        ],
+        "location": "Hervás",
+        "customId": "5PIUcxyf5TlIOpCA3SNz",
+        "name": "Casa Rural El Jardín del Convento",
+        "type": "where-to-sleep"
+    },
+    {
+        "location": "Casas del Monte",
+        "name": "Casa Rural La Fragaria",
+        "coords": [
+            -5.9613776350561425,
+            40.20137337496061
+        ],
+        "type": "where-to-sleep",
+        "customId": "5bxe0ZZF0lMkLzBVSkKQ"
+    },
+    {
+        "coords": [
+            -5.862959164795574,
+            40.27144783361716
+        ],
+        "type": "where-to-sleep",
+        "customId": "5dPUCH0i1HIcWZ0HND5d",
+        "name": "Casa Rural The Home Hervás",
+        "location": "Hervás"
+    },
+    {
+        "location": "Hervás",
+        "customId": "5r81WffLDORJCsSQmTmW",
+        "name": "Casa Rural Valdeamor",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.85889248252804,
+            40.270922962537824
+        ]
+    },
+    {
+        "type": "where-to-sleep",
+        "location": "Baños de Montemayor",
+        "customId": "5xaB9nYky3HxRoOxjBam",
+        "coords": [
+            -5.856075311393689,
+            40.31909523803601
+        ],
+        "name": "Apartamento Turístico Casa Tio Basilio"
+    },
+    {
+        "type": "where-to-sleep",
+        "customId": "62jQFIHL2mcNbKMTYYw6",
+        "name": "Apartamento Turístico Solaz del Ambroz Hervás",
+        "coords": [
+            -5.861675863751898,
+            40.275399623355476
+        ],
+        "location": "Hervás"
+    },
+    {
+        "customId": "67FnaAts047Qtgqj7udc",
+        "name": "Casa Rural El Romero",
+        "coords": [
+            -5.858498682408153,
+            40.27432518007529
+        ],
+        "location": "Hervás",
+        "type": "where-to-sleep"
+    },
+    {
+        "customId": "67OaVvvEsqtk75w8wbM6",
+        "name": "Casa Rural Beit Shalom",
+        "coords": [
+            -5.856403266694138,
+            40.273393629613004
+        ],
+        "type": "where-to-sleep",
+        "location": "Hervás"
+    },
+    {
+        "name": "Complejo Roma",
+        "location": "Aldeanueva del Camino",
+        "coords": [
+            -5.910640516433985,
+            40.26756965511174
+        ],
+        "customId": "6EMoPyPVowhMUfsO0NZj",
+        "type": "where-to-sleep"
+    },
+    {
+        "customId": "6OKKn6TeAWWy0NrslTKG",
+        "location": "La Pesga",
+        "coords": [
+            -6.177323947061151,
+            40.32601028009093
+        ],
+        "type": "where-to-sleep",
+        "name": "Apartamento Turístico La Almazara"
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -5.857839982408166,
+            40.274658211905155
+        ],
+        "customId": "6Pnnan1NvXYI7VGXBXJ3",
+        "location": "Hervás",
+        "name": "Casa Rural La Casa de Severina"
+    },
+    {
+        "type": "where-to-eat",
+        "name": "Restaurante Azacán",
+        "coords": [
+            -5.8585104843784945,
+            40.273762228719136
+        ],
+        "location": "Hervás",
+        "customId": "6ga0D2K5Jb0DUbhfL9b6"
+    },
+    {
+        "type": "where-to-sleep",
+        "location": "Baños de Montemayor",
+        "name": "Hotel La Glorieta",
+        "customId": "6miRQMXSu4MnF3nDcxcl",
+        "coords": [
+            -5.856281240229707,
+            40.32321065197291
+        ]
+    },
+    {
+        "location": "Abadía",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.977365226935889,
+            40.25885599842255
+        ],
+        "name": "Casa Rural Barlow",
+        "customId": "6wR4ubFwu90qm4H7MmUV"
+    },
+    {
+        "location": "Villar de Plasencia",
+        "customId": "6yGnTCWgNQED3LlL5lV4",
+        "coords": [
+            -6.043247334113873,
+            40.14256171451929
+        ],
+        "name": "Hostal Restaurante El Avión",
+        "type": "where-to-sleep"
+    },
+    {
+        "customId": "7A3upvRQtwWmoPfCCM2X",
+        "name": "Casa Rural El Olivo",
+        "coords": [
+            -6.162085811366627,
+            40.1930916127674
+        ],
+        "location": "Guijo de Granadilla",
+        "type": "where-to-sleep"
+    },
+    {
+        "name": "Restaurante Camping El Pinajarro",
+        "location": "Hervás",
+        "type": "where-to-eat",
+        "customId": "7EQJfcGQkptqn8SziyqP",
+        "coords": [
+            -5.8797334920069115,
+            40.26956457399526
+        ]
+    },
+    {
+        "customId": "7MeUoVEVS8uyy8o8CAEV",
+        "location": "Santa Cruz de Paniagua",
+        "coords": [
+            -6.338810832245327,
+            40.190634201884315
+        ],
+        "name": "Apartamento Turístico La Fuentenita",
+        "type": "where-to-sleep"
+    },
+    {
+        "type": "where-to-sleep",
+        "location": "Aldeanueva del Camino",
+        "coords": [
+            -5.925710620616971,
+            40.26039418165361
+        ],
+        "name": "Casa Rural El Mullaero",
+        "customId": "7TKSGue5aisiCdkoXRqd"
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -6.002062611085462,
+            40.138161142540305
+        ],
+        "location": "Cabezabellosa",
+        "name": "Casa Rural Palacio Carvajal",
+        "customId": "7sX15agc3kBioooDl77H"
+    },
+    {
+        "name": "Casa Rural Villabellosa",
+        "customId": "87ZUYQ3FhIamAmmWhuE7",
+        "type": "where-to-sleep",
+        "coords": [
+            -6.029273114531092,
+            40.13827049885245
+        ],
+        "location": "Villar de Plasencia"
+    },
+    {
+        "name": "Restaurante Anvi",
+        "location": "Hervás",
+        "customId": "8d18SG0wAGvUofyBrSWX",
+        "coords": [
+            -5.858488616376716,
+            40.27331855818768
+        ],
+        "type": "where-to-eat"
+    },
+    {
+        "customId": "8eiaGHnlRl0xdmHjGhsQ",
+        "type": "where-to-sleep",
+        "location": "Hervás",
+        "name": "Albergue Valle del Ambroz",
+        "coords": [
+            -5.835363788118349,
+            40.27151079363293
+        ]
+    },
+    {
+        "coords": [
+            -5.858046336004964,
+            40.27331318715718
+        ],
+        "customId": "8f3g5Fcf1fl5hYh743vt",
+        "location": "Hervás",
+        "type": "where-to-sleep",
+        "name": "Apartamento Turístico La Antigua Fonda"
+    },
+    {
+        "customId": "8tyiXw2CyPU06WE7EQ50",
+        "location": "Baños de Montemayor",
+        "coords": [
+            -5.854522962943287,
+            40.31847339907779
+        ],
+        "name": "Restaurante El Puente",
+        "type": "where-to-eat"
+    },
+    {
+        "type": "where-to-eat",
+        "location": "Aldeanueva del Camino",
+        "customId": "8y8FXQ0Uvj1ncNTRV3HI",
+        "coords": [
+            -5.925976718227684,
+            40.261432326569
+        ],
+        "name": "Posada Tres Mentiras"
+    },
+    {
+        "location": "Casas del Monte",
+        "type": "where-to-sleep",
+        "name": "Apartamento Turístico La Charca de la Dehesa",
+        "customId": "9SV2Wc72NeHc2iTG3MIu",
+        "coords": [
+            -5.957907895532867,
+            40.205488005306506
+        ]
+    },
+    {
+        "name": "Casa Rural Caño las Parras",
+        "location": "Hervás",
+        "customId": "9lFAtZ8ufevCkpudxOe4",
+        "coords": [
+            -5.856532058705098,
+            40.274448941382325
+        ],
+        "type": "where-to-sleep"
+    },
+    {
+        "customId": "AL7MCJgn83LynLIQXAr8",
+        "type": "where-to-sleep",
+        "location": "Zarza de Granadilla",
+        "coords": [
+            -6.049688910826438,
+            40.234390281355836
+        ],
+        "name": "Casa Rural Ambroz"
+    },
+    {
+        "location": "Santibáñez El Bajo",
+        "name": "Café Jiménez",
+        "coords": [
+            -6.223282704985067,
+            40.17668094987428
+        ],
+        "customId": "ARX42FgvFaEJbz1Fki8D",
+        "type": "where-to-eat"
+    },
+    {
+        "name": "Apartamento Turístico Hervás Centro",
+        "location": "Hervás",
+        "customId": "ASwWSF4N9mIj1ZRHevWT",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.859402085663096,
+            40.27306139004465
+        ]
+    },
+    {
+        "name": "Casa Rural La Cañada",
+        "customId": "AaYcWPEmstgpebSMNrPG",
+        "coords": [
+            -5.926376980677815,
+            40.260785830173106
+        ],
+        "location": "Aldeanueva del Camino",
+        "type": "where-to-sleep"
+    },
+    {
+        "location": "Jarilla",
+        "customId": "AbX84RqvpkqEs5IG4Grf",
+        "type": "where-to-sleep",
+        "coords": [
+            -6.0038174285605574,
+            40.188486056874694
+        ],
+        "name": "Hotel Restaurante Jarilla"
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Apartamento Turístico La Plazuela",
+        "location": "Baños de Montemayor",
+        "customId": "AgevmFtd49DyGcNeFdmg",
+        "coords": [
+            -5.857484858759757,
+            40.319081756546524
+        ]
+    },
+    {
+        "coords": [
+            -6.1636545819921595,
+            40.19303667685851
+        ],
+        "type": "where-to-eat",
+        "customId": "BNV6CuEzb7uQlRi3QURc",
+        "name": "Café-Bar Evaristo",
+        "location": "Guijo de Granadilla"
+    },
+    {
+        "type": "where-to-sleep",
+        "location": "Zarza de Granadilla",
+        "customId": "BcqedpupIOxZa1i9ZWnT",
+        "name": "Casa Rural Tierras de Granadilla",
+        "coords": [
+            -6.055853865571102,
+            40.2284145749187
+        ]
+    },
+    {
+        "type": "where-to-sleep",
+        "name": "Casa Rural El Jardín de la Plata",
+        "customId": "Br0kQM5eqmYXAHrGeMDW",
+        "location": "Baños de Montemayor",
+        "coords": [
+            -5.8577730360032225,
+            40.31876447852619
+        ]
+    },
+    {
+        "type": "where-to-sleep",
+        "location": "Hervás",
+        "name": "Casa Rural Senderos de Hervás",
+        "customId": "BvkSNYjwjOFoolAuS9qK",
+        "coords": [
+            -5.858158688118284,
+            40.27384347151003
+        ]
+    },
+    {
+        "coords": [
+            -5.85794159642863,
+            40.31805024935555
+        ],
+        "customId": "CJoY0rGBPw6kgb8YvGPb",
+        "location": "Baños de Montemayor",
+        "type": "where-to-sleep",
+        "name": "Hotel Alegría"
+    },
+    {
+        "coords": [
+            -5.856596580185621,
+            40.27506696943652
+        ],
+        "location": "Hervás",
+        "customId": "CpEhkz0XmY31DRJKKFlX",
+        "name": "Casa Rural La Estrella de David",
+        "type": "where-to-sleep"
+    },
+    {
+        "customId": "DhXV5hi7stfly45ut0RH",
+        "coords": [
+            -5.856188769556609,
+            40.27390492141611
+        ],
+        "type": "where-to-sleep",
+        "name": "Apartamento Turístico La Iguana 1",
+        "location": "Hervás"
+    },
+    {
+        "name": "Casa Rural La Casita del Tejo",
+        "coords": [
+            -5.857650474105978,
+            40.275289696817154
+        ],
+        "customId": "E3VCevtX27xZfoJKlRsL",
+        "location": "Hervás",
+        "type": "where-to-sleep"
+    },
+    {
+        "coords": [
+            -5.863045382559254,
+            40.27482704032985
+        ],
+        "customId": "EQBVIOcTAiPHmop2GHrY",
+        "location": "Hervás",
+        "type": "where-to-sleep",
+        "name": "Hotel Spa Sinagoga"
+    },
+    {
+        "coords": [
+            -5.8621438034227324,
+            40.27494558320467
+        ],
+        "type": "where-to-sleep",
+        "customId": "Edw6gJKFo4aRKcaKsk8I",
+        "name": "Apartamento Turístico El Castañar",
+        "location": "Hervás"
+    },
+    {
+        "customId": "Eh8CX8ZvU2xDiDFAPvgj",
+        "name": "Hotel Balneario",
+        "location": "Baños de Montemayor",
+        "type": "where-to-sleep",
+        "coords": [
+            -5.856717944717662,
+            40.32021677284647
+        ]
+    },
+    {
+        "coords": [
+            -6.158896897873985,
+            40.19447763587663
+        ],
+        "customId": "FBggm1LGSYxvqD9iWCqX",
+        "type": "where-to-sleep",
+        "location": "Gujo de Granadilla",
+        "name": "Casa Rural El Jardín del Poeta"
+    },
+    {
+        "location": "Baños de Montemayor",
+        "coords": [
+            -5.848608875189608,
+            40.32234210535421
+        ],
+        "type": "where-to-sleep",
+        "customId": "GRpvlQuDYNg8AvJ9i0Or",
+        "name": "Casa Rural La Casa de Su"
+    },
+    {
+        "name": "Casa Rural Lidenex",
+        "type": "where-to-sleep",
+        "coords": [
+            -6.117205,
+            40.20836
+        ],
+        "customId": "GtYhqkPuvdBBuc137XxJ",
+        "location": "Guijo de Granadilla"
+    },
+    {
+        "type": "where-to-sleep",
+        "coords": [
+            -5.857311422467058,
+            40.27445558482276
+        ],
+        "name": "Apartamento Turístico La Casita del Olivo",
+        "location": "Hervás",
+        "customId": "HDDINdmbHGudFCyKmv3l"
+    },
+    {
+        "coords": [
+            -5.88070757092027,
+            40.28536872063407
+        ],
+        "customId": "I8vKMpfASJnhkdYhWrug",
+        "location": "Baños de Montemayor",
+        "name": "Camping Las Cañadas",
+        "type": "where-to-sleep"
+    },
+    {
+        "coords": [
+            -6.084582717459867,
+            40.11353314786022
+        ],
+        "customId": "IYMfV90N2RgxRonHr4CJ",
+        "type": "where-to-sleep",
+        "name": "Casa Rural Vía Cáparra",
+        "location": "Oliva de Plasencia"
+    },
+    {
+        "location": "Abadía",
+        "customId": "Iy8sdnzpzFeFNd1WDcwN",
+        "coords": [
+            -5.980119945751764,
+            40.25754182533487
+        ],
+        "name": "Apartamento Turístico Buenavista",
+        "type": "where-to-sleep"
+    },
+    {
+        "name": "Chiringuito Las Pizarras",
+        "location": "Abadía",
+        "customId": "JJtkYz3uqnsFe7kAS7Gi",
+        "type": "where-to-eat",
+        "coords": [
+            -5.980981083840213,
+            40.26218213982216
+        ]
+    },
+    {
+        "type": "where-to-sleep",
+        "customId": "JMg4ikW3nRWX2JTFDUy8",
+        "name": "Casa Rural El Rincón del Villar",
+        "coords": [
+            -6.030061601272937,
+            40.13781263288568
+        ],
+        "location": "Villar de Plasencia"
+    },
+    {
+        "coords": [
+            -5.850389702496944,
+            40.320157141984055
+        ],
+        "name": "Casa Rural Villa Asunción",
+        "type": "where-to-sleep",
+        "customId": "JyCS0RTHTRbVAV2DZwea",
+        "location": "Baños de Montemayor"
+    },
+    {
+        "type": "where-to-sleep",
+        "customId": "LHOikjTZrGXc6HMtDVVa",
+        "coords": [
+            -5.873255701125077,
+            40.269533991034784
+        ],
+        "name": "Casa Rural Fuente del Aliso",
+        "location": "Hervás"
+    },
+    {
+        "location": "Cabezabellosa",
+        "type": "where-to-eat",
+        "name": "El Mirado El Buitre Negro",
+        "customId": "LNOiBiWROKiCoHAFAkBn",
+        "coords": [
+            -6.001462607593864,
+            40.13852097983826
+        ]
+    },
+    {
+        "customId": "M3FwOj3WguZBndejDYB9",
+        "coords": [
+            -5.95741415739567,
+            40.20649074270787
+        ],
+        "location": "Casas del Monte",
+        "type": "where-to-eat",
+        "name": "Restaurante La Perejila"
+    },
+    {
+        "customId": "MGCHKA9BmbCUfNmQvUor",
+        "location": "Cerezo",
+        "name": "Casa Rural La Posada del Teso",
+        "type": "where-to-sleep",
+        "coords": [
+            -6.226488237021541,
+            40.236848909686316
+        ]
+    },
+    {
+        "type": "where-to-eat",
+        "location": "Hervás",
+        "coords": [
+            -5.857824997332408,
+            40.273866342916016
+        ],
+        "name": "Restaurante A Fuego Lento",
+        "customId": "MMScJyW5EaSJ9bSgTHMT"
+    },
+    {
+        "location": "La Garganta",
+        "name": "Casa Rural Peña Negra",
+        "customId": "Myf3ymH5FrWqnjwg5Vbs",
+        "coords": [
+            -5.82346762711721,
+            40.32939530809126
+        ],
+        "type": "where-to-sleep"
+    },
+    {
+        "coords": [
+            -5.947547722468927,
+            40.2232697327129
+        ],
+        "type": "where-to-eat",
+        "customId": "OFRZAOwmnLgEeRqSFnoD",
+        "location": "Segura de Toro",
+        "name": "La Taberna de Lalo"
+    },
+    {
+        "location": "Guijo de Granadilla",
+        "customId": "OTvuoFIWnrimh10sRZOi",
+        "coords": [
+            -6.162678300502741,
+            40.19365904594248
+        ],
+        "type": "where-to-eat",
+        "name": "Hogar del Pensionista"
+    },
+    {
+        "name": "Bar El Rincón de Pascual",
+        "location": "Abadía",
+        "coords": [
+            -5.975985786212409,
+            40.259919388117666
+        ],
+        "type": "where-to-eat",
+        "customId": "Ox3LQaghVhnFxsg7um6Q"
+    },
+    {
+        "name": "Chiringuito Piscina Natural Gargantilla Las Cerezas",
+        "coords": [
+            -5.9159794962031595,
+            40.2451386025397
+        ],
+        "customId": "OyFGm3GuycVVFLXMdgu1",
+        "type": "where-to-eat",
+        "location": "Gargantilla"
+    },
+    {
+        "location": "Jarilla",
+        "customId": "Qe0fgcTbghWcLfMY2u0O",
+        "type": "where-to-sleep",
+        "name": "Casa Rural Solaz de Ambroz",
+        "coords": [
+            -6.002641590456487,
+            40.17245454014195
+        ]
+    },
+    {
+        "type": "where-to-eat",
+        "coords": [
+            -5.8234863472738025,
+            40.32870358396533
+        ],
+        "location": "La Garganta",
+        "name": "Hogar La Vigareta",
+        "customId": "SfcolywU0myOJdcmKBCp"
+    },
+    {
+        "coords": [
+            -5.855690559782439,
+            40.27614093851013
+        ],
+        "customId": "Ss09rdkah0RHFckbwJMD",
+        "name": "Casa Rural Puente de la Judería",
+        "location": "Hervás",
+        "type": "where-to-sleep"
+    },
+    {
+        "name": "Restaurante La Vaca Brava",
+        "type": "where-to-eat",
+        "coords": [
+            -5.858940929869317,
+            40.274307784491164
+        ],
+        "customId": "TV6qlLv0SvYrmMC83FXr",
+        "location": "Hervás"
+    },
+    {
+        "coords": [
+            -5.861447094140488,
+            40.27244091269565
+        ],
+        "name": "Restaurante La Brasa I",
+        "location": "Hervás",
+        "type": "where-to-eat",
+        "customId": "V0bMzy3y2Wnf7kxSXgsr"
+    },
+    {
+        "name": "Bar Solarium",
+        "coords": [
+            -6.2770968150657325,
+            40.248612647932546
+        ],
+        "customId": "WSSXjq01dMqECcWQAn4x",
+        "location": "Palomero",
+        "type": "where-to-eat"
+    },
+    {
+        "coords": [
+            -6.193113478827968,
+            40.24211512526679
+        ],
+        "name": "Restaurante Ruta de las Hurdes",
+        "customId": "WXKowGElzo6rpYRLzOQ2",
+        "type": "where-to-eat",
+        "location": "Mohedas de Granadilla"
+    },
+    {
+        "location": "Hervás",
+        "type": "where-to-eat",
+        "customId": "Y0bIoePnsQrVYzKNiVk3",
+        "name": "Terma Resort El Salugral",
+        "coords": [
+            -5.890869066646035,
+            40.27457464056932
+        ]
+    },
+    {
+        "customId": "ajUTKg4hX1JtNimf129F",
+        "coords": [
+            -5.861642047063101,
+            40.27256194663639
+        ],
+        "name": "Restauranta El Mirador",
+        "location": "Hervás",
+        "type": "where-to-eat"
+    },
+    {
+        "name": "Salón de Banquetes Torreón de Veredillas",
+        "coords": [
+            -6.130276218771217,
+            40.12805783161014
+        ],
+        "type": "where-to-eat",
+        "location": "Oliva de Plasnecia",
+        "customId": "b0ZgFVYgJdPW8mSOnRsJ"
+    },
+    {
+        "location": "Zarza de Granadilla",
+        "coords": [
+            -6.0473894605569924,
+            40.2371252961563
+        ],
+        "customId": "bYsiposo6DrPHpHZ1jhD",
+        "name": "Mesón El Emigrante",
+        "type": "where-to-eat"
+    },
+    {
+        "location": "Santa Cruz de Paniagua",
+        "name": "Bar Martín 2.0",
+        "customId": "cIrYjmU7ItF4vcIPdhCl",
+        "coords": [
+            -6.340808585693338,
+            40.19104520745914
+        ],
+        "type": "where-to-eat"
+    },
+    {
+        "type": "where-to-eat",
+        "name": "Restaurante Casa Sebas",
+        "customId": "dCNsTnr7fpxZoK481LNv",
+        "location": "Aldeanueva del Camino",
+        "coords": [
+            -5.930811880139148,
+            40.260196418909814
+        ]
+    },
+    {
+        "name": "Área de Servicio Ambroz",
+        "type": "where-to-eat",
+        "customId": "dQWaMfTVDgwuariv65zu",
+        "coords": [
+            -5.916609718766228,
+            40.26518400527362
+        ],
+        "location": "Aldeanueva del Camino"
+    },
+    {
+        "customId": "eMCUPffc7vFl9cYpMlrg",
+        "name": "Nuevo Altamira",
+        "coords": [
+            -6.2753698378105,
+            40.267383541980614
+        ],
+        "location": "Marchagaz",
+        "type": "where-to-eat"
+    },
+    {
+        "customId": "eVbcl1cJHp1NYMEXZuVU",
+        "coords": [
+            -6.042882569294596,
+            40.14250422992034
+        ],
+        "name": "Restaurante El Avión",
+        "type": "where-to-eat",
+        "location": "Villar de Plasencia"
+    },
+    {
+        "name": "Sésamo Casa de Comidas",
+        "location": "Hervás",
+        "type": "where-to-eat",
+        "customId": "gYRueGpZ1eh20LOi3q57",
+        "coords": [
+            -5.855556680902477,
+            40.27370575540093
+        ]
+    },
+    {
+        "coords": [
+            -6.188279101819398,
+            40.18892023377474
+        ],
+        "name": "Salones Mahillo",
+        "location": "Ahigal",
+        "type": "where-to-eat",
+        "customId": "h2u2LvawL80MgGJ54E5R"
+    },
+    {
+        "location": "Hervás",
+        "customId": "hnbD89lVe1pD6y8yIBt3",
+        "name": "Restaurante Sinagoga",
+        "type": "where-to-eat",
+        "coords": [
+            -5.863227772736369,
+            40.27476974116602
+        ]
+    },
+    {
+        "name": "Restaurante Asador El Cordel",
+        "type": "where-to-eat",
+        "location": "Zarza de Granadilla",
+        "coords": [
+            -6.049048178289502,
+            40.23565755899352
+        ],
+        "customId": "hwIBAzC4IXOanS9vkrjE"
+    },
+    {
+        "type": "where-to-eat",
+        "coords": [
+            -5.857828555002341,
+            40.319469013947085
+        ],
+        "customId": "iGZOAbJTQoNllfL0YlpJ",
+        "location": "Baños de Montemayor",
+        "name": "Restaurante La Peña"
+    },
+    {
+        "location": "Jarilla",
+        "name": "Restaurante Asturias",
+        "coords": [
+            -6.007692239663967,
+            40.18685210380232
+        ],
+        "type": "where-to-eat",
+        "customId": "jNxEfs04eETIo4CssC8K"
+    },
+    {
+        "coords": [
+            -5.909931003423005,
+            40.267791381766465
+        ],
+        "name": "Restaurante Roma",
+        "customId": "jd0ai6xJy3iKa9npRKF3",
+        "type": "where-to-eat",
+        "location": "Aldeanueva del Camino"
+    },
+    {
+        "type": "where-to-eat",
+        "customId": "kRdDZR0Qrm6qpnUzcJ1E",
+        "name": "Restaurante Alegría",
+        "location": "Baños de Montemayor",
+        "coords": [
+            -5.858799818225645,
+            40.318045418053295
+        ]
+    },
+    {
+        "name": "Café-Bar Champán",
+        "type": "where-to-eat",
+        "location": "La Granja",
+        "coords": [
+            -5.993494788080874,
+            40.23922737973506
+        ],
+        "customId": "lT9QZ5c5WEEQxotaTXBP"
+    },
+    {
+        "name": "Restaurante Nardi",
+        "location": "Hervás",
+        "coords": [
+            -5.859102803422806,
+            40.273118872737975
+        ],
+        "customId": "md9lcMl6dJAtiFX1BVxz",
+        "type": "where-to-eat"
+    },
+    {
+        "coords": [
+            -5.859746846568222,
+            40.323968401470175
+        ],
+        "customId": "nlmyEWD2i66YQAH0ZwOx",
+        "type": "where-to-eat",
+        "location": "Baños de Montemayor",
+        "name": "Restaurante El Solitario"
+    },
+    {
+        "type": "where-to-eat",
+        "name": "Bar Piscina",
+        "customId": "o2wUENLBolOVMKH0CLMg",
+        "location": "Marchagaz",
+        "coords": [
+            -6.276186741511596,
+            40.26804315921702
+        ]
+    },
+    {
+        "name": "Cafe-Bar Toma +",
+        "location": "Palomero",
+        "type": "where-to-eat",
+        "coords": [
+            -6.271771657307951,
+            40.24673412443419
+        ],
+        "customId": "oKREhpgUwgUq7WuQhW6u"
+    },
+    {
+        "customId": "pESD6rsxLsr9glRGb2Vt",
+        "location": "Aldeanueva del Camino",
+        "name": "Restaurante Montesol",
+        "type": "where-to-eat",
+        "coords": [
+            -5.9209730740487165,
+            40.262930925240376
+        ]
+    },
+    {
+        "coords": [
+            -6.346165688981857,
+            40.18951023931548
+        ],
+        "type": "where-to-eat",
+        "name": "Chiringuito La Lise- Piscina Natural",
+        "location": "Santa Cruz de Paniagua",
+        "customId": "pNkkWvKPhofNZ6aQvK6q"
+    },
+    {
+        "customId": "rPrXP7uGuOsc0Za75GuB",
+        "type": "where-to-eat",
+        "name": "Mesón Maleja Tupa",
+        "coords": [
+            -5.85733343171825,
+            40.31902851590913
+        ],
+        "location": "Baños de Montemayor"
+    },
+    {
+        "customId": "sX54QWrOwWMWrk4dSurj",
+        "coords": [
+            -6.04719263781157,
+            40.23740379378842
+        ],
+        "location": "Zarza de Granadilla",
+        "name": "Versátil",
+        "type": "where-to-eat"
+    },
+    {
+        "location": "Hervás",
+        "coords": [
+            -5.85902839178069,
+            40.274635698912405
+        ],
+        "customId": "ugr4RQpTUUnsd5IlUn9m",
+        "type": "where-to-eat",
+        "name": "Mesón El 60"
+    },
+    {
+        "type": "where-to-eat",
+        "customId": "v0C6vMFLJcnlM8W0AwXh",
+        "name": "Bar Toro de Piedra",
+        "location": "Segura de Toro",
+        "coords": [
+            -5.949291433802515,
+            40.22444734156485
+        ]
+    },
+    {
+        "customId": "wLjhC6jBgUdmbBFjbO8s",
+        "name": "Cafetería El Teide",
+        "coords": [
+            -6.221281265046001,
+            40.176271058234995
+        ],
+        "location": "Santibáñez El Bajo",
+        "type": "where-to-eat"
+    },
+    {
+        "customId": "wvPTEe0Kmilelonvujtp",
+        "name": "Restaurante Cisne Negro",
+        "coords": [
+            -6.048245031721283,
+            40.2354515691645
+        ],
+        "location": "Zarza de Granadilla",
+        "type": "where-to-eat"
+    },
+    {
+        "location": "Jarilla",
+        "type": "where-to-eat",
+        "customId": "xDNzByZctRogDXOiWBfT",
+        "name": "Restaurante Jarilla",
+        "coords": [
+            -6.004043061308482,
+            40.18875586931777
+        ]
+    },
+    {
+        "location": "Baños de Montemayor",
+        "name": "Restaurante La Glorieta",
+        "coords": [
+            -5.857001416374905,
+            40.323211405544164
+        ],
+        "customId": "xGmjTjz9J1NXb6eNfJQA",
+        "type": "where-to-eat"
+    },
+    {
+        "coords": [
+            -5.960466059246337,
+            40.20318637399269
+        ],
+        "customId": "xRC5Xe9w2oBosFfwgRgr",
+        "type": "where-to-eat",
+        "location": "Casas del Monte",
+        "name": "Resturante Batán"
+    },
+    {
+        "name": "Restaurante Las Cañadas",
+        "coords": [
+            -5.8812096285570545,
+            40.284921968348584
+        ],
+        "location": "Baños de Montemayor",
+        "customId": "xms15nfA9bjM1cjyqwFp",
+        "type": "where-to-eat"
+    },
+    {
+        "type": "where-to-eat",
+        "customId": "yDW8SuJJnntaZwSZOlBz",
+        "name": "Restaurante Más Que Parrilla",
+        "coords": [
+            -5.858232629869339,
+            40.27359850070698
+        ],
+        "location": "Hervás"
+    },
+    {
+        "coords": [
+            -6.222381918769454,
+            40.17697392784478
+        ],
+        "name": "Restaurante El Cine",
+        "customId": "ybaDptHYwWlovxmFXYjA",
+        "location": "Santibáñez El Bajo",
+        "type": "where-to-eat"
+    },
+    {
+        "name": "Restaurante Las Termas",
+        "coords": [
+            -5.857072955541035,
+            40.31941365362738
+        ],
+        "type": "where-to-eat",
+        "customId": "yubNVJNMH39eH7Q5aTCD",
+        "location": "Baños de Montemayor"
+    }
+]
