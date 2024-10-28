@@ -1,5 +1,14 @@
 <div *ngIf="!login">
-    <button (click)="userLogin()"> Clic aquí para iniciar sesión </button>
+    <button (click)="userLogin()"> Iniciar sesión con Google </button>
+    <button *ngIf="!showEmailLoginForm" (click)="showEmailLogin()"> Iniciar sesión con Correo electrónico </button>
+    <form *ngIf="showEmailLoginForm" (ngSubmit)="emailLogin(email.value, password.value)" #form="ngForm">
+        <input #email type="email" placeholder="Correo electrónico" required />
+        <input #password type="password" placeholder="Contraseña" required />
+        <span class="form-buttons">
+            <button type="submit" [disabled]="!form.valid">Iniciar sesión con Email</button>
+            <button (click)="showEmailLogin()">Cerrar</button>
+        </span>
+    </form>
 </div>
 <div *ngIf="login">
     <div class="text">Esperando login...</div>
